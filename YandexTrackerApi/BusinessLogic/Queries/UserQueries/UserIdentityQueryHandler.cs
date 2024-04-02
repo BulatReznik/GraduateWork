@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using System.Security.Claims;
 using YandexTrackerApi.BusinessLogic.Models.UserModels;
+using Microsoft.Extensions.Logging;
 
 namespace YandexTrackerApi.BusinessLogic.Queries.UserQueries
 {
@@ -24,17 +25,16 @@ namespace YandexTrackerApi.BusinessLogic.Queries.UserQueries
         {
             try
             {
-                if (query.UserId <= 0 || query.Login == null)
+                if (query.UserId == Guid.Empty || query.Login == null)
                 {
-                    var errrorMessage = "Ошибка получения сущности " + $"ClaimsIdentity для пользователя {query.Login}";
+                    var errrorMessage = $"Ошибка получения сущности ClaimsIdentity для пользователя {query.Login}";
                     _logger.LogError(errrorMessage);
                     throw new Exception(errrorMessage);
                 }
 
                 var claims = new List<Claim>
                 {
-                    new(ClaimsIdentity.DefaultNameClaimType, query.Login), 
-                    //new(ClaimsIdentity.DefaultRoleClaimType, user.Role.GetValueOrDefault().ToString()), TODO
+                    new(ClaimsIdentity.DefaultNameClaimType, query.Login),
                     new("Id", query.UserId.ToString())
                 };
 

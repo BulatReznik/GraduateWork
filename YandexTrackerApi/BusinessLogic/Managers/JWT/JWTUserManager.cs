@@ -28,7 +28,7 @@ namespace YandexTrackerApi.BusinessLogic.Managers.JWT
 
         public async Task<UserResponseData> GetUserByIdentity(ClaimsIdentity identity)
         {
-            if (!int.TryParse(identity?.FindFirst("Id")?.Value, out int id))
+            if (!Guid.TryParse(identity?.FindFirst("Id")?.Value, out Guid id))
             {
                 throw new Exception("Не удалось получить Id пользователя");
             };

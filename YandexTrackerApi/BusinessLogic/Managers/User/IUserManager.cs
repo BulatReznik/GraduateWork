@@ -17,6 +17,6 @@ namespace YandexTrackerApi.BusinessLogic.Managers.User
         /// </summary>
         /// <param name="httpContextAccessor"></param>
         /// <returns></returns>
-        int GetCurrentUserIdByContext(IHttpContextAccessor httpContextAccessor);
+        Guid GetCurrentUserIdByContext(IHttpContextAccessor httpContextAccessor);
     }
 }

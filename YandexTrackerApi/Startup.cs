@@ -26,10 +26,7 @@ namespace YandexTrackerApi
             var appConfig = Configuration.GetSection("AppConfig").Get<AppConfig>()
                             ?? throw new ApplicationException("AppConfig loading error");
 
-            services.AddLogging(builder =>
-            {
-                builder.AddConsole();
-            });
+            services.AddLogging();
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Startup>());
 
@@ -38,6 +35,8 @@ namespace YandexTrackerApi
             services.AddAllSingletones();
             services.AddAllScoped(appConfig);
             services.AddAllTransients();
+
+            services.AddControllers().AddNewtonsoftJson();
 
             services.AddDistributedMemoryCache();
 
@@ -100,14 +99,12 @@ namespace YandexTrackerApi
         //HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
-            //if (env.IsDevelopment())
-            //{
             IdentityModelEventSource.ShowPII = true;
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             c.SwaggerEndpoint("/swagger/v1/swagger.json", "GraduateWork"));
-            //}
+
             app.UseHttpsRedirection();
             app.UseRouting();
 

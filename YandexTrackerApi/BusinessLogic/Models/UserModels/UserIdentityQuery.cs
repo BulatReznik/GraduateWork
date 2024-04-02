@@ -14,7 +14,7 @@ namespace YandexTrackerApi.BusinessLogic.Models.UserModels
         /// Id пользователя
         /// </summary>
         [Required(ErrorMessage = "Поле UserId должно быть заполнено")]
-        public int UserId { get; init; }
+        public Guid UserId { get; init; }
 
         /// <summary>
         /// Логин

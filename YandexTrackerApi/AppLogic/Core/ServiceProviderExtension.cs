@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using YandexTrackerApi.BusinessLogic.Managers.JWT;
 using YandexTrackerApi.BusinessLogic.Managers.User;
+using YandexTrackerApi.DbModels;
 
 namespace YandexTrackerApi.AppLogic.Core
 {
@@ -10,12 +12,12 @@ namespace YandexTrackerApi.AppLogic.Core
     {
         public static void AddAllSingletones(this IServiceCollection services)
         {
+            services.AddSingleton(typeof(ILogger), typeof(Logger<Startup>));
         }
 
         public static void AddAllScoped(this IServiceCollection services, AppConfig appConfig)
         {
-            /*
-            services.AddDbContextPool<IMOIOContext, MOIOContext>(
+            services.AddDbContextPool<IGraduateWorkContext, GraduateWorkContext>(
                 dbContextOptions =>
                 {
                     dbContextOptions.UseSqlServer(appConfig.DBConnectionString);
@@ -25,7 +27,6 @@ namespace YandexTrackerApi.AppLogic.Core
                     });
                 }
             );
-            */
 
             // Менеджеры
             services.AddScoped<IUserManager, UserManager>();

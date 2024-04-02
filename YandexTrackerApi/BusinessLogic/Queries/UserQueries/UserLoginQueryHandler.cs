@@ -14,10 +14,12 @@ namespace YandexTrackerApi.BusinessLogic.Queries.UserQueries
 
         public UserLoginQueryHandler(
             IJWTAuthManager jwtAuthManager,
-            IMediator mediator)
+            IMediator mediator,
+            ILogger logger)
         {
             _jwtAuthManager = jwtAuthManager;
             _mediator = mediator;
+            _logger = logger;
         }
 
         public async Task<ResponseModel<UserLoginResponseModel>> Handle(
@@ -36,13 +38,12 @@ namespace YandexTrackerApi.BusinessLogic.Queries.UserQueries
 
                 if (user == null)
                     return new ResponseModel<UserLoginResponseModel> { ErrorMessage = "Неправильный логин / пароль" };
-                
+
                 var identity = await _mediator.Send(
                    new UserIdentityQuery
                    {
                        Login = user.Login,
-                       UserId = user.Id,
-                       // Role = TODO
+                       UserId = user.Id
                    },
                    cancellationToken);
 
@@ -60,7 +61,7 @@ namespace YandexTrackerApi.BusinessLogic.Queries.UserQueries
                     {
                         AccessToken = accessToken,
                         RefreshToken = refreshToken,
-                        Username = identity.Name,
+                        Login = identity.Name,
                         Id = identity.Claims.Last().Value
                     }
                 };

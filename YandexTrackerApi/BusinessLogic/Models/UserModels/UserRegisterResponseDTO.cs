@@ -1,9 +1,6 @@
 ﻿namespace YandexTrackerApi.BusinessLogic.Models.UserModels
 {
-    /// <summary>
-    /// Модель ответа на запрос
-    /// </summary>
-    public record UserLoginResponseModel
+    public class UserRegisterResponseDTO
     {
         /// <summary>
         /// Токен доступа

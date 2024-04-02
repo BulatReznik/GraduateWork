@@ -10,7 +10,7 @@ namespace YandexTrackerApi.BusinessLogic.Models.UserModels
         /// <summary>
         /// Идентификатор
         /// </summary>
-        public int? Id { get; init; }
+        public Guid Id { get; init; }
 
         /// <summary>
         /// Имя пользователя

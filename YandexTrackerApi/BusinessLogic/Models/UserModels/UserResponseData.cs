@@ -9,7 +9,7 @@
         /// <summary>
         /// Id пользователя
         /// </summary>
-        public int Id { get; init; }
+        public Guid Id { get; init; }
 
         /// <summary>
         /// Логин

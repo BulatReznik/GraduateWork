@@ -17,7 +17,7 @@ namespace YandexTrackerApi.BusinessLogic.Managers.User
             _logger = logger;
         }
 
-        public int GetCurrentUserIdByContext(IHttpContextAccessor httpContextAccessor)
+        public Guid GetCurrentUserIdByContext(IHttpContextAccessor httpContextAccessor)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace YandexTrackerApi.BusinessLogic.Managers.User
                 if (string.IsNullOrEmpty(id))
                     throw new AuthenticationException("Невозможно определить Id пользователя в контексте сервера");
 
-                return int.Parse(id);
+                return Guid.Parse(id);
             }
             catch (Exception ex)
             {
