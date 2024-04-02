@@ -1,0 +1,26 @@
+﻿@page
+@model BPMNTest.Pages.Home.ExpertsModel
+
+<h2>Эксперты</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Email</th>
+            <th>Телефон</th>
+            <th>Отдел</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var expert in Model.Experts)
+        {
+            <tr>
+                <td>@expert.Name</td>
+                <td>@expert.Email</td>
+                <td>@expert.Phone</td>
+                <td>@expert.Department</td>
+            </tr>
+        }
+    </tbody>
+</table>

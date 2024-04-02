@@ -1,0 +1,77 @@
+﻿@page
+@model BPMNTest.Pages.Home.ProjectModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="my-4">@ViewData["Title"]</h2>
+        <p>Страница для распределения рабочих и инженеров по проекту строительства жилого комплекса.</p>
+
+        <h3>Информация о работниках</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Квалификация</th>
+                    <th>Специализация</th>
+                    <th>Опыт работы</th>
+                    <th>Отпуск</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Иван Петров</td>
+                    <td>Старший инженер</td>
+                    <td>Строительное проектирование</td>
+                    <td>10 лет</td>
+                    <td>10.07 - 24.07</td>
+                </tr>
+                <!-- Добавить остальных работников аналогично -->
+            </tbody>
+        </table>
+
+        <h3>Предложенные решения</h3>
+        <div class="list-group">
+            <!-- Пример предложения -->
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Решение 1</h5>
+                    <small>3 дня назад</small>
+                </div>
+                <p class="mb-1">Описание предложения 1...</p>
+                <small>Оценка эксперта: Положительно.</small>
+            </a>
+            <!-- Добавить другие предложения -->
+        </div>
+
+        <h3>Оценки от экспертов</h3>
+        <div class="mb-4">
+            <!-- Секция для отображения оценок и комментариев экспертов -->
+            <p><strong>Эксперт 1:</strong> Комментарий эксперта...</p>
+            <!-- Добавить другие комментарии экспертов -->
+        </div>
+
+        <h4>Оставить комментарий или принять решение</h4>
+        <form method="post">
+            <div class="form-group">
+                <label for="comment">Комментарий</label>
+                <textarea class="form-control" id="comment" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

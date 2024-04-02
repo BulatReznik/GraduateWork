@@ -1,0 +1,6 @@
+@YandexTrackerApi_HostAddress = http://localhost:5028
+
+GET {{YandexTrackerApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

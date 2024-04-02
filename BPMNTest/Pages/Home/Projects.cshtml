@@ -1,0 +1,35 @@
+﻿@page
+@model BPMNTest.Pages.Home.ProjectsModel
+
+<h2>Проекты</h2>
+
+@if (Model.Projects != null && Model.Projects.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Дата начала</th>
+                <th>Дата окончания</th>
+                <th>Статус</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model.Projects)
+            {
+                <tr>
+                    <td>@project.Name</td>
+                    <td>@project.Description</td>
+                    <td>@project.StartDate.ToString("dd.MM.yyyy")</td>
+                    <td>@project.EndDate.ToString("dd.MM.yyyy")</td>
+                    <td>@project.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Проекты не найдены.</p>
+}

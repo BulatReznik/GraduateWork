@@ -1,0 +1,35 @@
+﻿@page
+@model BPMNTest.Pages.Home.InvitationsModel
+
+<h2>Приглашения в проекты</h2>
+
+<ul class="list-group">
+    @* Здесь будут отображаться приглашения *@
+    <li class="list-group-item">
+        Приглашение в Проект 1
+        <form method="post" class="d-inline">
+            <input type="hidden" name="action" value="accept" />
+            <input type="hidden" name="projectId" value="1" />
+            <button type="submit" class="btn btn-success">Принять</button>
+        </form>
+        <form method="post" class="d-inline">
+            <input type="hidden" name="action" value="decline" />
+            <input type="hidden" name="projectId" value="1" />
+            <button type="submit" class="btn btn-danger">Отклонить</button>
+        </form>
+    </li>
+    <li class="list-group-item">
+        Приглашение в Проект 2
+        <form method="post" class="d-inline">
+            <input type="hidden" name="action" value="accept" />
+            <input type="hidden" name="projectId" value="1" />
+            <button type="submit" class="btn btn-success">Принять</button>
+        </form>
+        <form method="post" class="d-inline">
+            <input type="hidden" name="action" value="decline" />
+            <input type="hidden" name="projectId" value="1" />
+            <button type="submit" class="btn btn-danger">Отклонить</button>
+        </form>
+    </li>
+    <!-- Добавьте больше элементов, если необходимо -->
+</ul>

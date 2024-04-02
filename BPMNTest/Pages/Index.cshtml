@@ -1,0 +1,94 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "BPMN Editor";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>BPMN Editor</title>
+    <!-- Подключение стилей для диаграмм BPMN и иконок BPMN -->
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js/dist/assets/diagram-js.css">
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js/dist/assets/bpmn-font/css/bpmn.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        /* Стили для контейнера */
+        #canvas {
+            width: 100%;
+            height: 1000px;
+            border: solid 1px black;
+            margin-bottom: 10px;
+        }
+
+        .bjs-powered-by {
+            display: none; /* Сделать элемент невидимым */
+        }
+    </style>
+</head>
+<body>
+    <!-- Контейнер для диаграммы BPMN -->
+    <div id="canvas"></div>
+
+    <!-- Добавляем input для загрузки файла -->
+    <input type="file" id="fileInput" accept=".bpmn" style="display: none;">
+    <!-- Используем Bootstrap-классы для стилизации кнопки -->
+    <button class="btn btn-primary" onclick="openFile()">Загрузить файл</button>
+    <button class="btn btn-primary" onclick="exportBpmnXml()">Сохранить диаграмму</button>
+
+    <!-- Подключение библиотеки bpmn-js Modeler -->
+    <script src="https://unpkg.com/bpmn-js/dist/bpmn-modeler.development.js"></script>
+
+    <form action="/Home/SaveDiagram" method="post">
+        <fieldset>
+            <input type="text" id="xml" name="xml" hidden/>
+        </fieldset>
+        <input hidden id="saveButton" type="submit" value="Save">
+    </form>
+
+    <script>
+        // Создание экземпляра BPMN Modeler
+        const modeler = new BpmnJS({ container: '#canvas' });
+
+        // Функция для открытия файла
+        function openFile() {
+            const fileInput = document.getElementById('fileInput');
+            fileInput.click();
+        }
+
+        // Обработка выбора файла
+        document.getElementById('fileInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const bpmnXml = e.target.result;
+                    loadDiagram(bpmnXml);
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        // Функция для загрузки диаграммы
+        function loadDiagram(bpmnXml) {
+            modeler.importXML(bpmnXml);
+        }
+
+        async function exportBpmnXml() {
+            const { xml } = await modeler.saveXML({ format: true });
+            console.log(xml);
+            // Найти элемент input по его id
+            const xmlInput = document.getElementById('xml');
+
+            // Установить значение xml в поле input
+            xmlInput.value = xml;
+
+            const saveButton = document.getElementById('saveButton');
+            saveButton.click();
+        }
+    </script>
+</body>
+</html>
