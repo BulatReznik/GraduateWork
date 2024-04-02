@@ -8,24 +8,82 @@ namespace YandexTrackerApi.DbModels;
 
 public partial class GraduateWorkContext : DbContext
 {
-    public GraduateWorkContext()
-    {
-    }
-
     public GraduateWorkContext(DbContextOptions<GraduateWorkContext> options)
         : base(options)
     {
     }
 
-    public virtual DbSet<User> User { get; set; }
+    public virtual DbSet<CalendarDatum> CalendarData { get; set; }
+
+    public virtual DbSet<Project> Projects { get; set; }
+
+    public virtual DbSet<User> Users { get; set; }
+
+    public virtual DbSet<UsersProject> UsersProjects { get; set; }
+
+    public virtual DbSet<YandexTracker> YandexTrackers { get; set; }
+
+    public virtual DbSet<YandexTrackerUser> YandexTrackerUsers { get; set; }
+
+    public virtual DbSet<YandexTrackerUserHoliday> YandexTrackerUserHolidays { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<CalendarDatum>(entity =>
+        {
+            entity.HasKey(e => e.Day).HasName("PK_CalendarData_Day");
+        });
+
+        modelBuilder.Entity<Project>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_Project_Id");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK_User_Id");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
+        });
+
+        modelBuilder.Entity<UsersProject>(entity =>
+        {
+            entity.HasKey(e => new { e.UserId, e.ProjectId }).HasName("PK_User_Id_Project_Id");
+
+            entity.HasOne(d => d.Project).WithMany(p => p.UsersProjects)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_UsersProjects_Project_Id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.UsersProjects)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_UsersProjects_User_Id");
+        });
+
+        modelBuilder.Entity<YandexTracker>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_YandexTracker_Id");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.YandexTracker).OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<YandexTrackerUser>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_YandexTrackerUser_Id");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.Project).WithMany(p => p.YandexTrackerUsers).HasConstraintName("FK_YandexTrackerUser_Project_Id");
+        });
+
+        modelBuilder.Entity<YandexTrackerUserHoliday>(entity =>
+        {
+            entity.HasKey(e => e.Day).HasName("PK_YandexTrackerUserHoliday_Day");
+
+            entity.HasOne(d => d.User).WithMany(p => p.YandexTrackerUserHolidays).HasConstraintName("FK_YandexTrackerUserHoliday_YandexTrackerUser_Id");
         });
 
         OnModelCreatingPartial(modelBuilder);

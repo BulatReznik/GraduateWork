@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using YandexTrackerApi.BusinessLogic.Models.Enums;
 using YandexTrackerApi.BusinessLogic.Models.UserModels;
+using YandexTrackerApi.BusinessLogic.Models.UserQueries;
 
 namespace YandexTrackerApi.BusinessLogic.Managers.JWT
 {

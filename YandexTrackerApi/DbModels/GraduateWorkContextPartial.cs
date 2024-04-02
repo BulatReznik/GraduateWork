@@ -6,7 +6,6 @@ namespace YandexTrackerApi.DbModels
 {
     public partial class GraduateWorkContext : IGraduateWorkContext
     {
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

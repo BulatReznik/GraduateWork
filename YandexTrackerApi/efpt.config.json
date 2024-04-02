@@ -4,7 +4,7 @@
    "ContextNamespace": null,
    "DefaultDacpacSchema": null,
    "FilterSchemas": false,
-   "IncludeConnectionString": true,
+   "IncludeConnectionString": false,
    "ModelNamespace": null,
    "OutputContextPath": null,
    "OutputPath": "DbModels",
@@ -16,7 +16,31 @@
    "T4TemplatePath": null,
    "Tables": [
       {
+         "Name": "[dbo].[CalendarData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Project]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[User]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UsersProjects]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[YandexTracker]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[YandexTrackerUser]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[YandexTrackerUserHoliday]",
          "ObjectType": 0
       }
    ],
@@ -32,7 +56,7 @@
    "UseHierarchyId": false,
    "UseInflector": true,
    "UseLegacyPluralizer": false,
-   "UseManyToManyEntity": false,
+   "UseManyToManyEntity": true,
    "UseNoDefaultConstructor": false,
    "UseNoNavigations": false,
    "UseNoObjectFilter": false,

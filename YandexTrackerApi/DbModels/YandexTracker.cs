@@ -8,24 +8,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace YandexTrackerApi.DbModels;
 
-[Table("User")]
-public partial class User
+[Table("YandexTracker")]
+public partial class YandexTracker
 {
     [Key]
     public Guid Id { get; set; }
 
-    [Required]
+    [Column("OAuthToken")]
     [StringLength(255)]
-    public string Name { get; set; }
+    public string OauthToken { get; set; }
 
-    [Required]
     [StringLength(255)]
-    public string Login { get; set; }
+    public string CloudOrgId { get; set; }
 
-    [Required]
-    [StringLength(255)]
-    public string Password { get; set; }
-
-    [InverseProperty("User")]
-    public virtual ICollection<UsersProject> UsersProjects { get; set; } = new List<UsersProject>();
+    [ForeignKey("Id")]
+    [InverseProperty("YandexTracker")]
+    public virtual Project IdNavigation { get; set; }
 }

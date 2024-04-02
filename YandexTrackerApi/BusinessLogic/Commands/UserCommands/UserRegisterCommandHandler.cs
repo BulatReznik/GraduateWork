@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using YandexTrackerApi.DbModels;
 using Microsoft.EntityFrameworkCore;
 using YandexTrackerApi.BusinessLogic.Models.Enums;
+using YandexTrackerApi.BusinessLogic.Models.UserQueries;
 
 namespace YandexTrackerApi.BusinessLogic.Commands.UserCommands
 {
@@ -41,7 +42,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.UserCommands
 
             try
             {
-                var existingUser = await _context.User
+                var existingUser = await _context.Users
                         .AnyAsync(u => u.Login == command.Login
                         , cancellationToken: cancellationToken);
 
@@ -58,7 +59,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.UserCommands
                         Password = command.Password
                     };
 
-                    await _context.User.AddAsync(userDbModel, cancellationToken);
+                    await _context.Users.AddAsync(userDbModel, cancellationToken);
 
                     await _context.SaveChangesAsync(cancellationToken);
 

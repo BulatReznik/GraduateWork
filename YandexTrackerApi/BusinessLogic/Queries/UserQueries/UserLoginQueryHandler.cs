@@ -3,6 +3,7 @@ using YandexTrackerApi.BusinessLogic.Managers.JWT;
 using YandexTrackerApi.BusinessLogic.Models;
 using YandexTrackerApi.BusinessLogic.Models.Enums;
 using YandexTrackerApi.BusinessLogic.Models.UserModels;
+using YandexTrackerApi.BusinessLogic.Models.UserQueries;
 
 namespace YandexTrackerApi.BusinessLogic.Queries.UserQueries
 {

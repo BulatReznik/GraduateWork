@@ -42,6 +42,18 @@ namespace YandexTrackerApi.DbModels
             Expression<Func<TModel, TResponse>> selector)
             where TModel : class;
 
-        DbSet<User> User { get; set; }
+        DbSet<Project> Projects { get; set; }
+
+        DbSet<User> Users { get; set; }
+
+        DbSet<UsersProject> UsersProjects { get; set; }
+
+        DbSet<CalendarDatum> CalendarData { get; set; }
+
+        DbSet<YandexTracker> YandexTrackers { get; set; }
+
+        DbSet<YandexTrackerUser> YandexTrackerUsers { get; set; }
+
+        DbSet<YandexTrackerUserHoliday> YandexTrackerUserHolidays { get; set; }
     }
 }

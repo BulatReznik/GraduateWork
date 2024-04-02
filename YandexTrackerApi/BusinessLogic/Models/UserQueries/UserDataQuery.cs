@@ -1,6 +1,7 @@
 ﻿using MediatR;
+using YandexTrackerApi.BusinessLogic.Models.UserModels;
 
-namespace YandexTrackerApi.BusinessLogic.Models.UserModels
+namespace YandexTrackerApi.BusinessLogic.Models.UserQueries
 {
     /// <summary>
     /// Запрос данных о пользователе

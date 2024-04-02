@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using YandexTrackerApi.BusinessLogic.Models.UserModels;
+using YandexTrackerApi.BusinessLogic.Models.UserQueries;
 
 namespace YandexTrackerApi.BusinessLogic.Commands.UserCommands
 {

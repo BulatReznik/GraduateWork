@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace YandexTrackerApi.BusinessLogic.Models.UserModels
+namespace YandexTrackerApi.BusinessLogic.Models.UserQueries
 {
     /// <summary>
     /// Модель проверки списка email на валидность

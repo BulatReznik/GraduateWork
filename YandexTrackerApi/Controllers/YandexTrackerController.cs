@@ -1,6 +1,10 @@
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
+using YandexTrackerApi.BusinessLogic.Managers.User;
+using YandexTrackerApi.BusinessLogic.Models.ProjectModels;
 using YandexTrackerApi.BusinessLogic.Queries.YandexQueries;
 using YandexTrackerApi.Models.YandexModels;
 
@@ -10,41 +14,34 @@ namespace YandexTest.Controllers
     [ApiController]
     public class YandexTrackerController : Controller
     {
-        private readonly ILogger<YandexTrackerController> _logger;
+        private readonly ILogger _logger;
+        private readonly IMediator _mediator;
+        private readonly IUserManager _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public YandexTrackerController(ILogger<YandexTrackerController> logger)
+        public YandexTrackerController(ILogger logger, IMediator mediator, IUserManager userManager, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
+            _mediator = mediator;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        [HttpGet("/api/v1/yandex/myself")]
-        public async Task<IActionResult> GetMyselfAsync()
+        [HttpPost("/api/v1/yandex/project/")]
+        [Authorize]
+        public async Task<IActionResult> AddYandexTracker(
+            [FromBody] ProjectYandexTrackerCreateCommand command)
         {
-            var oauthToken = "y0_AgAAAAAPYtZbAAuAKwAAAAD_UpkdAAAX8Bgeqz9JN64IxV6ZhNbS7k2ZQg";
-            var cloudOrgId = "bpfc4r4fii0i9kvqavto";
+            command.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
 
-            using var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Authorization", $"OAuth {oauthToken}");
-            httpClient.DefaultRequestHeaders.Add("X-Cloud-Org-ID", cloudOrgId);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var apiUrl = "https://api.tracker.yandex.net/";
-            var endpoint = "v2/myself/";
+            var result = await _mediator.Send(command);
 
-            var response = await httpClient.GetAsync(apiUrl + endpoint);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var responseBody = await response.Content.ReadAsStringAsync();
-                var myself = JsonConvert.DeserializeObject<User>(responseBody);
-                return Ok(myself);
-            }
-            else
-            {
-                string message = $"Не удалось получить данные. Код состояния: {response.StatusCode}";
-                _logger.LogError(message);
-                return BadRequest(message);
-            }
+            return result.IsSuccess ? Ok(result.Data) : BadRequest(result.ErrorMessage);
         }
+
 
         [HttpGet("/api/v1/yandex/users")]
         public async Task<IActionResult> GetUsersAsync()
@@ -147,7 +144,7 @@ namespace YandexTest.Controllers
                     {
                         if (issue.OriginalEstimation != null)
                         {
-                            _logger.LogInformation(issue.OriginalEstimation);
+                            _logger.LogInformation(message: issue.OriginalEstimation);
                         }
                     }
 
@@ -212,6 +209,35 @@ namespace YandexTest.Controllers
             }
 
             return totalSpentTime;
+        }
+
+        [HttpGet("/api/v1/yandex/myself")]
+        public async Task<IActionResult> GetMyselfAsync()
+        {
+            var oauthToken = "y0_AgAAAAAPYtZbAAuAKwAAAAD_UpkdAAAX8Bgeqz9JN64IxV6ZhNbS7k2ZQg";
+            var cloudOrgId = "bpfc4r4fii0i9kvqavto";
+
+            using var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"OAuth {oauthToken}");
+            httpClient.DefaultRequestHeaders.Add("X-Cloud-Org-ID", cloudOrgId);
+
+            var apiUrl = "https://api.tracker.yandex.net/";
+            var endpoint = "v2/myself/";
+
+            var response = await httpClient.GetAsync(apiUrl + endpoint);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseBody = await response.Content.ReadAsStringAsync();
+                var myself = JsonConvert.DeserializeObject<User>(responseBody);
+                return Ok(myself);
+            }
+            else
+            {
+                string message = $"Не удалось получить данные. Код состояния: {response.StatusCode}";
+                _logger.LogError(message);
+                return BadRequest(message);
+            }
         }
     }
 }

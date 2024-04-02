@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
-namespace YandexTrackerApi.BusinessLogic.Models.UserModels
+namespace YandexTrackerApi.BusinessLogic.Models.UserQueries
 {
     /// <summary>
     /// Создание сущности Identity пользователя

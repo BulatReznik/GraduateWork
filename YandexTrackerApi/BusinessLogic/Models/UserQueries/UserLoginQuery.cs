@@ -1,7 +1,8 @@
 ﻿using MediatR;
 using System.ComponentModel.DataAnnotations;
+using YandexTrackerApi.BusinessLogic.Models.UserModels;
 
-namespace YandexTrackerApi.BusinessLogic.Models.UserModels
+namespace YandexTrackerApi.BusinessLogic.Models.UserQueries
 {
     /// <summary>
     /// Команда на логин

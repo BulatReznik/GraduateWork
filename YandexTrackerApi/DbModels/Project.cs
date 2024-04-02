@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace YandexTrackerApi.DbModels;
 
-[Table("User")]
-public partial class User
+[Table("Project")]
+public partial class Project
 {
     [Key]
     public Guid Id { get; set; }
@@ -18,14 +18,17 @@ public partial class User
     [StringLength(255)]
     public string Name { get; set; }
 
-    [Required]
     [StringLength(255)]
-    public string Login { get; set; }
+    public string Description { get; set; }
 
-    [Required]
-    [StringLength(255)]
-    public string Password { get; set; }
+    public Guid CreatorId { get; set; }
 
-    [InverseProperty("User")]
+    [InverseProperty("Project")]
     public virtual ICollection<UsersProject> UsersProjects { get; set; } = new List<UsersProject>();
+
+    [InverseProperty("IdNavigation")]
+    public virtual YandexTracker YandexTracker { get; set; }
+
+    [InverseProperty("Project")]
+    public virtual ICollection<YandexTrackerUser> YandexTrackerUsers { get; set; } = new List<YandexTrackerUser>();
 }

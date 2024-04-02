@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using YandexTrackerApi.BusinessLogic.Models.TokenModels;
 using YandexTrackerApi.BusinessLogic.Models.UserModels;
+using YandexTrackerApi.BusinessLogic.Models.UserQueries;
 
 namespace YandexTrackerApi.Controllers
 {
@@ -18,7 +19,7 @@ namespace YandexTrackerApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("/api/v1/users/login")]
         [AllowAnonymous]
         public async Task<IActionResult> LoginAsync(
             [FromBody] UserLoginQuery query,
@@ -35,7 +36,7 @@ namespace YandexTrackerApi.Controllers
                 return BadRequest(response.ErrorMessage);
         }
 
-        [HttpPost]
+        [HttpPost("/api/v1/users/register")]
         [AllowAnonymous]
         public async Task<IActionResult> Register(
             [FromBody] UserRegisterCommand command,
@@ -51,7 +52,7 @@ namespace YandexTrackerApi.Controllers
                 return BadRequest(response.ErrorMessage);
         }
 
-        [HttpPost]
+        [HttpPost("/api/v1/users/token/refresh")]
         [AllowAnonymous]
         public async Task<IActionResult> RefreshToken(
             [FromBody] RefreshTokenCommand command,

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using YandexTrackerApi.BusinessLogic.Models.UserModels;
+using YandexTrackerApi.BusinessLogic.Models.UserQueries;
 using YandexTrackerApi.DbModels;
 
 namespace YandexTrackerApi.BusinessLogic.Queries.UserQueries
@@ -29,7 +30,7 @@ namespace YandexTrackerApi.BusinessLogic.Queries.UserQueries
                 {
                     var login = query.Login.ToLower();
 
-                    result = await _context.User
+                    result = await _context.Users
                            .Where(u => u.Login.ToLower() == login &&
                            u.Password == query.Password)
                            .Select(u => new UserResponseData
@@ -45,7 +46,7 @@ namespace YandexTrackerApi.BusinessLogic.Queries.UserQueries
                 // Фильтр по Id
                 if (query.Id != Guid.Empty)
                 {
-                    result = await _context.User
+                    result = await _context.Users
                            .Where(u => u.Id == query.Id)
                            .Select(u => new UserResponseData
                            {
