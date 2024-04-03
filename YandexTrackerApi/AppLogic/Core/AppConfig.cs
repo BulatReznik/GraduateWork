@@ -30,5 +30,10 @@
         /// Ключ для обновления
         /// </summary>
         public string JWTRefreshKey { get; set; } = null!;
+
+        /// <summary>
+        /// Url яндекс трекера
+        /// </summary>
+        public string YandexTrackerUrl { get; set; } = null!;
     }
 }

@@ -5,7 +5,9 @@ using Newtonsoft.Json;
 using System.Text;
 using YandexTrackerApi.BusinessLogic.Managers.User;
 using YandexTrackerApi.BusinessLogic.Models.ProjectModels;
+using YandexTrackerApi.BusinessLogic.Models.YandexModels;
 using YandexTrackerApi.BusinessLogic.Queries.YandexQueries;
+using YandexTrackerApi.DbModels;
 using YandexTrackerApi.Models.YandexModels;
 
 namespace YandexTest.Controllers
@@ -43,33 +45,18 @@ namespace YandexTest.Controllers
         }
 
 
-        [HttpGet("/api/v1/yandex/users")]
-        public async Task<IActionResult> GetUsersAsync()
+        [HttpPost("/api/v1/yandex/users")]
+        public async Task<IActionResult> GetUsersAsync(
+            [FromBody] YandexTrackerUsersCreateCommand command)
         {
-            var oauthToken = "y0_AgAAAAAPYtZbAAuAKwAAAAD_UpkdAAAX8Bgeqz9JN64IxV6ZhNbS7k2ZQg";
-            var cloudOrgId = "bpfc4r4fii0i9kvqavto";
+            command.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
 
-            using var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Authorization", $"OAuth {oauthToken}");
-            httpClient.DefaultRequestHeaders.Add("X-Cloud-Org-ID", cloudOrgId);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var apiUrl = "https://api.tracker.yandex.net/";
-            var endpoint = "v2/users/";
+            var result = await _mediator.Send(command);
 
-            var response = await httpClient.GetAsync(apiUrl + endpoint);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var responseBody = await response.Content.ReadAsStringAsync();
-                var users = JsonConvert.DeserializeObject<List<User>>(responseBody);
-                return Ok(users);
-            }
-            else
-            {
-                string message = $"Не удалось получить данные. Код состояния: {response.StatusCode}";
-                _logger.LogError(message);
-                return BadRequest(message);
-            }
+            return result.IsSuccess ? Ok(result.Data) : BadRequest(result.ErrorMessage);
         }
 
         [HttpPost("/api/v1/yandex/count/backlog")]
@@ -229,7 +216,7 @@ namespace YandexTest.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var responseBody = await response.Content.ReadAsStringAsync();
-                var myself = JsonConvert.DeserializeObject<User>(responseBody);
+                var myself = JsonConvert.DeserializeObject<YandexTrackerApi.Models.YandexModels.User>(responseBody);
                 return Ok(myself);
             }
             else
