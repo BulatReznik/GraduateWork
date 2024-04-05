@@ -1,12 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using YandexTrackerApi.BusinessLogic.Models.CalendarModels;
-using YandexTrackerApi.BusinessLogic.Models.CalendarModels.CalendarDTO;
-using YandexTrackerApi.DbModels;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace YandexTrackerApi.Controllers
 {

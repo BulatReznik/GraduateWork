@@ -12,7 +12,8 @@ namespace YandexTrackerApi.DbModels;
 public partial class YandexTrackerUser
 {
     [Key]
-    public Guid Id { get; set; }
+    [StringLength(255)]
+    public string Id { get; set; }
 
     [StringLength(255)]
     public string Login { get; set; }
@@ -26,6 +27,9 @@ public partial class YandexTrackerUser
     [ForeignKey("ProjectId")]
     [InverseProperty("YandexTrackerUsers")]
     public virtual Project Project { get; set; }
+
+    [InverseProperty("User")]
+    public virtual ICollection<YandexTrackerTask> YandexTrackerTasks { get; set; } = new List<YandexTrackerTask>();
 
     [InverseProperty("User")]
     public virtual ICollection<YandexTrackerUserHoliday> YandexTrackerUserHolidays { get; set; } = new List<YandexTrackerUserHoliday>();

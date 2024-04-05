@@ -100,7 +100,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.YandexCommands
             }
             else
             {
-                string errorMessage = $"Не удалось получить данные. Код состояния: {response.StatusCode}";
+                var errorMessage = $"Не удалось получить данные. Код состояния: {response.StatusCode}";
                 _logger.LogError(errorMessage);
                 throw new HttpRequestException(errorMessage);
             }
@@ -125,7 +125,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.YandexCommands
                 {
                     var newUser = new YandexTrackerUser
                     {
-                        Id = Guid.NewGuid(),
+                        Id = externalUser.Uid.ToString(),
                         Login = externalUser.Login,
                         Name = externalUser.FirstName + " " + externalUser.LastName,
                         ProjectId = projectId

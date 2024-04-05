@@ -32,7 +32,9 @@ namespace YandexTrackerApi.BusinessLogic.Commands.CalendarCommands
                 // Проверяем существование работника в проекте
                 if (!await EmployeeExistsInProject(request.EmployeeId, request.ProjectId, cancellationToken))
                 {
-                    return new ResponseModel<string> { ErrorMessage = "Работник не был найден" };
+                    var errorMessage = "Работник не был найден";
+                    _logger.LogInformation(errorMessage);
+                    return new ResponseModel<string> { ErrorMessage = errorMessage };
                 }
 
                 // Добавляем выходные дни в соответствии с указанным периодом
@@ -69,7 +71,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.CalendarCommands
         /// <summary>
         /// Метод для проверки существования работника в проекте
         /// </summary>
-        private async Task<bool> EmployeeExistsInProject(Guid employeeId, Guid projectId, CancellationToken cancellationToken)
+        private async Task<bool> EmployeeExistsInProject(string employeeId, Guid projectId, CancellationToken cancellationToken)
         {
             return await _context.YandexTrackerUsers
                 .AnyAsync(ytu => ytu.Id == employeeId && ytu.ProjectId == projectId, cancellationToken);
@@ -78,7 +80,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.CalendarCommands
         /// <summary>
         /// Метод для добавления выходного дня, если указан только один день
         /// </summary>
-        private async Task AddSingleHoliday(DateOnly holidayDate, Guid employeeId, CancellationToken cancellationToken)
+        private async Task AddSingleHoliday(DateOnly holidayDate, string employeeId, CancellationToken cancellationToken)
         {
             var yandexTrackerUserHolidaysDbModel = new YandexTrackerUserHoliday()
             {
@@ -91,7 +93,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.CalendarCommands
         /// <summary>
         /// Метод для добавления выходных дней в указанном периоде
         /// </summary>
-        private async Task AddMultipleHolidays(DateOnly startDate, DateOnly endDate, Guid employeeId, CancellationToken cancellationToken)
+        private async Task AddMultipleHolidays(DateOnly startDate, DateOnly endDate, string employeeId, CancellationToken cancellationToken)
         {
             var daysToAdd = new List<YandexTrackerUserHoliday>();
             var currentDate = startDate;

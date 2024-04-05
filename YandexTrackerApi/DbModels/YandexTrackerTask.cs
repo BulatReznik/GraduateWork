@@ -8,19 +8,29 @@ using Microsoft.EntityFrameworkCore;
 
 namespace YandexTrackerApi.DbModels;
 
-[Table("YandexTrackerUserHoliday")]
-public partial class YandexTrackerUserHoliday
+[Table("YandexTrackerTask")]
+public partial class YandexTrackerTask
 {
     [Key]
-    public Guid Id { get; set; }
+    [StringLength(255)]
+    public string Id { get; set; }
 
-    public DateOnly Day { get; set; }
+    [StringLength(255)]
+    public string Summary { get; set; }
+
+    public int? OriginalEstimation { get; set; }
+
+    public int? SpentTime { get; set; }
 
     [Column("User_Id")]
     [StringLength(255)]
     public string UserId { get; set; }
 
+    public DateOnly? StartDate { get; set; }
+
+    public DateOnly? EndDate { get; set; }
+
     [ForeignKey("UserId")]
-    [InverseProperty("YandexTrackerUserHolidays")]
+    [InverseProperty("YandexTrackerTasks")]
     public virtual YandexTrackerUser User { get; set; }
 }

@@ -19,16 +19,15 @@ namespace YandexTrackerApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("/api/v1/users/login")]
+        [HttpPost("/api/v1/user/login")]
         [AllowAnonymous]
         public async Task<IActionResult> LoginAsync(
-            [FromBody] UserLoginQuery query,
-            CancellationToken token)
+            [FromBody] UserLoginQuery query)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var response = await _mediator.Send(query, token);
+            var response = await _mediator.Send(query);
 
             if (response.IsSuccess)
                 return Ok(response.Data);
@@ -36,32 +35,30 @@ namespace YandexTrackerApi.Controllers
                 return BadRequest(response.ErrorMessage);
         }
 
-        [HttpPost("/api/v1/users/register")]
+        [HttpPost("/api/v1/user/register")]
         [AllowAnonymous]
         public async Task<IActionResult> Register(
-            [FromBody] UserRegisterCommand command,
-            CancellationToken token)
+            [FromBody] UserRegisterCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var response = await _mediator.Send(command, token);
+            var response = await _mediator.Send(command);
             if (response.IsSuccess)
                 return Ok(response.Data);
             else
                 return BadRequest(response.ErrorMessage);
         }
 
-        [HttpPost("/api/v1/users/token/refresh")]
+        [HttpPost("/api/v1/user/token/refresh")]
         [AllowAnonymous]
         public async Task<IActionResult> RefreshToken(
-            [FromBody] RefreshTokenCommand command,
-            CancellationToken token)
+            [FromBody] RefreshTokenCommand command)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var response = await _mediator.Send(command, token);
+            var response = await _mediator.Send(command);
             if (response.IsSuccess)
                 return Ok(response.Data);
             else

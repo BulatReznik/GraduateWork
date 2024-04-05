@@ -15,7 +15,7 @@ namespace YandexTrackerApi.BusinessLogic.Models.CalendarModels
         public Guid UserId { get; set; }
 
         [Required(ErrorMessage = "Поле EmployeeId не может быть пустым")]
-        public Guid EmployeeId { get; set; }
+        public string EmployeeId { get; set; } = null!;
 
         [Required(ErrorMessage = "Поле ProjectId не может быть пустым")]
         public Guid ProjectId { get; set; }

@@ -36,6 +36,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[YandexTrackerTask]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[YandexTrackerUser]",
          "ObjectType": 0
       },
