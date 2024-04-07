@@ -1,10 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Security.AccessControl;
 using System.Text;
-using System.Xml;
+using BPMNWorkFlow;
+using System.Xml.Linq;
+using BPMNWorkFlow.BusinessLogic.Interfaces;
+using BPMNWorkFlow.BusinessLogic.Models;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BPMNTest.Controllers
 {
+    public class MyStartHandler : INodeHandler
+    {
+        public void Execute(ProcessNode currentNode, ProcessNode previousNode)
+        {
+            Console.WriteLine("Кастомный начальный обработчик");
+            Console.WriteLine(currentNode.NodeId);
+            Console.WriteLine(currentNode.NodeName);
+            currentNode.Done();
+        }
+    }
+
     public class HomeController : Controller
     {
         [HttpPost]
@@ -12,12 +26,25 @@ namespace BPMNTest.Controllers
         {
             KeyValuePair<string, Microsoft.Extensions.Primitives.StringValues> diagramData = form.First(); // Предполагается, что данные диаграммы в поле "diagramData"
 
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(diagramData.Value);
+            if (diagramData.Value.IsNullOrEmpty()) 
+            {
+                return BadRequest("diagramData был пуст");
+            }
 
+            // Преобразуйте вашу строку в StringReader
+            var stringReader = new StringReader(diagramData.Value);
 
+            // Затем используйте конструктор XDocument, который принимает TextReader
+            var xmlDoc = XDocument.Load(stringReader);
 
-            var diagramDataString = diagramData.ToString();
+            var p = new Process(xmlDoc);
+            var processInstance = p.NewProcessInstance();
+            processInstance.SetDefaultHandlers();
+
+            var processVar = new Dictionary<string, object>();
+            processInstance.Start(processVar);
+
+            var diagramDataString = diagramData.Value.ToString();
 
             if (string.IsNullOrEmpty(diagramDataString))
             {
@@ -32,6 +59,7 @@ namespace BPMNTest.Controllers
 
             return File(buffer, "application/octet-stream", fileName);
         }
+
 
         [HttpGet]
         public IActionResult Projects()

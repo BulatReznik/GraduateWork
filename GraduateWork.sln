@@ -5,7 +5,11 @@ VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BPMN", "BPMNTest\BPMN.csproj", "{EF1FA355-2E5B-4CCC-94C0-7BC44555F303}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexTrackerApi", "YandexTrackerApi\YandexTrackerApi.csproj", "{2B80704A-9E77-4FFF-8092-BD63B13BF60D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YandexTrackerApi", "YandexTrackerApi\YandexTrackerApi.csproj", "{2B80704A-9E77-4FFF-8092-BD63B13BF60D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BPMNWorkFlow", "BPMNWorkFlow\BPMNWorkFlow.csproj", "{CCD58725-EB85-4931-AB92-DE948373369B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowConsoleApp", "WorkflowConsoleApp\WorkflowConsoleApp.csproj", "{A9BC2492-4A1F-40E6-9F4E-F592E41D92A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{2B80704A-9E77-4FFF-8092-BD63B13BF60D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B80704A-9E77-4FFF-8092-BD63B13BF60D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B80704A-9E77-4FFF-8092-BD63B13BF60D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCD58725-EB85-4931-AB92-DE948373369B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD58725-EB85-4931-AB92-DE948373369B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD58725-EB85-4931-AB92-DE948373369B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD58725-EB85-4931-AB92-DE948373369B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9BC2492-4A1F-40E6-9F4E-F592E41D92A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9BC2492-4A1F-40E6-9F4E-F592E41D92A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9BC2492-4A1F-40E6-9F4E-F592E41D92A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9BC2492-4A1F-40E6-9F4E-F592E41D92A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,14 +10,21 @@
 
   <ItemGroup>
     <PackageReference Include="BPMN.Sharp" Version="1.0.7" />
+    <PackageReference Include="BPMNEngine" Version="3.0.0" />
+    <PackageReference Include="Camunda.Api.Client" Version="2.6.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.3" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Compilers" Version="4.9.2" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\icon\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BPMNWorkFlow\BPMNWorkFlow.csproj" />
   </ItemGroup>
 
 </Project>
