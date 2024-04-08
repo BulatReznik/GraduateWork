@@ -70,7 +70,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         /// <summary>
         /// Метод для построения словаря узлов процесса
         /// </summary>
-        private IDictionary<string, ProcessNode> BuildNodes(XElement processXML)
+        private Dictionary<string, ProcessNode> BuildNodes(XElement processXML)
         {
             // Создание словаря узлов процесса
             var nodes = processXML
@@ -179,7 +179,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         /// <summary>
         /// Метод для инициализации свойств процесса
         /// </summary>
-        private static IEnumerable<Property> PropertyInitializer(XElement process, XNamespace ns)
+        private static List<Property> PropertyInitializer(XElement process, XNamespace ns)
         {
             var itemDefinitions = process.Parent.Elements(ns + "itemDefinition");
             var properties = process.Elements(ns + "property").ToList();

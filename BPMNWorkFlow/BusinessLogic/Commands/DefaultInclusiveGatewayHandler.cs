@@ -8,7 +8,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
     {
         ConcurrentDictionary<ProcessNode, ICollection<ProcessNode>> SequenceWait = new();
 
-        void INodeHandler.Execute(ProcessNode processNode, ProcessNode previousNode)
+        public void Execute(ProcessNode processNode, ProcessNode previousNode)
         {
             Console.WriteLine(processNode.NodeId);
             SequenceWait.GetOrAdd(processNode, new List<ProcessNode>(processNode.PreviousNodes));
