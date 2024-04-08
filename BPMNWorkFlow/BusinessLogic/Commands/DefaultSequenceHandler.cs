@@ -10,6 +10,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
         {
             Console.WriteLine(processNode.NodeId + " Executing Sequence");
             bool result = true;
+
             if (processNode.Expression != null)
             {
                 Console.WriteLine(processNode.NodeId + " Conditional Sequence");

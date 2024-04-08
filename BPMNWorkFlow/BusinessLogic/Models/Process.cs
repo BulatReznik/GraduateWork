@@ -1,25 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
+﻿using System.Collections.Immutable;
 using System.Xml.Linq;
 
 namespace BPMNWorkFlow.BusinessLogic.Models
 {
     public class Process
     {
-        // Внутренние свойства класса Process
+        /// <summary>
+        /// Свойства процесса
+        /// </summary>
         internal IEnumerable<Property> Properties { get; set; }
-        public XElement ProcessXML { get; set; }
-        public XNamespace NS { get; set; }
 
-        // Конструктор класса Process
+        /// <summary>
+        /// Xml документ для процесса
+        /// </summary>
+        public XElement ProcessXML { get; set; }
+        /// <summary>
+        /// Пространство имен для процесса
+        /// </summary>
+        public XNamespace ProcessNamespace { get; set; }
+
         public Process(XDocument xDocument)
         {
             // Загрузка XML-документа и определение пространства имен
             XDocument doc = xDocument;
-            NS = @"http://www.omg.org/spec/BPMN/20100524/MODEL";
-            var processXML = doc.Root?.Element(NS + "process");
+            ProcessNamespace = @"http://www.omg.org/spec/BPMN/20100524/MODEL";
+            var processXML = doc.Root?.Element(ProcessNamespace + "process");
 
             if (processXML != null)
             {
@@ -29,14 +34,16 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             {
                 throw new Exception("Не удалось получить processXML");
             }
-            Properties = PropertyInitializer(ProcessXML, NS);
+            Properties = PropertyInitializer(ProcessXML, ProcessNamespace);
         }
 
-        // Метод для создания нового экземпляра процесса
+        /// <summary>
+        /// Метод для создания нового экземпляра процесса
+        /// </summary>
         public ProcessInstance NewProcessInstance()
         {
             // Получение элемента startEvent из XML-документа
-            var current = ProcessXML.Element(NS + "startEvent") ?? throw new Exception("current было null");
+            var current = ProcessXML.Element(ProcessNamespace + "startEvent") ?? throw new Exception("current было null");
 
             // Проверка наличия атрибута "id" у элемента startEvent
             var id = current.Attribute("id")?.Value;
@@ -60,7 +67,9 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             }
         }
 
-        // Метод для построения словаря узлов процесса
+        /// <summary>
+        /// Метод для построения словаря узлов процесса
+        /// </summary>
         private IDictionary<string, ProcessNode> BuildNodes(XElement processXML)
         {
             // Создание словаря узлов процесса
@@ -78,7 +87,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
 
             // Добавление выражений из элементов script в узлы процесса
             var scripts = processXML.Elements()
-                .Elements(NS + "script")
+                .Elements(ProcessNamespace + "script")
                 .Select(s => new
                 {
                     id = s.Parent.Attribute("id").Value,
@@ -92,7 +101,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
 
             // Добавление выражений из элементов conditionExpression в узлы процесса
             var conditionExpressions = processXML.Elements()
-                .Elements(NS + "conditionExpression")
+                .Elements(ProcessNamespace + "conditionExpression")
                 .Select(c => new
                 {
                     id = c.Parent.Attribute("id").Value,
@@ -105,10 +114,10 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             }
 
             // Добавление выражений из элементов task в узлы процесса
-            var taskExpressions = processXML.Elements(NS + "task")
-                .Elements(NS + "dataInputAssociation")
-                .Elements(NS + "assignment")
-                .Elements(NS + "from")
+            var taskExpressions = processXML.Elements(ProcessNamespace + "task")
+                .Elements(ProcessNamespace + "dataInputAssociation")
+                .Elements(ProcessNamespace + "assignment")
+                .Elements(ProcessNamespace + "from")
                 .Select(e => new { id = e.Parent.Parent.Parent.Attribute("id").Value, expression = e.Value });
 
             foreach (var e in taskExpressions)
@@ -119,12 +128,14 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             return nodes;
         }
 
-        // Метод для построения связанных узлов процесса
+        /// <summary>
+        /// Метод для построения связанных узлов процесса
+        /// </summary>
         private void BuildLinkedNodes(XElement current, ref ProcessNode node, IDictionary<string, ProcessNode> nodes, ProcessInstance processInstance)
         {
             // Установка экземпляра процесса для узла
             node.ProcessInstance = processInstance;
-            var seq = NextSequences(current, ProcessXML, NS);
+            var seq = NextSequences(current, ProcessXML, ProcessNamespace);
             var next = seq.Any() ? seq : NextElement(current, ProcessXML);
             node.NextNodes = new List<ProcessNode>();
 
@@ -132,6 +143,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             {
                 var nextNode = nodes[n.Attribute("id").Value];
                 nextNode.PreviousNodes ??= new List<ProcessNode>();
+
                 if (!nextNode.PreviousNodes.Contains(node))
                 {
                     nextNode.PreviousNodes.Add(node);
@@ -142,27 +154,31 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             }
         }
 
-        // Метод для получения ассоциации между узлом и переменной
+        /// <summary>
+        /// Метод для получения ассоциации между узлом и переменной
+        /// </summary>
         internal string GetAssociation(string nodeId, string nodeVariableName)
         {
             var node = ProcessXML.Elements().Where(e => e.Attribute("id").Value == nodeId);
-            var inputId = node.Elements(NS + "ioSpecification").Elements(NS + "dataInput")
+            var inputId = node.Elements(ProcessNamespace + "ioSpecification").Elements(ProcessNamespace + "dataInput")
                 .Where(e => e.Attribute("name").Value == nodeVariableName)
                 .FirstOrDefault()
                 .Attribute("id").Value;
 
-            var propertyId = node.Elements(NS + "dataInputAssociation")
-                .Where(d => d.Element(NS + "targetRef").Value == inputId).Elements(NS + "sourceRef").
+            var propertyId = node.Elements(ProcessNamespace + "dataInputAssociation")
+                .Where(d => d.Element(ProcessNamespace + "targetRef").Value == inputId).Elements(ProcessNamespace + "sourceRef").
                 FirstOrDefault().Value;
 
-            var propertyName = ProcessXML.Elements(NS + "property")
+            var propertyName = ProcessXML.Elements(ProcessNamespace + "property")
                 .Where(e => e.Attribute("id").Value == propertyId).Attributes("name")
                 .FirstOrDefault().Value;
 
             return propertyName;
         }
 
-        // Метод для инициализации свойств процесса
+        /// <summary>
+        /// Метод для инициализации свойств процесса
+        /// </summary>
         private static IEnumerable<Property> PropertyInitializer(XElement process, XNamespace ns)
         {
             var itemDefinitions = process.Parent.Elements(ns + "itemDefinition");
