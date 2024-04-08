@@ -3,7 +3,7 @@ using BPMNWorkFlow.BusinessLogic.Models;
 
 namespace BPMNWorkFlow.BusinessLogic.Commands
 {
-    internal class DefaultBusinessRuleHandler : INodeHandler
+    internal class DefaultBusinessRuleTaskHandler : INodeHandler
     {
         void INodeHandler.Execute(ProcessNode processNode, ProcessNode previousNode)
         {

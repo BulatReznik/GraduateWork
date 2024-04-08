@@ -26,7 +26,7 @@ namespace BPMNTest.Controllers
         {
             KeyValuePair<string, Microsoft.Extensions.Primitives.StringValues> diagramData = form.First(); // Предполагается, что данные диаграммы в поле "diagramData"
 
-            if (diagramData.Value.IsNullOrEmpty()) 
+            if (diagramData.Value.IsNullOrEmpty())
             {
                 return BadRequest("diagramData был пуст");
             }

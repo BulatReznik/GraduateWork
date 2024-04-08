@@ -63,15 +63,36 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         {
             var defaultNodeHandlers = new Dictionary<string, INodeHandler>()
             {
-                { "startEvent", new DefaultStartHandler()},
+                { "businessRuleTask", new DefaultBusinessRuleTaskHandler()},
+                { "callActivity", new DefaultCallActivityHandler()},
+                { "compensateEventDefinition", new DefaultCompensateEventHandler()},
+                { "conditionalEventDefinition", new DefaultConditionalEventHandler()},
+                { "complexGateway", new DefaultComplexGatewayHandler()},
                 { "endEvent", new DefaultEndHandler()},
-                { "task", new DefaultTaskHandler()},
-                { "sequenceFlow", new DefaultSequenceHandler()},
-                { "businessRuleTask", new DefaultBusinessRuleHandler()},
+                { "errorEventDefinition", new DefaultErrorEventHandler()},
+                { "escalationEventDefinition", new DefaultEscalationEventHandler()},
+                { "eventBasedGateway", new DefaultEventBasedGatewayHandler()},
                 { "exclusiveGateway", new DefaultExclusiveGatewayHandler()},
                 { "inclusiveGateway", new DefaultInclusiveGatewayHandler()},
+                { "intermediateCatchEvent", new DefaultIntermediateCatchHandler()},
+                { "intermediateThrowEvent", new DefaultIntermediateThrowHandler()},
+                { "laneSet", new DefaultLaneSetHandler()},
+                { "linkEventDefinition", new DefaultLinkEventHandler()},
+                { "manualTask", new DefaultManualTaskHandler()},
+                { "messageEventDefinition", new DefaultMessageEventHandler()},
+                { "parallelGateway", new DefaultParallelGatewayHandler()},
+                { "receiveTask", new DefaultReceiveTaskHandler()},
                 { "scriptTask", new DefaultScriptTaskHandler()},
-                { "laneSet", new DefaultBusinessRuleHandler()}
+                { "sendTask", new DefaultSendTaskHandler()},
+                { "sequenceFlow", new DefaultSequenceHandler()},
+                { "serviceTask", new DefaultServiceTaskHandler()},
+                { "signalEventDefinition", new DefaultSignalEventHandler()},
+                { "startEvent", new DefaultStartHandler()},
+                { "subProcess", new DefaultSubProcessHandler()},
+                { "task", new DefaultTaskHandler()},
+                { "terminateEventDefinition", new DefaultTerminateEventHandler()},
+                { "timerEventDefinition", new DefaultTimerEventHandler()},
+                { "userTask", new DefaultUserTaskHandler()}
             };
 
             if (Nodes.All(t => defaultNodeHandlers.ContainsKey(t.Value.NodeType)))
