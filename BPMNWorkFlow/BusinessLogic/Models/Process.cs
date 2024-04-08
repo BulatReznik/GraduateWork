@@ -43,7 +43,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         public ProcessInstance NewProcessInstance()
         {
             // Получение элемента startEvent из XML-документа
-            var current = ProcessXML.Element(ProcessNamespace + "startEvent") ?? throw new Exception("current было null");
+            var current = ProcessXML.Element(ProcessNamespace + "startEvent") ?? throw new Exception("Current было null");
 
             // Проверка наличия атрибута "id" у элемента startEvent
             var id = current.Attribute("id")?.Value;
@@ -208,13 +208,17 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             return propertyList;
         }
 
-        // Делегат для получения следующих последовательностей узлов
+        /// <summary>
+        /// Делегат для получения следующих последовательностей узлов
+        /// </summary>
         private readonly Func<XElement, XElement, XNamespace, IEnumerable<XElement>> NextSequences =
             (e, ProcessXML, NS) => ProcessXML
             .Elements(NS + "sequenceFlow")?
             .Where(s => s.Attribute("sourceRef")?.Value == e.Attribute("id").Value);
 
-        // Делегат для получения следующего элемента узла
+        /// <summary>
+        /// Делегат для получения следующего элемента узла
+        /// </summary>
         private readonly Func<XElement, XElement, IEnumerable<XElement>> NextElement =
             (s, ProcessXML) => ProcessXML.Elements()
             .Where(e => e.Attribute("id").Value == s.Attribute("targetRef")?.Value);

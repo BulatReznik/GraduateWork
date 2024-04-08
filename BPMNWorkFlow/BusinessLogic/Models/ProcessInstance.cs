@@ -11,7 +11,6 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         public Process Process { get; } = null!;
 
         private IImmutableDictionary<string, object> inputParameters;
-
         public IImmutableDictionary<string, object> InputParameters
         {
             get

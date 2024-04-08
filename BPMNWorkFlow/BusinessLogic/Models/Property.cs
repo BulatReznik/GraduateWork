@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BPMNWorkFlow.BusinessLogic.Models
+﻿namespace BPMNWorkFlow.BusinessLogic.Models
 {
     internal class Property
     {
