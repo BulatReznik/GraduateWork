@@ -57,5 +57,7 @@ namespace YandexTrackerApi.DbModels
         DbSet<YandexTrackerUserHoliday> YandexTrackerUserHolidays { get; set; }
 
         DbSet<YandexTrackerTask> YandexTrackerTasks { get; set; }
+
+        DbSet<Diagram> Diagrams { get; set; }
     }
 }

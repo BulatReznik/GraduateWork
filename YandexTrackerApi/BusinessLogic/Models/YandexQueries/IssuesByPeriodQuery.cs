@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using YandexTrackerApi.Models.YandexModels;
 
-namespace YandexTrackerApi.BusinessLogic.Queries.YandexQueries
+namespace YandexTrackerApi.BusinessLogic.Models.YandexQueries
 {
     /// <summary>
     /// Запрос на получение данных из Яндекс трекера за период

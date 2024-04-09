@@ -11,7 +11,7 @@ namespace YandexTrackerApi.Controllers
     public class CalendarController : Controller
     {
         private readonly IMediator _mediator;
-        public CalendarController(ILogger logger, IMediator mediator)
+        public CalendarController(IMediator mediator)
         {
             _mediator = mediator;
         }

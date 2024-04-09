@@ -20,6 +20,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[Diagram]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[Project]",
          "ObjectType": 0
       },

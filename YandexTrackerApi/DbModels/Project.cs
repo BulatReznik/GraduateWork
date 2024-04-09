@@ -24,6 +24,9 @@ public partial class Project
     public Guid CreatorId { get; set; }
 
     [InverseProperty("Project")]
+    public virtual ICollection<Diagram> Diagrams { get; set; } = new List<Diagram>();
+
+    [InverseProperty("Project")]
     public virtual ICollection<UsersProject> UsersProjects { get; set; } = new List<UsersProject>();
 
     [InverseProperty("IdNavigation")]

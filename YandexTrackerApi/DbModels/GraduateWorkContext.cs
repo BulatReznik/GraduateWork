@@ -15,6 +15,8 @@ public partial class GraduateWorkContext : DbContext
 
     public virtual DbSet<CalendarDatum> CalendarData { get; set; }
 
+    public virtual DbSet<Diagram> Diagrams { get; set; }
+
     public virtual DbSet<Project> Projects { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -34,6 +36,15 @@ public partial class GraduateWorkContext : DbContext
         modelBuilder.Entity<CalendarDatum>(entity =>
         {
             entity.HasKey(e => e.Day).HasName("PK_CalendarData_Day");
+        });
+
+        modelBuilder.Entity<Diagram>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_Diagram_Id");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.Project).WithMany(p => p.Diagrams).HasConstraintName("FK_Diagram_Project_Id");
         });
 
         modelBuilder.Entity<Project>(entity =>
