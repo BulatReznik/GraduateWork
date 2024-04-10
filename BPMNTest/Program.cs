@@ -1,10 +1,18 @@
 using BPMN;
+using BPMN.Services;
 using System.Drawing;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<ApiService>();
+
+// Добавляем HttpClient с базовым URL
+builder.Services.AddHttpClient<ApiService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7075/api/"); // Замените на ваш базовый URL
+});
 
 var app = builder.Build();
 

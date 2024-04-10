@@ -1,0 +1,55 @@
+﻿@page
+@model BPMN.Pages.LoginModel
+@{
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Вход</h2>
+
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["ErrorMessage"]
+                        </div>
+                    }
+
+                    <form method="post">
+
+                        <div class="text-danger" asp-validation-summary="All"></div>
+
+                        <div class="form-group">
+                            <div>
+                                <label asp-for="LoginRequest.Login">Логин пользователя:</label>
+                            </div>
+                            <div>
+                                <input type="text" asp-for="LoginRequest.Login" class="form-control" />
+                            </div>
+                            <span class="text-danger" asp-validation-for="LoginRequest.Login"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                <label asp-for="LoginRequest.Password">Пароль пользователя:</label>
+                            </div>
+                            <div>
+                                <input type="password" asp-for="LoginRequest.Password" class="form-control" />
+                            </div>
+                            <span class="text-danger" asp-validation-for="LoginRequest.Password"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                <input type="submit" class="btn btn-primary" value="Войти">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

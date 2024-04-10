@@ -18,7 +18,7 @@
         /// <summary>
         /// Имя пользователя
         /// </summary>
-        public string? Login { get; init; }
+        public string Login { get; init; } = null!;
 
         /// <summary>
         /// Ид. пользователя

@@ -1,0 +1,65 @@
+﻿@page
+@model BPMN.Pages.RegisterModel
+@{
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Вход</h2>
+
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["ErrorMessage"]
+                        </div>
+                    }
+
+                    <form method="post">
+
+                        <div class="text-danger" asp-validation-summary="All"></div>
+
+                        <div class="form-group">
+                            <div>
+                                <label asp-for="RegisterFormModel.Login">Логин пользователя:</label>
+                            </div>
+                            <div>
+                                <input type="text" asp-for="RegisterFormModel.Login" class="form-control" />
+                            </div>
+                            <span class="text-danger" asp-validation-for="RegisterFormModel.Login"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                <label asp-for="RegisterFormModel.Name">Имя пользователя:</label>
+                            </div>
+                            <div>
+                                <input type="text" asp-for="RegisterFormModel.Name" class="form-control" />
+                            </div>
+                            <span class="text-danger" asp-validation-for="RegisterFormModel.Name"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                <label asp-for="RegisterFormModel.Password">Пароль пользователя:</label>
+                            </div>
+                            <div>
+                                <input type="password" asp-for="RegisterFormModel.Password" class="form-control" />
+                            </div>
+                            <span class="text-danger" asp-validation-for="RegisterFormModel.Password"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                <input type="submit" class="btn btn-primary" value="Регистрация">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
