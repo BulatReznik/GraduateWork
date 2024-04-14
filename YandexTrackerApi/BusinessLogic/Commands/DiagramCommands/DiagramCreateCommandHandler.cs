@@ -33,8 +33,8 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
 
                 var diagramDbModel = new Diagram()
                 {
-                    Id = request.Id,
-                    XmlDiagram = request.XMLDiagram.ToString(),
+                    Id = Guid.NewGuid(),
+                    Xml = request.XMLDiagram,
                     Name = request.Name,
                     ProjectId = request.ProjectId,
                 };

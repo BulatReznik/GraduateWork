@@ -1,17 +1,21 @@
 using BPMN;
 using BPMN.Services;
+using Microsoft.Extensions.FileProviders;
 using System.Drawing;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSession();
+
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ApiService>();
 
 // Добавляем HttpClient с базовым URL
 builder.Services.AddHttpClient<ApiService>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7075/api/"); // Замените на ваш базовый URL
+    client.BaseAddress = new Uri("https://localhost:7075/api/");
 });
 
 var app = builder.Build();
@@ -32,6 +36,8 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.UseSession();
 
 app.UseEndpoints(endpoints =>
 {

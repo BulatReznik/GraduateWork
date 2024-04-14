@@ -7,7 +7,7 @@ namespace YandexTrackerApi.BusinessLogic.Models.ProjectQueries
     /// <summary>
     /// Запрос на получение проектов пользователя
     /// </summary>
-    public class ProjectsQuery : IRequest<ResponseModel<List<ProjectResponseModel>>>
+    public class ProjectsQuery : IRequest<ResponseModel<List<ProjectByIdResponse>>>
     {
         /// <summary>
         /// Id пользователя, который запрашивает проекта

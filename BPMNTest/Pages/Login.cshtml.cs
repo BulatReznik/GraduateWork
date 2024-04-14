@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BPMN.Services;
 using BPMN.Models.Login;
+using BPMNTest.Pages.Home;
+using BPMN.Models.Project;
 
 namespace BPMN.Pages
 {
@@ -34,7 +36,10 @@ namespace BPMN.Pages
                 {
                     // ≈сли токен доступа получен, то аутентификаци€ успешна
                     // ¬ случае успешной аутентификации перенаправл€ем пользовател€ на другую страницу
-                    return RedirectToPage("/Index");
+
+                    HttpContext.Session.SetString("AccessToken", response.Data.AccessToken);
+                    HttpContext.Session.SetString("RefrshToken", response.Data.RefreshToken);
+                    return RedirectToPage("/Projects");
                 }
                 else
                 {

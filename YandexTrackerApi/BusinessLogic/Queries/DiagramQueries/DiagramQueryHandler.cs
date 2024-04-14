@@ -36,7 +36,7 @@ namespace YandexTrackerApi.BusinessLogic.Queries.DiagramQueries
                                             select new DiagramResponse
                                             {
                                                 Id = diagrams.Id,
-                                                Document = XDocument.Parse(diagrams.XmlDiagram),
+                                                Document = diagrams.Xml,
                                                 Name = diagrams.Name,
                                             }).FirstOrDefaultAsync(cancellationToken);
 

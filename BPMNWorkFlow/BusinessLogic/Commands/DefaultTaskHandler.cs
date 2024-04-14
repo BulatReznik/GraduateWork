@@ -7,7 +7,8 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
     {
         void INodeHandler.Execute(ProcessNode processNode, ProcessNode previousNode)
         {
-            Console.WriteLine(processNode.NodeId + " Executing Task");
+            Console.WriteLine($"Выполенение задачи: Id: {processNode.NodeId} Имя задачи: {processNode.NodeName}");
+
             processNode.Done();
         }
     }

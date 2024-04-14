@@ -18,8 +18,7 @@ public partial class Diagram
     [Unicode(false)]
     public string Name { get; set; }
 
-    [Column(TypeName = "xml")]
-    public string XmlDiagram { get; set; }
+    public string Xml { get; set; }
 
     [Column("Project_Id")]
     public Guid? ProjectId { get; set; }

@@ -1,0 +1,99 @@
+﻿@page
+@model BPMN.Pages.ProjectModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проект</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        .btn-success {
+            margin-right: 10px;
+        }
+
+        .diagram-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .diagram-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .diagram-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .diagram-actions {
+            margin-top: 10px;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>@Model.Project.Name</h1>
+        <p>@Model.Project.Description</p>
+        <p>Создатель проекта: @Model.Project.CreatorName</p>
+
+        @if (Model.Project.Diagrams != null && Model.Project.Diagrams.Any())
+        {
+            <h2>Диаграммы</h2>
+            <ul class="diagram-list">
+                @foreach (var diagram in Model.Project.Diagrams)
+                {
+                    <li class="diagram-item">
+                        <span class="diagram-name">@diagram.Name</span>
+                        <!-- Кнопка для выполнения диаграммы -->
+                        <form method="post" asp-page-handler="ExecuteDiagram" asp-route-diagramId="@diagram.Id">
+                            <button type="submit" class="btn btn-success">Выполнить диаграмму</button>
+                        </form>
+                        <!-- Кнопка для открытия диаграммы -->
+                        <a asp-page="/UpdateDiagram" asp-route-diagramId="@diagram.Id" class="btn btn-primary">Открыть диаграмму</a>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Нет доступных диаграмм для этого проекта.</p>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <!-- Кнопка для перехода на страницу добавления диаграммы -->
+        <a asp-page="/AddDiagram" asp-route-projectId="@Model.Project.Id" class="btn btn-primary">Добавить диаграмму</a>
+    </div>
+</body>
+</html>

@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace YandexTrackerApi.BusinessLogic.Models.DiagramModels
+﻿namespace BPMN.Models.Diagram
 {
     public class DiagramResponse
     {

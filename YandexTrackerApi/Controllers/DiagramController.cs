@@ -77,5 +77,20 @@ namespace YandexTrackerApi.Controllers
                 return BadRequest(response.ErrorMessage);
         }
 
+        [HttpPost("/api/v1/diagrams/update")]
+        public async Task<IActionResult> UpdateDiagrams(DiagramUpdateCommand command)
+        {
+            command.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var response = await _mediator.Send(command);
+
+            if (response.IsSuccess)
+                return Ok(response.Data);
+            else
+                return BadRequest(response.ErrorMessage);
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
     {
         public void Execute(ProcessNode processNode, ProcessNode previousNode)
         {
-            Console.WriteLine(processNode.NodeId + " Executing Start");
+            Console.WriteLine($"Стартовое событие: Id узла: {processNode.NodeId}");
             processNode.Done();
         }
     }

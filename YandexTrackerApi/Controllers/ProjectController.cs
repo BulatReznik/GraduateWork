@@ -52,5 +52,22 @@ namespace YandexTrackerApi.Controllers
 
             return result.IsSuccess ? Ok(result.Data) : BadRequest(result.ErrorMessage);
         }
+
+        [HttpGet("/api/v1/projects/{id:guid}")]
+        public async Task<IActionResult> GetProject(Guid id)
+        {
+            var query = new ProjectQuery
+            {
+                UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor),
+                ProjectId = id
+            };
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _mediator.Send(query);
+
+            return result.IsSuccess ? Ok(result.Data) : BadRequest(result.ErrorMessage);
+        }
     }
 }

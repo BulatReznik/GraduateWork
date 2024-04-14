@@ -1,0 +1,127 @@
+﻿@page
+@model BPMN.Pages.UpdateDiagramModel
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>BPMN Editor</title>
+    <!-- Подключение стилей для диаграмм BPMN и иконок BPMN -->
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js/dist/assets/diagram-js.css">
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js/dist/assets/bpmn-font/css/bpmn.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        /* Стили для контейнера */
+        #canvas {
+            width: 100%;
+            height: 1000px;
+            border: solid 1px black;
+            margin-bottom: 10px;
+        }
+
+        .bjs-powered-by {
+            display: none; /* Сделать элемент невидимым */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Контейнер для отображения редактора BPMN -->
+    <div id="canvas"></div>
+
+    <!-- Подключение библиотеки bpmn-js Modeler -->
+    <script src="https://unpkg.com/bpmn-js/dist/bpmn-modeler.development.js"></script>
+
+    <form method="post">
+        <fieldset>
+            <!-- Поле для ввода имени диаграммы -->
+            <label for="Name">Имя диаграммы:</label>
+            <input type="text" id="Name" name="Name" required />
+
+            <!-- Скрытое поле для передачи XML-кода диаграммы -->
+            <input type="text" id="XMLDiagram" name="XMLDiagram" hidden />
+
+            <!-- Скрытое поле для передачи Id диаграммы -->
+            <input type="hidden" id="Id" name="Id" value="@Model._diagramId" />
+
+            <!-- Скрытое поле для передачи projectId -->
+            <input type="text" id="ProjectId" name="ProjectId" hidden value="@Model._projectId" />
+
+        </fieldset>
+
+        <!-- Кнопка для сохранения диаграммы -->
+        <button class="btn btn-primary" onclick="exportBpmnXml()">Сохранить диаграмму</button>
+
+        <!-- Кнопка для отправки формы -->
+        <input hidden id="saveButton" type="submit" value="Save">
+    </form>
+
+    <script>
+        // Создание экземпляра BPMN Modeler
+        const modeler = new BpmnJS({ container: '#canvas' });
+
+        // Функция для загрузки диаграммы
+        function loadDiagram(bpmnXml) {
+            console.log(bpmnXml)
+            modeler.importXML(bpmnXml);
+        }
+
+        // Функция для загрузки диаграммы из файла
+        function loadDiagramFromFile() {
+
+            var diagramId = '@Model._diagramId';
+
+            // Путь к файлу с XML-кодом диаграммы
+            const bpmnBaseFile = `/UpdateDiagram?handler=Diagram&id=${diagramId}`;
+
+            // Чтение содержимого файла
+            fetch(bpmnBaseFile)
+                .then(response => response.text())
+                .then(bpmnXml => {
+                    // Загружаем диаграмму из содержимого файла
+                    loadDiagram(bpmnXml);
+                    deleteTempFile(diagramId);
+                })
+                .catch(error => {
+                    console.error('Не удалось загрузить BPMN файл:', error);
+                });
+
+        }
+
+        function deleteTempFile(diagramId) {
+            fetch(`/UpdateDiagram?handler=DeleteTempFile&id=${diagramId}`)
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Временный файл успешно удален.');
+                    } else {
+                        console.error('Не удалось удалить временный файл.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при удалении временного файла:', error);
+                });
+        }
+
+        async function exportBpmnXml() {
+            const { xml } = await modeler.saveXML({ format: true });
+
+            // Найти элемент input по его id
+            const xmlInput = document.getElementById('XMLDiagram');
+
+            // Установить значение xml в поле input
+            xmlInput.value = xml;
+
+            const saveButton = document.getElementById('saveButton');
+            saveButton.click();
+        }
+
+        // Вызываем функцию загрузки диаграммы из файла при загрузке страницы
+        loadDiagramFromFile();
+
+    </script>
+</body>
+</html>

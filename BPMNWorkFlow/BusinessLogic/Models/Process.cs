@@ -14,6 +14,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         /// Xml документ для процесса
         /// </summary>
         public XElement ProcessXML { get; set; }
+
         /// <summary>
         /// Пространство имен для процесса
         /// </summary>

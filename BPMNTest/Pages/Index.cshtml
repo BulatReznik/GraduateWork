@@ -44,7 +44,7 @@
 
     <form action="/Home/SaveDiagram" method="post">
         <fieldset>
-            <input type="text" id="xml" name="xml" hidden/>
+            <input type="text" id="xml" name="xml" hidden />
         </fieldset>
         <input hidden id="saveButton" type="submit" value="Save">
     </form>
@@ -74,6 +74,7 @@
 
         // Функция для загрузки диаграммы
         function loadDiagram(bpmnXml) {
+            console.log(bpmnXml)
             modeler.importXML(bpmnXml);
         }
 

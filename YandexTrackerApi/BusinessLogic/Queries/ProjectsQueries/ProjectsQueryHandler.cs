@@ -7,7 +7,7 @@ using YandexTrackerApi.DbModels;
 
 namespace YandexTrackerApi.BusinessLogic.Queries.ProjectsQueries
 {
-    public class ProjectsQueryHandler : IRequestHandler<ProjectsQuery, ResponseModel<List<ProjectResponseModel>>>
+    public class ProjectsQueryHandler : IRequestHandler<ProjectsQuery, ResponseModel<List<ProjectByIdResponse>>>
     {
         private readonly ILogger _logger;
         private readonly IGraduateWorkContext _context;
@@ -18,13 +18,13 @@ namespace YandexTrackerApi.BusinessLogic.Queries.ProjectsQueries
             _context = context;
         }
 
-        public async Task<ResponseModel<List<ProjectResponseModel>>> Handle(ProjectsQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseModel<List<ProjectByIdResponse>>> Handle(ProjectsQuery request, CancellationToken cancellationToken)
         {
             try
             {
                 var result = await _context.Projects
                     .Where(p => p.UsersProjects.Any(up => up.UserId == request.UserId))
-                    .Select(p => new ProjectResponseModel
+                    .Select(p => new ProjectByIdResponse
                     {
                         CreatorId = p.CreatorId,
                         Description = p.Description,
@@ -33,13 +33,13 @@ namespace YandexTrackerApi.BusinessLogic.Queries.ProjectsQueries
                     })
                     .ToListAsync(cancellationToken: cancellationToken);
 
-                return new ResponseModel<List<ProjectResponseModel>> { Data = result };
+                return new ResponseModel<List<ProjectByIdResponse>> { Data = result };
             }
             catch (Exception ex)
             {
                 var errorMessage = "Ошибка получения проектов";
                 _logger.LogError(ex, errorMessage);
-                return new ResponseModel<List<ProjectResponseModel>> { ErrorMessage = errorMessage };
+                return new ResponseModel<List<ProjectByIdResponse>> { ErrorMessage = errorMessage };
             }
         }
     }

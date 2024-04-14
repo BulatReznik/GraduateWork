@@ -7,14 +7,11 @@ namespace YandexTrackerApi.BusinessLogic.Models.DiagramModels
 {
     public class DiagramCreateCommand : IRequest<ResponseModel<string>>
     {
-        [Required(ErrorMessage = "Поле Id должно быть заполнено")]
-        public Guid Id { get; set; }
-
         [Required(ErrorMessage = "Поле Name должно быть заполнено")]
         public string Name { get; set; } = null!;
 
         [Required(ErrorMessage = "Поле XMLDiagram должно быть заполнено")]
-        public XDocument XMLDiagram { get; set; }
+        public string XMLDiagram { get; set; }
 
         [Required(ErrorMessage = "Поле ProjectId должно быть заполнено")]
         public Guid ProjectId { get; set; }

@@ -31,6 +31,9 @@ namespace BPMN.Pages
                 {
                     // ≈сли токен доступа получен, то аутентификаци€ успешна
                     // ¬ случае успешной аутентификации перенаправл€ем пользовател€ на другую страницу
+                    HttpContext.Session.SetString("AccessToken", response.Data.AccessToken);
+                    HttpContext.Session.SetString("RefrshToken", response.Data.RefreshToken);
+
                     return RedirectToPage("/Index");
                 }
                 else
