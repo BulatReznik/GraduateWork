@@ -53,11 +53,6 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             Process = process;
         }
 
-        public void Start()
-        {
-            StartNode.Execute(StartNode, null);
-        }
-
         public void SetDefaultHandlers()
         {
             var defaultNodeHandlers = new Dictionary<string, INodeHandler>()
@@ -128,12 +123,17 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             return parameters.All(p => p.Value.GetType().Name.Equals(propertyMap[p.Key], StringComparison.CurrentCultureIgnoreCase));
         }
 
-        public void Start(IDictionary<string, object> parameters)
+        public async Task StartAsync(IDictionary<string, object> parameters)
         {
             //TODO Get node variables not process instance var
             InputParameters = parameters.ToImmutableDictionary();
             StartNode.InputParameters = parameters.ToImmutableDictionary();
-            Start();
+
+            // Запускаем выполнение стартового узла
+            await StartNode.Execute(StartNode, null);
+
+            // Процесс завершен
+            Console.WriteLine("Процесс завершен");
         }
 
         internal void SetOutputParameters(ProcessNode node)

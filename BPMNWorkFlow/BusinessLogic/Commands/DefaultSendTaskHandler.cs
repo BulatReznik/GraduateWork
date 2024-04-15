@@ -5,7 +5,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
 {
     internal class DefaultSendTaskHandler : INodeHandler
     {
-        public void Execute(ProcessNode currentNode, ProcessNode previousNode)
+        public void ExecuteAsync(ProcessNode currentNode, ProcessNode previousNode)
         {
             throw new NotImplementedException();
         }

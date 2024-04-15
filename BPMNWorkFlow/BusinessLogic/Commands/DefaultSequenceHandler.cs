@@ -6,7 +6,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
 {
     internal class DefaultSequenceHandler : INodeHandler
     {
-        public void Execute(ProcessNode processNode, ProcessNode previousNode)
+        public void ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
         {
             Console.WriteLine(processNode.NodeId + " Executing Sequence");
             bool result = true;
@@ -29,7 +29,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
 
             if (result)
             {
-                processNode.Done();
+                processNode.DoneAsync();
             }
         }
     }

@@ -23,4 +23,8 @@
     <Folder Include="BusinessLogic\Queries\YandexQueries\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BPMNWorkFlow\BPMNWorkFlow.csproj" />
+  </ItemGroup>
+
 </Project>

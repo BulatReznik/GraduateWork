@@ -10,6 +10,7 @@ namespace BPMN.Pages
     {
         private readonly ApiService _apiService;
         public ProjectViewModel Project { get; set; }
+        public string _projectId { get; set; }
 
         public ProjectModel(ApiService apiService)
         {
@@ -56,6 +57,33 @@ namespace BPMN.Pages
             };
 
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostExecuteDiagram(string projectId, Guid diagramId)
+        {
+            try
+            {
+                var executeDiagramRequest = new DiagramExecuteModel { Id = diagramId };
+
+                // Отправляем запрос на выполнение диаграммы
+                var executeDiagramResponse = await _apiService.PostStringAsync("v1/diagrams/execute", executeDiagramRequest);
+
+                if (!executeDiagramResponse.IsSuccess)
+                {
+                    // Обработка ошибки, если запрос на выполнение диаграммы не удался
+                    TempData["ErrorMessage"] = executeDiagramResponse.ErrorMessage;
+                    return RedirectToPage("/Error"); // Перенаправляем на страницу с ошибкой
+                }
+
+                // Успешное выполнение диаграммы
+                TempData["SuccessMessage"] = $"Диаграмма успешно выполнена, выполненные узлы: \n{executeDiagramResponse.Data}";
+                return RedirectToPage("/Project", new { projectId });
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Во время выполнения диаграммы произошла ошибка";
+                return RedirectToPage("/Error");
+            }
         }
     }
 }

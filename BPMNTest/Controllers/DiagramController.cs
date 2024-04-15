@@ -8,21 +8,11 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BPMNTest.Controllers
 {
-    public class MyStartHandler : INodeHandler
-    {
-        public void Execute(ProcessNode currentNode, ProcessNode previousNode)
-        {
-            Console.WriteLine("Кастомный начальный обработчик");
-            Console.WriteLine(currentNode.NodeId);
-            Console.WriteLine(currentNode.NodeName);
-            currentNode.Done();
-        }
-    }
 
     public class HomeController : Controller
     {
         [HttpPost]
-        public IActionResult SaveDiagram(IFormCollection form)
+        public async Task<IActionResult> SaveDiagramAsync(IFormCollection form)
         {
             KeyValuePair<string, Microsoft.Extensions.Primitives.StringValues> diagramData = form.First(); // Предполагается, что данные диаграммы в поле "diagramData"
 
@@ -42,7 +32,7 @@ namespace BPMNTest.Controllers
             processInstance.SetDefaultHandlers();
 
             var processVar = new Dictionary<string, object>();
-            processInstance.Start(processVar);
+            await processInstance.StartAsync(processVar);
 
             var diagramDataString = diagramData.Value.ToString();
 

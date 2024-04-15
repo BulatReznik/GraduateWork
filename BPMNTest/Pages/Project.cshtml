@@ -58,6 +58,22 @@
 </head>
 <body>
     <div class="container">
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
         <h1>@Model.Project.Name</h1>
         <p>@Model.Project.Description</p>
         <p>Создатель проекта: @Model.Project.CreatorName</p>
@@ -71,7 +87,7 @@
                     <li class="diagram-item">
                         <span class="diagram-name">@diagram.Name</span>
                         <!-- Кнопка для выполнения диаграммы -->
-                        <form method="post" asp-page-handler="ExecuteDiagram" asp-route-diagramId="@diagram.Id">
+                        <form method="post" asp-page-handler="ExecuteDiagram" asp-route-diagramId="@diagram.Id" asp-route-projectId="@Model.Project.Id">
                             <button type="submit" class="btn btn-success">Выполнить диаграмму</button>
                         </form>
                         <!-- Кнопка для открытия диаграммы -->

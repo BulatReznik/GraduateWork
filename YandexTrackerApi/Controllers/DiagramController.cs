@@ -4,12 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using YandexTrackerApi.BusinessLogic.Managers.User;
 using YandexTrackerApi.BusinessLogic.Models.DiagramModels;
 using YandexTrackerApi.BusinessLogic.Models.DiagramQueries;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace YandexTrackerApi.Controllers
 {
-    [Route("/api/v1/calendar/[action]")]
+    [Route("/api/v1/diagram/[action]")]
     [ApiController]
     [Authorize]
     public class DiagramController : Controller
@@ -79,6 +77,22 @@ namespace YandexTrackerApi.Controllers
 
         [HttpPost("/api/v1/diagrams/update")]
         public async Task<IActionResult> UpdateDiagrams(DiagramUpdateCommand command)
+        {
+            command.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var response = await _mediator.Send(command);
+
+            if (response.IsSuccess)
+                return Ok(response.Data);
+            else
+                return BadRequest(response.ErrorMessage);
+        }
+
+        [HttpPost("/api/v1/diagrams/execute")]
+        public async Task<IActionResult> ExecuteDiagram(DiagramExecuteCommand command)
         {
             command.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
 

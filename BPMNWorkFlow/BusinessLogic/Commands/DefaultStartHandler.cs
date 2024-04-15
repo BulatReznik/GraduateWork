@@ -5,10 +5,10 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
 {
     internal class DefaultStartHandler : INodeHandler
     {
-        public void Execute(ProcessNode processNode, ProcessNode previousNode)
+        public void ExecuteAsync(ProcessNode currentNode, ProcessNode previousNode)
         {
-            Console.WriteLine($"Стартовое событие: Id узла: {processNode.NodeId}");
-            processNode.Done();
+            Console.WriteLine($"Стартовое событие: Id узла: {currentNode.NodeId}");
+            currentNode.DoneAsync().Wait();
         }
     }
 }

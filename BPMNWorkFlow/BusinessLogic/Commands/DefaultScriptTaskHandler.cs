@@ -7,7 +7,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
 {
     internal class DefaultScriptTaskHandler : INodeHandler
     {
-        public void Execute(ProcessNode processNode, ProcessNode previousNode)
+        public void ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
         {
             Console.WriteLine(processNode.NodeId + " Executing Script");
 
@@ -26,7 +26,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
                     Console.WriteLine(e.Message);
                 }
             }
-            processNode.Done();
+            processNode.DoneAsync();
         }
     }
 }
