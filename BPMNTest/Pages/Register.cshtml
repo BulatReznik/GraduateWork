@@ -8,7 +8,7 @@
         <div class="col-md-6">
             <div class="card mt-5">
                 <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Вход</h2>
+                    <h2 class="card-title text-center mb-4">Регистрация</h2>
 
                     @if (TempData["ErrorMessage"] != null)
                     {
@@ -51,12 +51,10 @@
                             <span class="text-danger" asp-validation-for="RegisterFormModel.Password"></span>
                         </div>
 
-                        <div class="form-group">
-                            <div>
-                                <input type="submit" class="btn btn-primary" value="Регистрация">
-                            </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <input type="submit" class="btn btn-primary" value="Регистрация">
+                            <a class="btn btn-secondary" href="/Login">Войти</a>
                         </div>
-
                     </form>
                 </div>
             </div>

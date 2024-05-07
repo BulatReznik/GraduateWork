@@ -32,14 +32,14 @@ namespace BPMN.Pages
                     // ≈сли токен доступа получен, то аутентификаци€ успешна
                     // ¬ случае успешной аутентификации перенаправл€ем пользовател€ на другую страницу
                     HttpContext.Session.SetString("AccessToken", response.Data.AccessToken);
-                    HttpContext.Session.SetString("RefrshToken", response.Data.RefreshToken);
+                    HttpContext.Session.SetString("RefreshToken", response.Data.RefreshToken);
 
                     return RedirectToPage("/Index");
                 }
                 else
                 {
                     // ≈сли токен доступа не получен, можно считать, что пользователь не найден
-                    TempData["ErrorMessage"] = "Ќе удалось зарегестрировать пользовател€";
+                    TempData["ErrorMessage"] = "Ќе удалось зарегистрировать пользовател€";
                     return Page();
                 }
             }

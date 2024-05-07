@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BPMN.Services;
 using BPMN.Models.Login;
-using BPMNTest.Pages.Home;
-using BPMN.Models.Project;
 
 namespace BPMN.Pages
 {

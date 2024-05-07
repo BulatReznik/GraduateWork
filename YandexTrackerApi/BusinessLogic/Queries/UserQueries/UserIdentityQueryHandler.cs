@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using System.Security.Claims;
-using Microsoft.Extensions.Logging;
 using YandexTrackerApi.BusinessLogic.Models.UserQueries;
 
 namespace YandexTrackerApi.BusinessLogic.Queries.UserQueries

@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="BPMNTest.Controllers.HomeController">
+    <Position X="0.5" Y="7.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAACAABAAAAAAAABAAAAAAAAQA=</HashCode>
+      <FileName>Controllers\DiagramController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Diagram.DiagramExecuteModel">
+    <Position X="4.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Diagram\DiagramExecuteModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Diagram.DiagramFormModel">
+    <Position X="12" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAQABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Diagram\DiagramFormModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Diagram.DiagramResponse">
+    <Position X="7" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Diagram\DiagramResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Diagram.DiagramsRequest">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Diagram\DiagramsRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Diagram.DiagramsResponse">
+    <Position X="4" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Diagram\DiagramsResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Diagram.DiagramUpdateModel">
+    <Position X="4.75" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAEAAQABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Diagram\DiagramUpdateModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Login.LoginFormModel">
+    <Position X="13.25" Y="9" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\Login\LoginFormModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Login.LoginResponseModel">
+    <Position X="13.25" Y="7.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAQAAAAAAAAAAAAAAAEAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Models\Login\LoginResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Project.ProjectResponse">
+    <Position X="6.75" Y="10" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAACAAAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Project\ProjectResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Project.ProjectsResponseModel">
+    <Position X="5" Y="13" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAACAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Project\ProjectsResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Project.ProjectViewModel">
+    <Position X="7.5" Y="13" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAACAAAAAAQAAAAAAAAAAAAAAAEQAAA=</HashCode>
+      <FileName>Models\Project\ProjectViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Project.DiagramViewModel">
+    <Position X="4.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Project\ProjectViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.RefreshToken.RefreshTokenCommand">
+    <Position X="11" Y="13" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RefreshToken\RefreshTokenCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Register.RegisterFormModel">
+    <Position X="13.25" Y="13" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\Register\RegisterFormModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.Register.RegisterResponseModel">
+    <Position X="3.75" Y="18.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAQAAAAAAAAAAAAAAAEAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Models\Register\RegisterResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Models.ResponseModel&lt;TValue&gt;">
+    <Position X="6.25" Y="18.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQAABAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNTest.Pages.Home.ExpertsModel">
+    <Position X="6.75" Y="5.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Home\Experts.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNTest.Pages.Home.InvitationsModel">
+    <Position X="6.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Home\Invitations.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNTest.Pages.Home.ProjectModel">
+    <Position X="4.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Home\Project.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNTest.Pages.Home.ProjectsModel">
+    <Position X="0.5" Y="18.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAQA=</HashCode>
+      <FileName>Pages\Home\Projects.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Pages.AddDiagramModel">
+    <Position X="0.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAACAAAgAAAAAAAACAAAAAAAAAAAAgARAAAAAgAA=</HashCode>
+      <FileName>Pages\AddDiagram.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Pages.LoginModel">
+    <Position X="8.25" Y="7.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAREAAAAAAA=</HashCode>
+      <FileName>Pages\Login.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Pages.ProjectModel">
+    <Position X="10" Y="10" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAACRAAAAAgAA=</HashCode>
+      <FileName>Pages\Project.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Pages.ProjectsModel">
+    <Position X="0.5" Y="13" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAQA=</HashCode>
+      <FileName>Pages\Projects.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Pages.RegisterModel">
+    <Position X="0.5" Y="15.75" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAREAAAAAAA=</HashCode>
+      <FileName>Pages\Register.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Pages.UpdateDiagramModel">
+    <Position X="6" Y="15.25" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>CAAAAACABAgAAAAAAAAiAAAAAAAAAAAAAARAAAAAgAA=</HashCode>
+      <FileName>Pages\UpdateDiagram.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNTest.Pages.ErrorModel">
+    <Position X="0.75" Y="4.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAIAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Error.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNTest.Pages.IndexModel">
+    <Position X="3.25" Y="7.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNTest.Pages.PrivacyModel">
+    <Position X="0.5" Y="9.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Privacy.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMN.Services.ApiService">
+    <Position X="10.25" Y="2.5" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAABAACAABAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Services\ApiService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNTest.ViewModels.Expert">
+    <Position X="7.5" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAQAEAAAAAACAAAQIAAAAAA=</HashCode>
+      <FileName>ViewModels\Expert.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNTest.ViewModels.Project">
+    <Position X="3" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACAAAEAAAgAAAAAAAAAAQgAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>ViewModels\Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNTest.ViewModels.ProjectRole">
+    <Position X="12.5" Y="10.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>ViewModels\ProjectRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

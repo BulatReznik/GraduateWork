@@ -30,7 +30,7 @@ namespace YandexTrackerApi.BusinessLogic.Managers.User
 
                 var id = identity.FindFirst("Id")?.Value;
                 if (string.IsNullOrEmpty(id))
-                    throw new AuthenticationException("Невозможно определить ProjectId пользователя в контексте сервера");
+                    throw new AuthenticationException("Невозможно определить Id пользователя в контексте сервера");
 
                 return Guid.Parse(id);
             }

@@ -69,5 +69,29 @@ namespace YandexTrackerApi.Controllers
 
             return result.IsSuccess ? Ok(result.Data) : BadRequest(result.ErrorMessage);
         }
+
+        [HttpPost("/api/v1/projects/invite")]
+        public async Task<IActionResult> Invite(ProjectInviteUserCommand command)
+        {
+            command.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await _mediator.Send(command);
+
+            return result.IsSuccess ? Ok(result.Data) : BadRequest(result.ErrorMessage);
+        }
+
+        [HttpPost("/api/v1/projects/confirm/invite")]
+        public async Task<IActionResult> ConfirmInvite(ProjectConfirmInviteCommand command)
+        {
+            command.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await _mediator.Send(command);
+
+            return result.IsSuccess ? Ok(result.Data) : BadRequest(result.ErrorMessage);
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace YandexTrackerApi.BusinessLogic.Models.DiagramQueries
         [Required(ErrorMessage = "Поле Id должно быть заполнено")]
         public Guid Id { get; set; }
 
-        [Required(ErrorMessage = "Поле userId должно быть заполненено")]
+        [Required(ErrorMessage = "Поле userId должно быть заполнено")]
         public Guid UserId { get; set; }
     }
 }

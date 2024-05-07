@@ -1,7 +1,6 @@
 ﻿using BPMNWorkFlow.BusinessLogic.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.IO;
 using System.Xml.Linq;
 using YandexTrackerApi.BusinessLogic.Models;
 using YandexTrackerApi.BusinessLogic.Models.DiagramModels;
@@ -39,24 +38,21 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
                 // Затем используйте конструктор XDocument, который принимает TextReader
                 var xmlDoc = XDocument.Load(stringReader);
 
-                var p = new Process(xmlDoc);
-                var processInstance = p.NewProcessInstance();
+                var process = new Process(xmlDoc);
+                var processInstance = process.NewProcessInstance();
                 processInstance.SetDefaultHandlers();
 
                 var processVar = new Dictionary<string, object>();
 
                 // Создаем список для хранения пути выполнения
-                var executionPath = new List<string>();
 
                 await processInstance.StartAsync(processVar);
 
-                foreach (var node in processInstance.Nodes.Values)
-                {
-                    if (node.TaskCompletionSource.Task.IsCompletedSuccessfully)
-                    {
-                        executionPath.Add($"Завершение узла: Id: {node.NodeId} Имя узла: {node.NodeName}");
-                    }
-                }
+                var executionPath = (
+                    from node in processInstance.Nodes.Values 
+                    where node.TaskCompletionSource.Task.IsCompletedSuccessfully 
+                    select $"Завершение узла: Id: {node.NodeId} Имя узла: {node.NodeName}")
+                    .ToList();
 
                 // Преобразуем список в строку для отправки пользователю
                 var executionPathString = string.Join("\n", executionPath);

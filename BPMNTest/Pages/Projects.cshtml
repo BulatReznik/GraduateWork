@@ -3,53 +3,47 @@
 @{
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Проекты</title>
-    <style>
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
+<style>
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 0 20px;
+    }
 
-        h1 {
-            text-align: center;
-            color: #333;
-        }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
 
-        li {
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    li {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-        h3 {
-            margin-top: 0;
-            color: #007bff;
-        }
+    h3 {
+        margin-top: 0;
+        color: #007bff;
+    }
 
-        p {
-            margin: 0;
-            color: #555;
-        }
+    p {
+        margin: 0;
+        color: #555;
+    }
 
-        .no-projects {
-            text-align: center;
-            color: #777;
-        }
-    </style>
-</head>
+    .no-projects {
+        text-align: center;
+        color: #777;
+    }
+</style>
+
 <body>
 
     <div class="container">
@@ -62,7 +56,7 @@
             </div>
         }
 
-        @if (Model.Projects != null && Model.Projects.Any())
+        @if (Model?.Projects != null && Model.Projects.Any())
         {
             <ul>
                 @foreach (var project in Model.Projects)
@@ -81,6 +75,4 @@
             <p class="no-projects">У пользователя еще нет проектов</p>
         }
     </div>
-
 </body>
-</html>

@@ -17,19 +17,19 @@ namespace YandexTrackerApi.BusinessLogic.Models.ProjectModels
         public Guid UserId { get; set; }
 
         /// <summary>
-        /// Id проекта в который мы добавляем информацию о таск трекере
+        /// Id проекта в который мы добавляем информацию о таск-трекере
         /// </summary>
         [Required(ErrorMessage = "Поле ProjectId не может быть пустым")]
         public Guid ProjectId { get; set; }
 
         /// <summary>
-        /// Токен аунтификации приложения
+        /// Токен аутентификации приложения
         /// </summary>
         [Required(ErrorMessage = "Поле OAuthToken не может быть пустым")]
         public string OauthToken { get; set; } = null!;
 
         /// <summary>
-        /// Токен аунитификации организацц
+        /// Токен аутентификации организации
         /// </summary>
         [Required(ErrorMessage = "Поле CloudOrgId не может быть пустым")]
         public string CloudOrgId { get; set; } = null!;

@@ -3,67 +3,54 @@
 @{
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Проект</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-        }
+<title>Проект</title>
+<style>
+    #project-container {
+        margin-top: 50px;
+    }
 
-        .container {
-            margin-top: 50px;
-        }
+    #project-container h1 {
+        color: #007bff;
+    }
 
-        h1 {
-            color: #007bff;
-        }
+    #project-container .btn-success {
+        margin-right: 10px;
+    }
 
-        .btn-success {
-            margin-right: 10px;
-        }
+    #project-container .diagram-list {
+        list-style: none;
+        padding-left: 0;
+    }
 
-        .diagram-list {
-            list-style: none;
-            padding-left: 0;
-        }
+    #project-container .diagram-item {
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        background-color: #fff;
+    }
 
-        .diagram-item {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            background-color: #fff;
-        }
+    #project-container .diagram-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
 
-        .diagram-name {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
+    #project-container .diagram-actions {
+        margin-top: 10px;
+    }
 
-        .diagram-actions {
-            margin-top: 10px;
-        }
+    #project-container .alert {
+        margin-top: 20px;
+    }
+</style>
 
-        .alert {
-            margin-top: 20px;
-        }
-    </style>
-</head>
 <body>
-    <div class="container">
+    <div id="project-container">
 
         @if (TempData["SuccessMessage"] != null)
         {
             <div class="alert alert-success" role="alert">
                 @TempData["SuccessMessage"]
-
             </div>
         }
 
@@ -78,7 +65,7 @@
         <p>@Model.Project.Description</p>
         <p>Создатель проекта: @Model.Project.CreatorName</p>
 
-        @if (Model.Project.Diagrams != null && Model.Project.Diagrams.Any())
+        @if (Model.Project?.Diagrams != null && Model.Project.Diagrams.Any())
         {
             <h2>Диаграммы</h2>
             <ul class="diagram-list">
@@ -112,4 +99,3 @@
         <a asp-page="/AddDiagram" asp-route-projectId="@Model.Project.Id" class="btn btn-primary">Добавить диаграмму</a>
     </div>
 </body>
-</html>

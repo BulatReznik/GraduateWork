@@ -19,6 +19,11 @@ public partial class UsersProject
     [Column("Project_Id")]
     public Guid ProjectId { get; set; }
 
+    public bool? Condirmed { get; set; }
+
+    [Column("Invite_Code")]
+    public int? InviteCode { get; set; }
+
     [ForeignKey("ProjectId")]
     [InverseProperty("UsersProjects")]
     public virtual Project Project { get; set; }

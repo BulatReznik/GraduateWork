@@ -1,0 +1,651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="YandexTest.Controllers.YandexTrackerController">
+    <Position X="7.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBACAABAAAAAAAAAAAAAAAAAAAQAAAAAAAAAABAA=</HashCode>
+      <FileName>Controllers\YandexTrackerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Program">
+    <Position X="9.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Startup">
+    <Position X="14.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.AppLogic.Core.AppConfig">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAIAAAAAAAAAAIAAAAAAIAAAAAAAIAAAAAg=</HashCode>
+      <FileName>AppLogic\Core\AppConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.AppLogic.Core.JwtBearerConfiguration">
+    <Position X="2.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AppLogic\Core\JwtBearerConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.AppLogic.Core.ServiceProviderExtension">
+    <Position X="12.75" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>AppLogic\Core\ServiceProviderExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Commands.CalendarCommands.CalendarCreateCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAABAAAAAAAABAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Commands\DiagramCommands\CalendarCommands\CalendarCreateCommandHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Commands.CalendarCommands.CalendarDayCreateCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAABAAAAAAAAAAAIAAAAAIAAAgEAAAACAA=</HashCode>
+      <FileName>BusinessLogic\Commands\DiagramCommands\CalendarCommands\CalendarDayCreateCommandHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Commands.DiagramCommands.DiagramCreateCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Commands\DiagramCommands\DiagramCreateCommandHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Commands.DiagramCommands.DiagramExecuteCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="11" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Commands\DiagramCommands\DiagramExecuteCommandHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Commands.DiagramCommands.DiagramUpdateCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Commands\DiagramCommands\DiagramUpdateCommandHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Commands.ProjectCommands.ProjectCreateCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Commands\ProjectCommands\ProjectCreateCommandHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Commands.ProjectCommands.ProjectYandexTrackerCreateCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="4" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Commands\ProjectCommands\ProjectYandexTrackerCreateCommandHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Commands.TokenCommands.RefreshTokenCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAIAAAAAIAAAAAAAAAACA=</HashCode>
+      <FileName>BusinessLogic\Commands\TokenCommands\RefreshTokenCommandHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Commands.UserCommands.UserCheckMailQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Commands\UserCommands\UserCheckMailQueryHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Commands.UserCommands.UserRegisterCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="23.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAABAAAAAAAAAAAIAAAAAIAAAAAAAABACA=</HashCode>
+      <FileName>BusinessLogic\Commands\UserCommands\UserRegisterCommandHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Commands.YandexCommands.YandexTrackerIssueByUserByPeriodCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAACAAAAABAAAAAAAAAAAIgAAAAIAAAAAABABAAA=</HashCode>
+      <FileName>BusinessLogic\Commands\YandexCommands\YandexTrackerIssueByUserByPeriodCommandHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Commands.YandexCommands.YandexTrackerUsersCreateCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="22.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAABAAAAAAAAAAAMgAAAAIAAAAEABABAAA=</HashCode>
+      <FileName>BusinessLogic\Commands\YandexCommands\YandexTrackerUsersCreateCommandHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Managers.JWT.JWTAuthManager" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAEAAAEAAAAAAAAAAAAAAACAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>BusinessLogic\Managers\JWT\JWTAuthManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Managers.JWT.JWTUserManager" BaseTypeListCollapsed="true">
+    <Position X="4" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAABAEAAAAAAAAAAAAAIAAAAAAAAAEAAAAAACA=</HashCode>
+      <FileName>BusinessLogic\Managers\JWT\JWTUserManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Managers.User.UserManager" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="21.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAIAABAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Managers\User\UserManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.CalendarModels.CalendarDTO.CalendarDataDto">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\CalendarModels\CalendarDTO\CalendarDataDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.CalendarModels.CalendarDTO.MonthDto">
+    <Position X="5.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\CalendarModels\CalendarDTO\MonthDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.CalendarModels.CalendarDTO.StatisticDto">
+    <Position X="0.5" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAgAAAAAAAAAAAAABAEQAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\CalendarModels\CalendarDTO\StatisticDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.CalendarModels.CalendarDTO.TransitionDto">
+    <Position X="5.75" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\CalendarModels\CalendarDTO\TransitionDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.CalendarModels.CalendarDayCreateCommand" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAgAAAAAgABAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>BusinessLogic\Models\CalendarModels\CalendarDayCreateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.CalendarModels.CalendarYearCreateCommand" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\CalendarModels\CalendarYearCreateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.DiagramModels.DiagramCreateCommand" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAwABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\DiagramModels\DiagramCreateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.DiagramModels.DiagramExecuteCommand" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\DiagramModels\DiagramExecuteCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.DiagramModels.DiagramResponse">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\DiagramModels\DiagramResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.DiagramModels.DiagramsResponse">
+    <Position X="5.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\DiagramModels\DiagramsResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.DiagramModels.DiagramUpdateCommand" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAEAAwAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\DiagramModels\DiagramUpdateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.DiagramQueries.DiagramQuery" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\DiagramQueries\DiagramQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.DiagramQueries.DiagramsQuery" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\DiagramQueries\DiagramsQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.ProjectModels.ProjectByIdResponse1">
+    <Position X="5.75" Y="11.25" Width="1.5" />
+    <NestedTypes>
+      <Class Name="YandexTrackerApi.BusinessLogic.Models.ProjectModels.ProjectByIdResponse1.Diagram" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>BusinessLogic\Models\ProjectModels\ProjectByIdResponse.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAgAAAAAQAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>BusinessLogic\Models\ProjectModels\ProjectByIdResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.ProjectModels.ProjectCreateCommand" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAACAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\ProjectModels\ProjectCreateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.ProjectModels.ProjectByIdResponse">
+    <Position X="2.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAACAAAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\ProjectModels\ProjectResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.ProjectModels.ProjectYandexTrackerCreateCommand" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAQAgABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\ProjectModels\ProjectYandexTrackerCreateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.ProjectQueries.ProjectQuery" BaseTypeListCollapsed="true">
+    <Position X="11" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\ProjectQueries\ProjectQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.ProjectQueries.ProjectsQuery" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\ProjectQueries\ProjectsQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.TokenModels.RefreshTokenCommand" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\TokenModels\RefreshTokenCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.227" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.UserModels.UserRegisterCommand" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="21.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\UserModels\UserRegisterCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.UserModels.UserRegisterResponseDTO">
+    <Position X="11" Y="20.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAQAAAAAAAAAAAAAAAEAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\UserModels\UserRegisterResponseDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.UserModels.UserResponseData">
+    <Position X="12.75" Y="20.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\UserModels\UserResponseData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Models.YandexModels.Assignee">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAAgAAAgA=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\Assignee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Models.YandexModels.Board">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\Board.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Models.YandexModels.Issue">
+    <Position X="12.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IGKCEIAEECAgCEQkACARCAAAQAAAAAAAGQGAACgAgAE=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\Issue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Models.YandexModels.PreviousStatus">
+    <Position X="7.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAQAAAABAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\PreviousStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Models.YandexModels.PreviousStatusLastAssignee">
+    <Position X="9.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAAgAAAgA=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\PreviousStatusLastAssignee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Models.YandexModels.Priority">
+    <Position X="11" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAQAAAABAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\Priority.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Models.YandexModels.Project">
+    <Position X="14.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Models.YandexModels.Queue">
+    <Position X="5.75" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAQAAAABAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\Queue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Models.YandexModels.Status">
+    <Position X="2.25" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAQAAAABAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\Status.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Models.YandexModels.StatusType">
+    <Position X="4" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\StatusType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Models.YandexModels.Type">
+    <Position X="7.5" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAQAAAABAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\Type.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Models.YandexModels.User">
+    <Position X="9.25" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAEAABigCAAAAABABAQAAAAAAAAEAAAEQAgAACgg=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.YandexModels.YandexTrackerIssueByUserByPeriodCommand" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="23.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAggBAAAAAAAAAAAAEACAAA=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\YandexTrackerIssueByUserByPeriodCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.YandexModels.YandexTrackerUsersCreateCommand" BaseTypeListCollapsed="true">
+    <Position X="11" Y="22.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\YandexModels\YandexTrackerUsersCreateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.YandexQueries.IssuesByPeriodQuery">
+    <Position X="14.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAgAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\YandexQueries\IssuesByPeriodQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Models.ResponseModel&lt;TValue&gt;">
+    <Position X="14.5" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAABAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\ResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Queries.DiagramQueries.DiagramQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Queries\DiagramQueries\DiagramQueryHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Queries.DiagramQueries.DiagramsQueryHanlder" BaseTypeListCollapsed="true">
+    <Position X="4" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Queries\DiagramQueries\DiagramsQueryHanlder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Queries.ProjectsQueries.ProjectQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Queries\ProjectsQueries\ProjectQueryHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Queries.ProjectsQueries.ProjectsQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Queries\ProjectsQueries\ProjectsQueryHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Queries.UserQueries.UserDataQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="21.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Queries\UserQueries\UserDataQueryHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Queries.UserQueries.UserIdentityQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="21.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Queries\UserQueries\UserIdentityQueryHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.BusinessLogic.Queries.UserQueries.UserLoginQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="4" Y="21.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAIAAAAAIAAAAAAAAAACA=</HashCode>
+      <FileName>BusinessLogic\Queries\UserQueries\UserLoginQueryHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.Controllers.CalendarController">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Controllers\CalendarController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Controllers.DiagramController">
+    <Position X="4" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgRBAAAABAAAAAAAAAAAAAAAAAQAAAAAAAIAAAQAAA=</HashCode>
+      <FileName>Controllers\DiagramController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Controllers.ProjectController">
+    <Position X="11" Y="24" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAABABAAAAAAAAAAAAAAAAAAAAAgAAAAAACAA=</HashCode>
+      <FileName>Controllers\ProjectController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.Controllers.UserController">
+    <Position X="4" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgABAAAAQAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.DbModels.CalendarDatum">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAACAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbModels\CalendarDatum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.DbModels.Diagram">
+    <Position X="2.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACCAAAAAAAAAAAAAAACAQABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbModels\Diagram.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.DbModels.GraduateWorkContext" BaseTypeListCollapsed="true">
+    <Position X="11" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAACAAAQQQAEABAAAAgAAQEAAAAAAAAAAYAAAQAwE=</HashCode>
+      <FileName>DbModels\GraduateWorkContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="YandexTrackerApi.DbModels.Project">
+    <Position X="0.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAACAAAAAAQAAAAAAAAAAAAoAAAQAAA=</HashCode>
+      <FileName>DbModels\Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.DbModels.User">
+    <Position X="11" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAYAAAAAAA=</HashCode>
+      <FileName>DbModels\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.DbModels.UsersProject">
+    <Position X="14.5" Y="21.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAACAgABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbModels\UsersProject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.DbModels.YandexTracker">
+    <Position X="0.5" Y="23.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAgAAAAAAAAAAAQAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbModels\YandexTracker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.DbModels.YandexTrackerTask">
+    <Position X="5.75" Y="23.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACDAAAAAAAAAAAAAAAAAAggAAAAIAAAAAAAAEgAAAA=</HashCode>
+      <FileName>DbModels\YandexTrackerTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.DbModels.YandexTrackerUser">
+    <Position X="4" Y="23.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAQAAAAAAAAACAQABAAAAAAAAAAQAAAAAgA=</HashCode>
+      <FileName>DbModels\YandexTrackerUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YandexTrackerApi.DbModels.YandexTrackerUserHoliday">
+    <Position X="9.25" Y="23.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAIAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbModels\YandexTrackerUserHoliday.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="YandexTrackerApi.BusinessLogic.Managers.JWT.IJWTAuthManager">
+    <Position X="2.25" Y="27.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Managers\JWT\IJWTAuthManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="YandexTrackerApi.BusinessLogic.Managers.JWT.IJWTUserManager">
+    <Position X="4" Y="27.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Managers\JWT\IJWTUserManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="YandexTrackerApi.BusinessLogic.Managers.User.IUserManager">
+    <Position X="5.75" Y="27.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Managers\User\IUserManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="YandexTrackerApi.DbModels.IGraduateWorkContext">
+    <Position X="0.5" Y="27.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAACAAAAQAAEAAAAAAgAAQAAAAAAAAAAAYAAAQAwE=</HashCode>
+      <FileName>DbModels\IGraduateWorkContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="YandexTrackerApi.BusinessLogic.Models.Enums.JwtTokenCommandType">
+    <Position X="0.5" Y="28.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\Enums\JwtTokenCommandType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

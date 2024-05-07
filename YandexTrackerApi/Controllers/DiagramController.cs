@@ -39,8 +39,7 @@ namespace YandexTrackerApi.Controllers
 
             if (response.IsSuccess)
                 return Ok(response.Data);
-            else
-                return BadRequest(response.ErrorMessage);
+            return BadRequest(response.ErrorMessage);
         }
 
         [HttpPost("/api/v1/diagram/")]
@@ -55,8 +54,8 @@ namespace YandexTrackerApi.Controllers
 
             if (response.IsSuccess)
                 return Ok(response.Data);
-            else
-                return BadRequest(response.ErrorMessage);
+
+            return BadRequest(response.ErrorMessage);
         }
 
         [HttpPost("/api/v1/diagrams/")]
@@ -71,8 +70,7 @@ namespace YandexTrackerApi.Controllers
 
             if (response.IsSuccess)
                 return Ok(response.Data);
-            else
-                return BadRequest(response.ErrorMessage);
+            return BadRequest(response.ErrorMessage);
         }
 
         [HttpPost("/api/v1/diagrams/update")]
@@ -87,8 +85,7 @@ namespace YandexTrackerApi.Controllers
 
             if (response.IsSuccess)
                 return Ok(response.Data);
-            else
-                return BadRequest(response.ErrorMessage);
+            return BadRequest(response.ErrorMessage);
         }
 
         [HttpPost("/api/v1/diagrams/execute")]
@@ -103,8 +100,7 @@ namespace YandexTrackerApi.Controllers
 
             if (response.IsSuccess)
                 return Ok(response.Data);
-            else
-                return BadRequest(response.ErrorMessage);
+            return BadRequest(response.ErrorMessage);
         }
     }
 }
