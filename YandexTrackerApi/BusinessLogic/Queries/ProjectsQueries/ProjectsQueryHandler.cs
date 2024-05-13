@@ -23,7 +23,8 @@ namespace YandexTrackerApi.BusinessLogic.Queries.ProjectsQueries
             try
             {
                 var result = await _context.Projects
-                    .Where(p => p.UsersProjects.Any(up => up.UserId == request.UserId))
+                    .Where(p => p.UsersProjects.Any(up => up.UserId == request.UserId 
+                                                          && up.Condirmed == true))
                     .Select(p => new ProjectByIdResponse
                     {
                         CreatorId = p.CreatorId,

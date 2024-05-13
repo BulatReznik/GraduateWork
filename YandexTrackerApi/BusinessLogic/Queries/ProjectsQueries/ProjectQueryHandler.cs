@@ -23,7 +23,9 @@ namespace YandexTrackerApi.BusinessLogic.Queries.ProjectsQueries
             try
             {
                 var access = await _context.UsersProjects
-                    .AnyAsync(up => up.ProjectId == request.ProjectId && up.UserId == request.UserId
+                    .AnyAsync(up => up.ProjectId == request.ProjectId 
+                                    && up.UserId == request.UserId 
+                                    && up.Condirmed == true
                     , cancellationToken: cancellationToken);
 
                 if (!access)
@@ -44,13 +46,14 @@ namespace YandexTrackerApi.BusinessLogic.Queries.ProjectsQueries
                         Name = p.Name,
                         CreatorName = user.Name
                     }
-                    ).FirstOrDefaultAsync(p => p.Id == request.ProjectId);
+                    ).FirstOrDefaultAsync(p => p.Id == request.ProjectId
+                        , cancellationToken: cancellationToken);
 
                 return new ResponseModel<ProjectByIdResponse> { Data = project };
             }
             catch (Exception ex)
             {
-                var errorMessage = "Не удалось получить проект";
+                const string errorMessage = "Не удалось получить проект";
                 _logger.LogError(errorMessage, ex);
                 return new ResponseModel<ProjectByIdResponse> { ErrorMessage = errorMessage };
             }
