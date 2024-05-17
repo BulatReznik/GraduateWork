@@ -88,6 +88,21 @@ namespace YandexTrackerApi.Controllers
             return BadRequest(response.ErrorMessage);
         }
 
+        [HttpPost("/api/v1/diagrams/delete/")]
+        public async Task<IActionResult> DeleteDiagram(DiagramDeleteCommand command)
+        {
+            command.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var response = await _mediator.Send(command);
+
+            if (response.IsSuccess)
+                return Ok(response.Data);
+            return BadRequest(response.ErrorMessage);
+        }
+
         [HttpPost("/api/v1/diagrams/execute")]
         public async Task<IActionResult> ExecuteDiagram(DiagramExecuteCommand command)
         {

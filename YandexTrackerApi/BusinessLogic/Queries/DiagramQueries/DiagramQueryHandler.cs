@@ -38,6 +38,7 @@ namespace YandexTrackerApi.BusinessLogic.Queries.DiagramQueries
                                                 Id = diagrams.Id,
                                                 Document = diagrams.Xml,
                                                 Name = diagrams.Name,
+                                                Date = diagrams.Date,
                                             }).FirstOrDefaultAsync(cancellationToken);
 
                 if (diagramDbModel != null)

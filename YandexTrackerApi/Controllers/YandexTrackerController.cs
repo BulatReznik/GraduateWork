@@ -5,7 +5,7 @@ using YandexTrackerApi.BusinessLogic.Managers.User;
 using YandexTrackerApi.BusinessLogic.Models.ProjectModels;
 using YandexTrackerApi.BusinessLogic.Models.YandexModels;
 
-namespace YandexTest.Controllers
+namespace YandexTrackerApi.Controllers
 {
     [Route("/api/v1/yandex/[action]")]
     [ApiController]

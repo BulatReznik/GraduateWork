@@ -1,52 +1,60 @@
 ﻿@page
 @model BPMN.Pages.ProjectModel
 @{
+    ViewData["Title"] = "Project";
 }
 
-<title>Проект</title>
-<style>
-    #project-container {
-        margin-top: 50px;
-    }
+<head>
+    <meta charset="UTF-8">
+    <title>Проект</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> <!-- Подключение стилей для иконок Font Awesome -->
 
-    #project-container h1 {
-        color: #007bff;
-    }
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-pzjw8f+ua7Kw1TIqH2FWP4j0SkmPIT3yKxxkIY8POB1Biy1/EmDyF/6NqmgjIv9k" crossorigin="anonymous">
+    <style>
+        #project-container {
+            margin-top: 50px;
+        }
 
-    #project-container .btn-success {
-        margin-right: 10px;
-    }
+            #project-container h1 {
+                color: #007bff;
+            }
 
-    #project-container .diagram-list {
-        list-style: none;
-        padding-left: 0;
-    }
+            #project-container .diagram-item {
+                margin-bottom: 20px;
+                padding: 10px;
+                border: 1px solid #ced4da;
+                border-radius: 5px;
+                background-color: #fff;
+            }
 
-    #project-container .diagram-item {
-        margin-bottom: 20px;
-        padding: 10px;
-        border: 1px solid #ced4da;
-        border-radius: 5px;
-        background-color: #fff;
-    }
+            #project-container .diagram-name {
+                font-weight: bold;
+                margin-bottom: 5px;
+                font-size: 18px; /* Установка размера шрифта для названия диаграммы */
+            }
 
-    #project-container .diagram-name {
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
+            #project-container .diagram-date {
+                font-size: 14px; /* Установка размера шрифта для даты изменения диаграммы */
+                color: #6c757d; /* Цвет текста для даты */
+            }
 
-    #project-container .diagram-actions {
-        margin-top: 10px;
-    }
+            #project-container .alert {
+                margin-top: 20px;
+            }
 
-    #project-container .alert {
-        margin-top: 20px;
-    }
-</style>
+        .btn-primary, .btn-success {
+            width: 100%;
+        }
 
+        .search-bar {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
 <body>
-    <div id="project-container">
-
+    <div id="project-container" class="container">
+        <!-- Сообщения об успешном и неудачном выполнении операций -->
         @if (TempData["SuccessMessage"] != null)
         {
             <div class="alert alert-success" role="alert">
@@ -61,41 +69,114 @@
             </div>
         }
 
-        <h1>@Model.Project.Name</h1>
-        <p>@Model.Project.Description</p>
-        <p>Создатель проекта: @Model.Project.CreatorName</p>
+        <!-- Заголовок и информация о проекте -->
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Разделители Bootstrap -->
+                <h1>@Model.Project.Name</h1>
+                <p>Описание проекта: @Model.Project.Description</p>
+                <p>Создатель проекта: @Model.Project.CreatorName</p>
+            </div>
 
+            <div class="col-md-6 d-flex align-items-end justify-content-end">
+                <!-- Используем Grid System и классы Bootstrap для выравнивания и размещения кнопки в правом нижнем углу -->
+                <!-- Кнопка для перехода на страницу добавления новой диаграммы -->
+                <div class="mt-4">
+                    <a asp-page="/AddDiagram" asp-route-projectId="@Model.Project.Id" class="btn btn-primary rounded-0">
+                        <!-- Добавляем класс rounded-0 для квадратной формы -->
+                        Добавить диаграмму
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Поле ввода для поиска по названию диаграммы -->
+        <div class="search-bar" style="margin-top: 10px">
+            <input type="text" id="searchInput" class="form-control" placeholder="Поиск по названию диаграммы">
+        </div>
+
+        <!-- Список диаграмм -->
         @if (Model.Project?.Diagrams != null && Model.Project.Diagrams.Any())
         {
             <h2>Диаграммы</h2>
-            <ul class="diagram-list">
-                @foreach (var diagram in Model.Project.Diagrams)
-                {
-                    <li class="diagram-item">
-                        <span class="diagram-name">@diagram.Name</span>
-                        <!-- Кнопка для выполнения диаграммы -->
-                        <form method="post" asp-page-handler="ExecuteDiagram" asp-route-diagramId="@diagram.Id" asp-route-projectId="@Model.Project.Id">
-                            <button type="submit" class="btn btn-success">Выполнить диаграмму</button>
-                        </form>
-                        <!-- Кнопка для открытия диаграммы -->
-                        <a asp-page="/UpdateDiagram" asp-route-diagramId="@diagram.Id" class="btn btn-primary">Открыть диаграмму</a>
-                    </li>
+            <div class="row" id="diagramList">
+                <!-- Сортировка по дате -->
+                @{
+                    var sortedDiagrams = Model.Project.Diagrams.OrderByDescending(diagram => diagram.Date.GetValueOrDefault());
                 }
-            </ul>
+                @foreach (var diagram in sortedDiagrams)
+                {
+                    <div class="col-md-6 diagram-item" style="position: relative;">
+                        <div class="diagram-actions">
+                            <!-- Кнопка удаления в правом верхнем углу карточки -->
+                            <button type="button" class="btn btn-danger btn-sm delete-diagram-btn" data-diagramid="@diagram.Id" style="position: absolute; top: 5px; right: 10px;">
+                                <i class="fas fa-times"></i> <!-- Иконка крестика -->
+                            </button>
+
+                            <span class="diagram-name">@diagram.Name</span>
+                            <br> <!-- Добавление переноса строки перед датой -->
+                            <span style="margin-bottom: 10px" class="diagram-date">Дата изменения диаграммы: @diagram.Date.ToString()</span>
+
+                            <form method="post" asp-page-handler="ExecuteDiagram" asp-route-diagramId="@diagram.Id" asp-route-projectId="@Model.Project.Id" style="margin-bottom: 2px">
+                                <button type="submit" class="btn btn-success">Выполнить диаграмму</button>
+                            </form>
+
+                            <a asp-page="/UpdateDiagram" asp-route-diagramId="@diagram.Id" class="btn btn-primary" style="margin-bottom: 2px">Открыть диаграмму</a>
+                        </div>
+                    </div>
+
+                    <!-- Модальное окно для подтверждения удаления диаграммы -->
+                    <div class="modal fade" id="deleteDiagramModal-@diagram.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Подтверждение удаления</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Вы уверены, что хотите удалить эту диаграмму?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                                    <form method="post" asp-page-handler="DeleteDiagram" asp-route-diagramId="@diagram.Id" asp-route-projectId="@Model.Project.Id" style="margin-bottom: 2px">
+                                        <button type="submit" class="btn btn-danger">Удалить диаграмму</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
         }
         else
         {
             <p>Нет доступных диаграмм для этого проекта.</p>
         }
-
-        @if (TempData["ErrorMessage"] != null)
-        {
-            <div class="alert alert-danger" role="alert">
-                @TempData["ErrorMessage"]
-            </div>
-        }
-
-        <!-- Кнопка для перехода на страницу добавления диаграммы -->
-        <a asp-page="/AddDiagram" asp-route-projectId="@Model.Project.Id" class="btn btn-primary">Добавить диаграмму</a>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Функция для фильтрации диаграмм по названию
+            $('#searchInput').on('keyup', function () {
+                var value = $(this).val().toLowerCase();
+                $('#diagramList .diagram-item').filter(function () {
+                    $(this).toggle($(this).find('.diagram-name').text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $('.delete-diagram-btn').click(function () {
+                var diagramId = $(this).data('diagramid');
+                $('#deleteDiagramModal-' + diagramId).modal('show'); // Открывает модальное окно для конкретной диаграммы
+            });
+        });
+
+    </script>
 </body>
+

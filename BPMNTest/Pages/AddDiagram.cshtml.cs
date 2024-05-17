@@ -5,21 +5,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BPMN.Pages
 {
-    public class AddDiagramModel : PageModel
+    public class AddDiagramModel(IWebHostEnvironment hostEnvironment, ApiService apiService) : PageModel
     {
-        private readonly IWebHostEnvironment _hostEnvironment;
-        private readonly ApiService _apiService;
-        private readonly string _diagramName;
+        private readonly IWebHostEnvironment _hostEnvironment = hostEnvironment;
+        private readonly ApiService _apiService = apiService;
+        private readonly string _diagramName = "diagram.bpmn";
 
         public string _diagram;
         public string _projectId;
-
-        public AddDiagramModel(IWebHostEnvironment hostEnvironment, ApiService apiService)
-        {
-            _hostEnvironment = hostEnvironment;
-            _diagramName = "diagram.bpmn";
-            _apiService = apiService;
-        }
 
         public void OnGet(string projectId)
         {

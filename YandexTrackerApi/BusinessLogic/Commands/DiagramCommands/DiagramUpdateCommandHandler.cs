@@ -35,6 +35,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
                 // Обновить свойства диаграммы на основе данных из запроса
                 diagram.Name = request.Name;
                 diagram.Xml = request.XMLDiagram;
+                diagram.Date = DateTime.UtcNow;
 
                 // Сохранить изменения в базе данных
                 await _context.SaveChangesAsync(cancellationToken);

@@ -22,15 +22,20 @@ namespace YandexTrackerApi.BusinessLogic.Queries.ProjectsQueries
         {
             try
             {
+                var user = await _context.Users
+                    .FirstOrDefaultAsync(u => u.Id == request.UserId
+                        , cancellationToken);
+
                 var result = await _context.Projects
-                    .Where(p => p.UsersProjects.Any(up => up.UserId == request.UserId 
+                    .Where(p => p.UsersProjects.Any(up => up.UserId == request.UserId
                                                           && up.Condirmed == true))
                     .Select(p => new ProjectByIdResponse
                     {
                         CreatorId = p.CreatorId,
                         Description = p.Description,
                         Id = p.Id,
-                        Name = p.Name
+                        Name = p.Name,
+                        CreatorName = user.Name,
                     })
                     .ToListAsync(cancellationToken: cancellationToken);
 

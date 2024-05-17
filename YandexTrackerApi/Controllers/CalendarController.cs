@@ -26,8 +26,7 @@ namespace YandexTrackerApi.Controllers
 
             if (response.IsSuccess)
                 return Ok(response.Data);
-            else
-                return BadRequest(response.ErrorMessage);
+            return BadRequest(response.ErrorMessage);
         }
 
         [HttpPost("/api/v1/calendar/day")]
@@ -40,8 +39,7 @@ namespace YandexTrackerApi.Controllers
 
             if (response.IsSuccess)
                 return Ok(response.Data);
-            else
-                return BadRequest(response.ErrorMessage);
+            return BadRequest(response.ErrorMessage);
         }
     }
 }

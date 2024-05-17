@@ -49,10 +49,12 @@ namespace BPMN.Pages
                 Name = projectResponse.Data.Name,
                 Description = projectResponse.Data.Description,
                 CreatorId = projectResponse.Data.CreatorId,
+                CreatorName = projectResponse.Data.CreatorName,
                 Diagrams = diagramsResponse.Data.Select(d => new DiagramViewModel
                 {
                     Id = d.Id,
-                    Name = d.Name
+                    Name = d.Name,
+                    Date = d.Date
                 }).ToList()
             };
 
@@ -79,9 +81,36 @@ namespace BPMN.Pages
                 TempData["SuccessMessage"] = $"Диаграмма успешно выполнена, выполненные узлы: \n{executeDiagramResponse.Data}";
                 return RedirectToPage("/Project", new { projectId });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData["ErrorMessage"] = "Во время выполнения диаграммы произошла ошибка";
+                return RedirectToPage("/Error");
+            }
+        }
+
+        public async Task<IActionResult> OnPostDeleteDiagramAsync(string projectId, Guid diagramId)
+        {
+            try
+            {
+                var deleteDiagramRequest = new DiagramDeleteModel { DiagramId = diagramId };
+
+                // Отправляем запрос на выполнение диаграммы
+                var deleteDiagramResponse = await _apiService.PostStringAsync("v1/diagrams/delete", deleteDiagramRequest);
+
+                if (!deleteDiagramResponse.IsSuccess)
+                {
+                    // Обработка ошибки, если запрос на выполнение диаграммы не удался
+                    TempData["ErrorMessage"] = deleteDiagramResponse.ErrorMessage;
+                    return RedirectToPage("/Error"); // Перенаправляем на страницу с ошибкой
+                }
+
+                // Успешное выполнение диаграммы
+                TempData["SuccessMessage"] = $"{deleteDiagramResponse.Data}";
+                return RedirectToPage("/Project", new { projectId });
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Во удаления диаграммы произошла ошибка";
                 return RedirectToPage("/Error");
             }
         }

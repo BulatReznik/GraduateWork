@@ -7,12 +7,12 @@ using YandexTrackerApi.DbModels;
 
 namespace YandexTrackerApi.BusinessLogic.Queries.DiagramQueries
 {
-    public class DiagramsQueryHanlder : IRequestHandler<DiagramsQuery, ResponseModel<List<DiagramsResponse>>>
+    public class DiagramsQueryHandler : IRequestHandler<DiagramsQuery, ResponseModel<List<DiagramsResponse>>>
     {
         private readonly ILogger _logger;
         private readonly IGraduateWorkContext _context;
 
-        public DiagramsQueryHanlder(ILogger logger, IGraduateWorkContext context)
+        public DiagramsQueryHandler(ILogger logger, IGraduateWorkContext context)
         {
             _logger = logger;
             _context = context;
@@ -37,7 +37,8 @@ namespace YandexTrackerApi.BusinessLogic.Queries.DiagramQueries
                 var response = diagrams.Select(diagram => new DiagramsResponse
                 {
                     Id = diagram.Id,
-                    Name = diagram.Name
+                    Name = diagram.Name,
+                    Date = diagram.Date,
                 }).ToList();
 
                 return new ResponseModel<List<DiagramsResponse>> { Data = response };

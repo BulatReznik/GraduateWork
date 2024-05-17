@@ -134,7 +134,8 @@ namespace BPMN.Services
 
                 return responseModel;
             }
-            else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+
+            if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
                 var errorMessage = await response.Content.ReadAsStringAsync();
                 var responseModel = new ResponseModel<string>

@@ -37,6 +37,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
                     Xml = request.XMLDiagram,
                     Name = request.Name,
                     ProjectId = request.ProjectId,
+                    Date = DateTime.UtcNow
                 };
 
                 await _context.Diagrams.AddAsync(diagramDbModel, cancellationToken);

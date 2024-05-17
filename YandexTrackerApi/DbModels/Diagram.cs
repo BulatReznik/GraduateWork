@@ -23,6 +23,9 @@ public partial class Diagram
     [Column("Project_Id")]
     public Guid? ProjectId { get; set; }
 
+    [Column(TypeName = "datetime")]
+    public DateTime? Date { get; set; }
+
     [ForeignKey("ProjectId")]
     [InverseProperty("Diagrams")]
     public virtual Project Project { get; set; }

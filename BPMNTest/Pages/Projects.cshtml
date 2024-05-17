@@ -1,53 +1,47 @@
 ﻿@page
 @model BPMN.Pages.ProjectsModel
 @{
+    ViewData["Title"] = "Projects";
 }
 
-<style>
-    .container {
-        max-width: 800px;
-        margin: 20px auto;
-        padding: 0 20px;
-    }
+<head>
+    <meta charset="utf-8">
+    <title>Проекты</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-pzjw8f+ua7Kw1TIqH2FWP4j0SkmPIT3yKxxkIY8POB1Biy1/EmDyF/6NqmgjIv9k" crossorigin="anonymous">
 
-    h1 {
-        text-align: center;
-        color: #333;
-    }
+    <style>
+        .project-list {
+            list-style: none;
+            padding: 0;
+        }
 
-    ul {
-        list-style: none;
-        padding: 0;
-    }
+        .project-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-    li {
-        margin-bottom: 20px;
-        padding: 20px;
-        background-color: #f9f9f9;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+            .project-item h3 {
+                margin-top: 0;
+                color: #007bff;
+            }
 
-    h3 {
-        margin-top: 0;
-        color: #007bff;
-    }
+            .project-item p {
+                margin: 0;
+                color: #555;
+            }
 
-    p {
-        margin: 0;
-        color: #555;
-    }
-
-    .no-projects {
-        text-align: center;
-        color: #777;
-    }
-</style>
-
+        .no-projects {
+            text-align: center;
+            color: #777;
+        }
+    </style>
+</head>
 <body>
-
     <div class="container">
-        <h1>Проекты</h1>
+        <h1 class="my-4 text-center">Проекты</h1>
 
         @if (TempData["ErrorMessage"] != null)
         {
@@ -58,14 +52,14 @@
 
         @if (Model?.Projects != null && Model.Projects.Any())
         {
-            <ul>
+            <ul class="project-list">
                 @foreach (var project in Model.Projects)
                 {
-                    <li>
+                    <li class="project-item">
                         <h3>@project.Name</h3>
                         <p>@project.Description</p>
-                        <p>Creator ID: @project.CreatorId</p>
-                        <a asp-page-handler="Project" asp-route-projectId="@project.Id">Открыть</a>
+                        <p>Создатель проекта: @project.CreatorName</p>
+                        <a class="btn btn-primary" asp-page-handler="Project" asp-route-projectId="@project.Id">Открыть</a>
                     </li>
                 }
             </ul>
@@ -75,4 +69,7 @@
             <p class="no-projects">У пользователя еще нет проектов</p>
         }
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>

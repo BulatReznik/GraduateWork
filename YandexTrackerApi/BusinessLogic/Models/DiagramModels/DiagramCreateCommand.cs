@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using System.Xml.Linq;
-
 namespace YandexTrackerApi.BusinessLogic.Models.DiagramModels
 {
     public class DiagramCreateCommand : IRequest<ResponseModel<string>>

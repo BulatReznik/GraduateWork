@@ -14,15 +14,21 @@ namespace BPMN.Pages
         public string _projectId;
         public Guid _diagramId;
 
+        public string? DiagramName { get; set; }
+
         public UpdateDiagramModel(IWebHostEnvironment hostEnvironment, ApiService apiService)
         {
             _hostEnvironment = hostEnvironment;
             _apiService = apiService;
         }
 
-        public void OnGet(Guid diagramId)
+        public async Task<IActionResult> OnGet(Guid diagramId)
         {
             _diagramId = diagramId;
+
+            var diagramData = await _apiService.GetAsync<DiagramResponse>($"v1/diagram/{diagramId}");
+            DiagramName = diagramData.Data?.Name;
+            return Page();
         }
 
         public async Task<IActionResult> OnGetDiagram(Guid id)
@@ -35,6 +41,8 @@ namespace BPMN.Pages
             {
                 return NotFound(); // Если диаграмма не найдена, возвращаем ошибку 404
             }
+
+            DiagramName = diagramData.Data?.Name;
 
             // Создаем путь для временного файла диаграммы
             var tempFilePath = Path.Combine(_hostEnvironment.WebRootPath, "temp", $"{id}.bpmn");
@@ -63,13 +71,11 @@ namespace BPMN.Pages
         {
             var response = await _apiService.PostStringAsync("v1/diagrams/update/", diagramUpdateModel);
 
-            if (!response.IsSuccess)
-            {
-                TempData["ErrorMessage"] = "Пользователь не найден";
-                return Page();
-            }
+            if (response.IsSuccess)
+                return RedirectToPage("/Project", new { diagramUpdateModel.ProjectId });
 
-            return RedirectToPage("/Project", new { diagramUpdateModel.ProjectId });
+            TempData["ErrorMessage"] = "Пользователь не найден";
+            return Page();
         }
     }
 }

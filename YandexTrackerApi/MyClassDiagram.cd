@@ -225,14 +225,14 @@
   <Class Name="YandexTrackerApi.BusinessLogic.Models.DiagramModels.DiagramResponse">
     <Position X="0.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAADAAAAAAAAAAA=</HashCode>
       <FileName>BusinessLogic\Models\DiagramModels\DiagramResponse.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="YandexTrackerApi.BusinessLogic.Models.DiagramModels.DiagramsResponse">
     <Position X="5.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>BusinessLogic\Models\DiagramModels\DiagramsResponse.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -465,11 +465,11 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="YandexTrackerApi.BusinessLogic.Queries.DiagramQueries.DiagramsQueryHanlder" BaseTypeListCollapsed="true">
+  <Class Name="YandexTrackerApi.BusinessLogic.Queries.DiagramQueries.DiagramsQueryHandler" BaseTypeListCollapsed="true">
     <Position X="4" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAABAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
-      <FileName>BusinessLogic\Queries\DiagramQueries\DiagramsQueryHanlder.cs</FileName>
+      <FileName>BusinessLogic\Queries\DiagramQueries\DiagramsQueryHandler.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
@@ -530,7 +530,7 @@
   <Class Name="YandexTrackerApi.Controllers.ProjectController">
     <Position X="11" Y="24" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABBAAAABABAAAAAAAAAAAAAAAAAAAAAgAAAAAACAA=</HashCode>
+      <HashCode>AAABBAAAABABIAAAAAAAAAEAAAAAAAAAAgAAAAAACAA=</HashCode>
       <FileName>Controllers\ProjectController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -551,7 +551,7 @@
   <Class Name="YandexTrackerApi.DbModels.Diagram">
     <Position X="2.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACCAAAAAAAAAAAAAAACAQABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACCAAAAAAAAAAAAAAACAQABAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>DbModels\Diagram.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -580,7 +580,7 @@
   <Class Name="YandexTrackerApi.DbModels.UsersProject">
     <Position X="14.5" Y="21.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAAAAAAAAAAACAgABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAJAAAAAAAAAAAAAAAACAgABAAAIAAAAAAAAAAAAAA=</HashCode>
       <FileName>DbModels\UsersProject.cs</FileName>
     </TypeIdentifier>
   </Class>

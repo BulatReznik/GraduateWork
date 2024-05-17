@@ -1,95 +1,92 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "BPMN Editor";
+    ViewData["Title"] = "Home page";
 }
 
-<!DOCTYPE html>
-<html>
 <head>
-    <meta charset="utf-8">
-    <title>BPMN Editor</title>
-    <!-- Подключение стилей для диаграмм BPMN и иконок BPMN -->
-    <link rel="stylesheet" href="https://unpkg.com/bpmn-js/dist/assets/diagram-js.css">
-    <link rel="stylesheet" href="https://unpkg.com/bpmn-js/dist/assets/bpmn-font/css/bpmn.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <style>
-        /* Стили для контейнера */
         #canvas {
             width: 100%;
-            height: 1000px;
+            height: 500px;
             border: solid 1px black;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
-        .bjs-powered-by {
-            display: none; /* Сделать элемент невидимым */
+        .header-section {
+            text-align: center;
+            margin-bottom: 50px;
         }
+
+            .header-section h1 {
+                color: #007bff;
+            }
+
+        .project-info {
+            margin-bottom: 50px;
+        }
+
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+            .task-list li {
+                margin-bottom: 10px;
+                font-size: 16px;
+            }
+
+                .task-list li::before {
+                    content: "\2022";
+                    color: #007bff;
+                    font-weight: bold;
+                    display: inline-block;
+                    width: 1em;
+                    margin-left: -1em;
+                }
+
+        .header-image {
+            width: 50%;
+            height: 50% margin: 0 auto;
+        }
+
+        .auth-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+            .auth-buttons a {
+                margin-left: 10px;
+            }
     </style>
 </head>
 <body>
-    <!-- Контейнер для диаграммы BPMN -->
-    <div id="canvas"></div>
+    <div class="container">
+        <div class="header-section">
+            <h1>Добро пожаловать в проект «Разработка платформы для создания системы поддержки принятия решений на платформе ASP.NET»</h1>
+            <p>Веб-приложение для проектирования и оптимизации бизнес-процессов</p>
+            <img src="/images/index.jpg" alt="BPMN Diagram Example" class="img-fluid header-image">
+        </div>
 
-    <!-- Добавляем input для загрузки файла -->
-    <input type="file" id="fileInput" accept=".bpmn" style="display: none;">
-    <!-- Используем Bootstrap-классы для стилизации кнопки -->
-    <button class="btn btn-primary" onclick="openFile()">Загрузить файл</button>
-    <button class="btn btn-primary" onclick="exportBpmnXml()">Сохранить диаграмму</button>
+        <!-- Кнопки для перехода на страницы регистрации и авторизации -->
+        <div class="auth-buttons">
+            <a href="/Login" class="btn btn-primary">Вход</a>
+            <a href="/Register" class="btn btn-secondary">Регистрация</a>
+        </div>
 
-    <!-- Подключение библиотеки bpmn-js Modeler -->
-    <script src="https://unpkg.com/bpmn-js/dist/bpmn-modeler.development.js"></script>
+        <div class="project-info">
+            <h2>О проекте</h2>
+            <p>Наш проект направлен на создание удобного и функционального инструмента для работы с BPMN-диаграммами. Мы стремимся предоставить пользователям возможность эффективно проектировать и оптимизировать бизнес-процессы, используя методологию BPMN (Business Process Model and Notation).</p>
 
-    <form action="/Home/SaveDiagram" method="post">
-        <fieldset>
-            <input type="text" id="xml" name="xml" hidden />
-        </fieldset>
-        <input hidden id="saveButton" type="submit" value="Save">
-    </form>
-
-    <script>
-        // Создание экземпляра BPMN Modeler
-        const modeler = new BpmnJS({ container: '#canvas' });
-
-        // Функция для открытия файла
-        function openFile() {
-            const fileInput = document.getElementById('fileInput');
-            fileInput.click();
-        }
-
-        // Обработка выбора файла
-        document.getElementById('fileInput').addEventListener('change', function (event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const bpmnXml = e.target.result;
-                    loadDiagram(bpmnXml);
-                };
-                reader.readAsText(file);
-            }
-        });
-
-        // Функция для загрузки диаграммы
-        function loadDiagram(bpmnXml) {
-            console.log(bpmnXml)
-            modeler.importXML(bpmnXml);
-        }
-
-        async function exportBpmnXml() {
-            const { xml } = await modeler.saveXML({ format: true });
-            console.log(xml);
-            // Найти элемент input по его id
-            const xmlInput = document.getElementById('xml');
-
-            // Установить значение xml в поле input
-            xmlInput.value = xml;
-
-            const saveButton = document.getElementById('saveButton');
-            saveButton.click();
-        }
-    </script>
+            <h3>Цели и задачи проекта</h3>
+            <ul class="task-list">
+                <li>Исследование текущего состояния бизнес-процессов: анализ существующих проблем и потребностей компаний в инструментах для проектирования и оптимизации процессов.</li>
+                <li>Изучение и применение BPMN-диаграмм: Данная задача включает в себя изучение и применение методологии BPMN как инструмента для визуализации и структурирования бизнес-процессов.</li>
+                <li>Разработка веб-приложения для работы с BPMN-диаграммами: В рамках этой задачи разрабатывается веб-приложение, способное работать с BPMN-диаграммами для определения правил для системы поддержки принятия решений.</li>
+                <li>Изучение API Yandex Task Tracker: Данная задача направлена на изучение API таск-трекера "Yandex Task Tracker" для получения данных о задачах за определенный период.</li>
+                <li>Предоставление удобного доступа к информации по возможным вариантам решений: Задача заключается в разработке интерфейса, который позволит лицам, принимающим решения, удобно получать информацию по возможным вариантам решений.</li>
+            </ul>
+        </div>
+    </div>
 </body>
-</html>

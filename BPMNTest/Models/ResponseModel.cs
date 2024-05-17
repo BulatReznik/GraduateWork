@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-
-namespace BPMN.Models
+﻿namespace BPMN.Models
 {
     public class ResponseModel<TValue>
     {
