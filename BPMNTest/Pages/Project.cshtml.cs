@@ -114,5 +114,11 @@ namespace BPMN.Pages
                 return RedirectToPage("/Error");
             }
         }
+
+        public IActionResult OnGetUsers(string projectId)
+        {
+            // Перенаправление на страницу проекта с переданным идентификатором
+            return RedirectToPage("/ProjectUsers", new { projectId });
+        }
     }
 }

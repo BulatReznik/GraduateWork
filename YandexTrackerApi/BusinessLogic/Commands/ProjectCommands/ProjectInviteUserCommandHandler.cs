@@ -28,7 +28,9 @@ namespace YandexTrackerApi.BusinessLogic.Commands.ProjectCommands
 
                 var access = await _context
                     .UsersProjects
-                    .AnyAsync(up => up.UserId == request.UserId
+                    .AnyAsync(up => up.UserId == request.UserId 
+                                    && up.ProjectId == request.ProjectId
+                                    && up.Condirmed == true
                         , cancellationToken);
 
                 if (access == false)

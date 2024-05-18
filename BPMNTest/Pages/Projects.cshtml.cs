@@ -1,4 +1,3 @@
-using BPMN.Models.Login;
 using BPMN.Models.Project;
 using BPMN.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +10,8 @@ namespace BPMN.Pages
         private readonly ApiService _apiService;
         public List<ProjectsResponseModel> Projects { get; set; }
 
+        [BindProperty] public string Code { get; set; }
+
         public ProjectsModel(ApiService apiService)
         {
             _apiService = apiService;
@@ -18,27 +19,46 @@ namespace BPMN.Pages
 
         public async Task<IActionResult> OnGet()
         {
-            var response = await _apiService.GetAsync<List<ProjectsResponseModel>>("v1/projects");
-
-            if (response.IsSuccess)
-            {
-                Projects = response.Data;
-                return Page();
-            }
-            else
-            {
-                // В случае ошибки отображаем сообщение об ошибке
-                TempData["ErrorMessage"] = response.ErrorMessage;
-            }
-
+            await LoadProjects();
             return Page();
         }
 
-        // Обработка перехода на страницу проекта
         public IActionResult OnGetProject(string projectId)
         {
-            // Перенаправление на страницу проекта с переданным идентификатором
             return RedirectToPage("/Project", new { projectId });
+        }
+
+        public async Task<IActionResult> OnPostConfirmInvite()
+        {
+            var projectConfirmInviteRequest = new ProjectConfirmInviteRequest
+            {
+                Code = Code
+            };
+
+            var response = await _apiService.PostStringAsync("v1/projects/confirm/invite", projectConfirmInviteRequest);
+
+            await LoadProjects();
+
+            if (response.IsSuccess)
+            {
+                return Page();
+            }
+
+            TempData["ErrorMessage"] = response.ErrorMessage;
+            return Page();
+        }
+
+
+        private async Task LoadProjects()
+        {
+            var projectsResponse = await _apiService.GetAsync<List<ProjectsResponseModel>>("v1/projects");
+
+            if (projectsResponse.IsSuccess)
+            {
+                Projects = projectsResponse.Data;
+            }
+
+            TempData["ErrorMessage"] = projectsResponse.ErrorMessage;
         }
     }
 }

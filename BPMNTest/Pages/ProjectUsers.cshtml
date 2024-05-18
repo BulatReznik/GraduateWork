@@ -1,0 +1,134 @@
+﻿@page
+@model BPMN.Pages.ProjectUsersModel
+@{
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Пользователи проекта</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-pzjw8f+ua7Kw1TIqH2FWP4j0SkmPIT3yKxxkIY8POB1Biy1/EmDyF/6NqmgjIv9k" crossorigin="anonymous">
+        <style>
+            #project-users-container {
+                margin-top: 50px;
+            }
+
+                #project-users-container h1 {
+                    color: #007bff;
+                    text-align: center;
+                    margin-bottom: 30px;
+                }
+
+            .user-item {
+                margin-bottom: 20px;
+                padding: 20px;
+                border: 1px solid #ced4da;
+                border-radius: 10px;
+                background-color: #f8f9fa;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s;
+            }
+
+                .user-item:hover {
+                    transform: scale(1.05);
+                }
+
+            .user-name {
+                font-weight: bold;
+                margin-bottom: 10px;
+                font-size: 1.2em;
+            }
+
+            .user-status {
+                font-size: 0.9em;
+                color: #6c757d;
+            }
+
+            .alert {
+                margin-top: 20px;
+            }
+
+            .btn-primary {
+                width: 100%;
+            }
+
+            .invite-form {
+                margin-top: 40px;
+                padding: 20px;
+                border: 1px solid #ced4da;
+                border-radius: 10px;
+                background-color: #f8f9fa;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .btn-danger {
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="project-users-container" class="container">
+            <!-- Сообщения об успешном и неудачном выполнении операций -->
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+
+            <!-- Заголовок и список пользователей проекта -->
+            <h1>Пользователи проекта</h1>
+            @if (Model.ProjectUsers.Any())
+            {
+                <div class="row">
+                    @foreach (var user in Model.ProjectUsers)
+                    {
+                        <div class="col-md-6">
+                            <div class="user-item">
+                                <span class="user-name">@user.Name (@user.Login)</span>
+                                <br/>
+                                @if (user.Confirmed ?? false)
+                                {
+                                    <span class="user-status">Принял приглашение</span>
+                                }
+                                else
+                                {
+                                    <span class="user-status">Ожидает приглашения</span>
+                                }
+
+                                <form method="post" asp-page-handler="DeleteUser" class="mt-2">
+                                    <input type="hidden" name="UserId" value="@user.UserId" />
+                                    <input type="hidden" name="ProjectId" value="@Model.ProjectId" />
+                                    <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                                </form>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p>Вы единственный участник.</p>
+            }
+
+            <!-- Форма для приглашения пользователя на проект -->
+            <form method="post" class="invite-form">
+                <div class="form-group">
+                    <label for="email">Email пользователя:</label>
+                    <input type="email" class="form-control" id="email" name="Email" style="margin-bottom: 5px" required>
+                </div>
+                <input type="hidden" name="ProjectId" value="@Model.ProjectId">
+                <button type="submit" class="btn btn-primary">Пригласить</button>
+            </form>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    </body>
+}

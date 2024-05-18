@@ -29,19 +29,17 @@ namespace BPMN.Pages
             {
                 if (!string.IsNullOrEmpty(response.Data?.AccessToken))
                 {
-                    // ≈сли токен доступа получен, то аутентификаци€ успешна
+                    // ≈сли token доступа получен, то аутентификаци€ успешна
                     // ¬ случае успешной аутентификации перенаправл€ем пользовател€ на другую страницу
                     HttpContext.Session.SetString("AccessToken", response.Data.AccessToken);
                     HttpContext.Session.SetString("RefreshToken", response.Data.RefreshToken);
 
                     return RedirectToPage("/Index");
                 }
-                else
-                {
-                    // ≈сли токен доступа не получен, можно считать, что пользователь не найден
-                    TempData["ErrorMessage"] = "Ќе удалось зарегистрировать пользовател€";
-                    return Page();
-                }
+
+                // ≈сли token доступа не получен, можно считать, что пользователь не найден
+                TempData["ErrorMessage"] = "Ќе удалось зарегистрировать пользовател€";
+                return Page();
             }
             else
             {

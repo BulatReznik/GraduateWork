@@ -7,9 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Проект</title>
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> <!-- Подключение стилей для иконок Font Awesome -->
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> <!-- Подключение стилей для иконок Font Awesome -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-pzjw8f+ua7Kw1TIqH2FWP4j0SkmPIT3yKxxkIY8POB1Biy1/EmDyF/6NqmgjIv9k" crossorigin="anonymous">
     <style>
         #project-container {
@@ -18,33 +17,46 @@
 
             #project-container h1 {
                 color: #007bff;
+                text-align: center;
+                margin-bottom: 30px;
             }
 
-            #project-container .diagram-item {
-                margin-bottom: 20px;
-                padding: 10px;
-                border: 1px solid #ced4da;
-                border-radius: 5px;
-                background-color: #fff;
+        .diagram-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+            .diagram-item:hover {
+                transform: scale(1.05);
             }
 
-            #project-container .diagram-name {
-                font-weight: bold;
-                margin-bottom: 5px;
-                font-size: 18px; /* Установка размера шрифта для названия диаграммы */
-            }
+        .diagram-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
 
-            #project-container .diagram-date {
-                font-size: 14px; /* Установка размера шрифта для даты изменения диаграммы */
-                color: #6c757d; /* Цвет текста для даты */
-            }
+        .diagram-date {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
 
-            #project-container .alert {
-                margin-top: 20px;
-            }
+        .alert {
+            margin-top: 20px;
+        }
 
         .btn-primary, .btn-success {
             width: 100%;
+        }
+
+        .btn-danger {
+            margin-top: 10px;
         }
 
         .search-bar {
@@ -52,6 +64,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="project-container" class="container">
         <!-- Сообщения об успешном и неудачном выполнении операций -->
@@ -72,18 +85,16 @@
         <!-- Заголовок и информация о проекте -->
         <div class="row">
             <div class="col-md-6">
-                <!-- Разделители Bootstrap -->
                 <h1>@Model.Project.Name</h1>
                 <p>Описание проекта: @Model.Project.Description</p>
                 <p>Создатель проекта: @Model.Project.CreatorName</p>
+
+                <a class="btn btn-primary" asp-page="/ProjectUsers" asp-route-projectId="@Model.Project.Id">Участники проекта</a>
             </div>
 
             <div class="col-md-6 d-flex align-items-end justify-content-end">
-                <!-- Используем Grid System и классы Bootstrap для выравнивания и размещения кнопки в правом нижнем углу -->
-                <!-- Кнопка для перехода на страницу добавления новой диаграммы -->
                 <div class="mt-4">
                     <a asp-page="/AddDiagram" asp-route-projectId="@Model.Project.Id" class="btn btn-primary rounded-0">
-                        <!-- Добавляем класс rounded-0 для квадратной формы -->
                         Добавить диаграмму
                     </a>
                 </div>
@@ -100,22 +111,19 @@
         {
             <h2>Диаграммы</h2>
             <div class="row" id="diagramList">
-                <!-- Сортировка по дате -->
                 @{
                     var sortedDiagrams = Model.Project.Diagrams.OrderByDescending(diagram => diagram.Date.GetValueOrDefault());
                 }
                 @foreach (var diagram in sortedDiagrams)
                 {
-                    <div class="col-md-6 diagram-item" style="position: relative;">
-                        <div class="diagram-actions">
-                            <!-- Кнопка удаления в правом верхнем углу карточки -->
+                    <div class="col-md-6">
+                        <div class="diagram-item">
                             <button type="button" class="btn btn-danger btn-sm delete-diagram-btn" data-diagramid="@diagram.Id" style="position: absolute; top: 5px; right: 10px;">
-                                <i class="fas fa-times"></i> <!-- Иконка крестика -->
+                                <i class="fas fa-times"></i>
                             </button>
-
                             <span class="diagram-name">@diagram.Name</span>
-                            <br> <!-- Добавление переноса строки перед датой -->
-                            <span style="margin-bottom: 10px" class="diagram-date">Дата изменения диаграммы: @diagram.Date.ToString()</span>
+                            <br>
+                            <span class="diagram-date">Дата изменения диаграммы: @diagram.Date.ToString()</span>
 
                             <form method="post" asp-page-handler="ExecuteDiagram" asp-route-diagramId="@diagram.Id" asp-route-projectId="@Model.Project.Id" style="margin-bottom: 2px">
                                 <button type="submit" class="btn btn-success">Выполнить диаграмму</button>
@@ -148,7 +156,6 @@
                         </div>
                     </div>
                 }
-
             </div>
         }
         else
@@ -161,7 +168,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Функция для фильтрации диаграмм по названию
             $('#searchInput').on('keyup', function () {
                 var value = $(this).val().toLowerCase();
                 $('#diagramList .diagram-item').filter(function () {
@@ -173,10 +179,8 @@
         $(document).ready(function () {
             $('.delete-diagram-btn').click(function () {
                 var diagramId = $(this).data('diagramid');
-                $('#deleteDiagramModal-' + diagramId).modal('show'); // Открывает модальное окно для конкретной диаграммы
+                $('#deleteDiagramModal-' + diagramId).modal('show');
             });
         });
-
     </script>
 </body>
-

@@ -7,7 +7,6 @@ namespace BPMN.Pages
 {
     public class AddDiagramModel(IWebHostEnvironment hostEnvironment, ApiService apiService) : PageModel
     {
-        private readonly IWebHostEnvironment _hostEnvironment = hostEnvironment;
         private readonly ApiService _apiService = apiService;
         private readonly string _diagramName = "diagram.bpmn";
 
@@ -37,7 +36,7 @@ namespace BPMN.Pages
 
         public IActionResult OnGetDiagram()
         {
-            var filePath = Path.Combine(_hostEnvironment.WebRootPath, _diagramName);
+            var filePath = Path.Combine(hostEnvironment.WebRootPath, _diagramName);
             var fileInfo = new FileInfo(filePath);
 
             // Проверяем, существует ли файл

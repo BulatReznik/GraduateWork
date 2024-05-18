@@ -37,11 +37,32 @@
             text-align: center;
             color: #777;
         }
+
+        .code-input {
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            text-align: center;
+            margin: 0 5px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+            .code-input:focus {
+                border-color: #007bff;
+                outline: none;
+            }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 class="my-4 text-center">Проекты</h1>
+
+        <div class="text-center mb-4">
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#inviteModal">
+                У меня есть код приглашения в проект
+            </button>
+        </div>
 
         @if (TempData["ErrorMessage"] != null)
         {
@@ -70,6 +91,55 @@
         }
     </div>
 
+    <div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="inviteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inviteModalLabel">Введите код приглашения</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-page-handler="ConfirmInvite">
+                        <div class="form-group d-flex justify-content-center" style="margin-bottom: 10px">
+                            <input type="text" class="code-input" maxlength="1" id="code1" required>
+                            <input type="text" class="code-input" maxlength="1" id="code2" required>
+                            <input type="text" class="code-input" maxlength="1" id="code3" required>
+                            <input type="text" class="code-input" maxlength="1" id="code4" required>
+                        </div>
+                        <div class="text-center">
+                            <!-- Добавляем класс text-center для центрирования -->
+                            <input type="hidden" id="inviteCode" name="Code" value="@Model.Code">
+                            <button type="submit" class="btn btn-success">Принять приглашение</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.code-input').on('input', function () {
+                if (this.value.length === this.maxLength) {
+                    $(this).next('.code-input').focus();
+                }
+
+                let code = '';
+                $('.code-input').each(function () {
+                    code += $(this).val();
+                });
+                $('#inviteCode').val(code);
+            });
+
+            $('.code-input').on('keydown', function (e) {
+                if (e.key === 'Backspace' && $(this).val() === '') {
+                    $(this).prev('.code-input').focus();
+                }
+            });
+        });
+    </script>
 </body>

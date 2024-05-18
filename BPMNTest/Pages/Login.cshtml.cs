@@ -36,7 +36,7 @@ namespace BPMN.Pages
                     // ¬ случае успешной аутентификации перенаправл€ем пользовател€ на другую страницу
 
                     HttpContext.Session.SetString("AccessToken", response.Data.AccessToken);
-                    HttpContext.Session.SetString("RefrshToken", response.Data.RefreshToken);
+                    HttpContext.Session.SetString("RefreshToken", response.Data.RefreshToken);
                     return RedirectToPage("/Projects");
                 }
                 else

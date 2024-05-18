@@ -93,5 +93,32 @@ namespace YandexTrackerApi.Controllers
 
             return result.IsSuccess ? Ok(result.Data) : BadRequest(result.ErrorMessage);
         }
+
+        [HttpGet("/api/v1/projects/users/{id:guid}")]
+        public async Task<IActionResult> GetUsers(Guid id)
+        {
+            var query = new ProjectUsersQuery
+            {
+                UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor),
+                ProjectId = id
+            };
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await _mediator.Send(query);
+
+            return result.IsSuccess ? Ok(result.Data) : BadRequest(result.ErrorMessage);
+        }
+
+        [HttpPost("/api/v1/projects/delete/")]
+        public async Task<IActionResult> DeleteUserFromProject(ProjectUserDeleteCommand command)
+        {
+            command.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await _mediator.Send(command);
+
+            return result.IsSuccess ? Ok(result.Data) : BadRequest(result.ErrorMessage);
+        }
     }
 }
