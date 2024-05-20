@@ -5,61 +5,68 @@ namespace BPMNWorkFlow.BusinessLogic.Models
 {
     public class ProcessNode : EventArgs
     {
-        public string NodeId { get; set; } = null!;
-        public string? NodeName { get; set; } = null!;
-        public string NodeType { get; set; } = null!;
+        public string NodeId { get; set; }
+        public string? NodeName { get; set; }
+        public string NodeType { get; set; }
         public ProcessInstance ProcessInstance { get; set; } = null!;
-        public IImmutableDictionary<string, object> InputParameters { get; set; } = null!;
-        public IImmutableDictionary<string, object> OutputParameters { get; set; } = null!;
-        public INodeHandler NodeHandler { get; set; } = null!;
+        public IImmutableDictionary<string, object> InputParameters { get; set; }
+        public IImmutableDictionary<string, object> OutputParameters { get; set; }
+        private INodeHandler NodeHandler { get; set; } = null!;
         public ICollection<ProcessNode> NextNodes { get; set; } = null!;
         public ICollection<ProcessNode> PreviousNodes { get; set; } = null!;
         public string Expression { get; set; } = null!;
-        public TaskCompletionSource<bool> TaskCompletionSource { get; set; } = new TaskCompletionSource<bool>();
+        public TaskCompletionSource<bool> TaskCompletionSource { get; } = new();
 
-        public ProcessNode(string name, string type, string nodeName)
+        public ProcessNode(string nodeId, string type, string nodeName)
         {
-            NodeId = name;
+            NodeId = nodeId;
             NodeType = type;
             NodeName = nodeName;
+            InputParameters = ImmutableDictionary<string, object>.Empty;
+            OutputParameters = ImmutableDictionary<string, object>.Empty;
         }
 
         public async Task Execute(ProcessNode processNode, ProcessNode previousNode)
         {
-            NodeHandler = ProcessInstance.NodeHandlers[NodeType];
-            processNode.InputParameters ??= ProcessInstance.InputParameters;
-
-            // Проверяем, не завершился ли уже TaskCompletionSource
-            if (!TaskCompletionSource.Task.IsCompleted)
+            try
             {
-                NodeHandler.ExecuteAsync(processNode, previousNode); // Дожидаемся выполнения узла
+                NodeHandler = ProcessInstance.NodeHandlers[NodeType];
+                processNode.InputParameters ??= ProcessInstance.InputParameters;
 
-                TaskCompletionSource.SetResult(true); // Устанавливаем результат только если TaskCompletionSource не завершен
+                // Проверяем, не завершился ли уже TaskCompletionSource
+                if (!TaskCompletionSource.Task.IsCompleted)
+                {
+                    await NodeHandler.ExecuteAsync(processNode, previousNode); // Дожидаемся выполнения узла
+
+                    TaskCompletionSource
+                        .SetResult(true); // Устанавливаем результат только если TaskCompletionSource не завершен
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
         }
 
         public async Task DoneAsync()
         {
+            foreach (var param in InputParameters)
+            {
+                if (!OutputParameters.ContainsKey(param.Key))
+                {
+                    OutputParameters = OutputParameters.Add(param.Key, param.Value);
+                }
+            }
+
             foreach (var node in NextNodes)
             {
-                //to replace with variable resolution
-                //for each node retrieve input parameters defined in BPMN
-                //retrieve from node.OutputParameters (results of previous node)
-                //retrieve missing necessary input from process variables
-                node.InputParameters = OutputParameters;
+                // Заменить на разрешение переменных
+                // Для каждого узла получить входные параметры, определенные в BPMN
+                // Получить их из node.OutputParameters (результаты предыдущего узла)
+                // Получить недостающие входные данные из переменных процесса
+                node.InputParameters = node.InputParameters.SetItems(OutputParameters);
                 await node.Execute(node, this);
-            }
-        }
-
-        public class NodeCompletedEventArgs : EventArgs
-        {
-            public string NodeId { get; }
-            public string NodeName { get; }
-
-            public NodeCompletedEventArgs(string nodeId, string nodeName)
-            {
-                NodeId = nodeId;
-                NodeName = nodeName;
             }
         }
     }

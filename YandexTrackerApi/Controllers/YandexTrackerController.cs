@@ -24,7 +24,7 @@ namespace YandexTrackerApi.Controllers
 
         [HttpPost("/api/v1/yandex/project/")]
         [Authorize]
-        public async Task<IActionResult> AddYandexTracker(
+        public async Task<IActionResult> CreateProjectYandexTracker(
             [FromBody] ProjectYandexTrackerCreateCommand command)
         {
             command.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);

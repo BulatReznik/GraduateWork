@@ -4,6 +4,6 @@ namespace BPMNWorkFlow.BusinessLogic.Interfaces
 {
     public interface INodeHandler
     {
-        void ExecuteAsync(ProcessNode currentNode, ProcessNode previousNode);
+        Task ExecuteAsync(ProcessNode currentNode, ProcessNode previousNode);
     }
 }

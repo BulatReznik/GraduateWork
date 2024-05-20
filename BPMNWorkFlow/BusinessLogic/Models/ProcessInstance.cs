@@ -4,21 +4,24 @@ using System.Collections.Immutable;
 
 namespace BPMNWorkFlow.BusinessLogic.Models
 {
-    public class ProcessInstance
+    public class ProcessInstance()
     {
+        public ProcessInstance(Process process) : this()
+        {
+            Process = process;
+            outputParametersBuilder = ImmutableDictionary<string, IImmutableDictionary<string, object>>.Empty.ToBuilder();
+        }
+
         public string Id { get; set; } = null!;
 
-        public Process Process { get; } = null!;
+        public Process Process { get; }
 
         private IImmutableDictionary<string, object> inputParameters;
         public IImmutableDictionary<string, object> InputParameters
         {
-            get
-            {
-                return inputParameters;
-            }
+            get => inputParameters;
 
-            set
+            private set
             {
                 if (ValidParameters(value))
                     inputParameters = value;
@@ -27,30 +30,24 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             }
         }
 
-        public IImmutableDictionary<string, IImmutableDictionary<string, object>> OutputParameters { get; set; } = null!;
+        private ImmutableDictionary<string, IImmutableDictionary<string, object>>.Builder outputParametersBuilder;
+        public IImmutableDictionary<string, IImmutableDictionary<string, object>> OutputParameters => outputParametersBuilder.ToImmutable();
+
         public ProcessNode StartNode { get; internal set; } = null!;
         public IImmutableDictionary<string, ProcessNode> Nodes { get; set; } = null!;
 
-        private IDictionary<string, INodeHandler> nodeHandlers = null!;
+        private IDictionary<string, INodeHandler> _nodeHandlers = null!;
         public IDictionary<string, INodeHandler> NodeHandlers
         {
-            get
-            {
-                return nodeHandlers;
-            }
+            get => _nodeHandlers;
 
             set
             {
                 if (ValidHandlers(value))
-                    nodeHandlers = value;
+                    _nodeHandlers = value;
                 else
                     throw new Exception("Unhandled node type");
             }
-        }
-
-        public ProcessInstance(Process process)
-        {
-            Process = process;
         }
 
         public void SetDefaultHandlers()
@@ -91,10 +88,10 @@ namespace BPMNWorkFlow.BusinessLogic.Models
 
             if (Nodes.All(t => defaultNodeHandlers.ContainsKey(t.Value.NodeType)))
             {
-                nodeHandlers = new Dictionary<string, INodeHandler>();
-                foreach (string n in Nodes.Values.Select(n => n.NodeType).Distinct())
+                _nodeHandlers = new Dictionary<string, INodeHandler>();
+                foreach (var n in Nodes.Values.Select(n => n.NodeType).Distinct())
                 {
-                    nodeHandlers.Add(n, defaultNodeHandlers[n]);
+                    _nodeHandlers.Add(n, defaultNodeHandlers[n]);
                 }
             }
             else
@@ -103,18 +100,18 @@ namespace BPMNWorkFlow.BusinessLogic.Models
 
         public void SetHandler(string nodeType, INodeHandler nodeHandler)
         {
-            nodeHandlers ??= new Dictionary<string, INodeHandler>();
+            _nodeHandlers ??= new Dictionary<string, INodeHandler>();
 
-            if (nodeHandlers.ContainsKey(nodeType))
-                nodeHandlers[nodeType] = nodeHandler;
+            if (_nodeHandlers.ContainsKey(nodeType))
+                _nodeHandlers[nodeType] = nodeHandler;
             else
-                nodeHandlers.Add(nodeType, nodeHandler);
+                _nodeHandlers.Add(nodeType, nodeHandler);
         }
 
         private bool ValidHandlers(IDictionary<string, INodeHandler> handlers)
         {
             var nodeTypes = Nodes.Values.Select(n => n.NodeType).Distinct();
-            return nodeTypes.All(t => handlers.ContainsKey(t));
+            return nodeTypes.All(handlers.ContainsKey);
         }
 
         private bool ValidParameters(IImmutableDictionary<string, object> parameters)
@@ -138,9 +135,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
 
         internal void SetOutputParameters(ProcessNode node)
         {
-            OutputParameters ??= ImmutableDictionary.Create<string, IImmutableDictionary<string, object>>();
-
-            OutputParameters.Add(node.NodeId, node.OutputParameters);
+            outputParametersBuilder[node.NodeId] = node.OutputParameters;
         }
     }
 }

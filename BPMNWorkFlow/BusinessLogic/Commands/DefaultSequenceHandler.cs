@@ -6,30 +6,38 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
 {
     internal class DefaultSequenceHandler : INodeHandler
     {
-        public void ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
+        public async Task ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
         {
-            Console.WriteLine(processNode.NodeId + " Executing Sequence");
-            bool result = true;
-
-            if (processNode.Expression != null)
+            try
             {
-                Console.WriteLine(processNode.NodeId + " Conditional Sequence");
-                Console.WriteLine("Condition: " + processNode.Expression);
-                var globals = new Globals(processNode.InputParameters.ToDictionary(e => e.Key, e => e.Value));
-                try
+                Console.WriteLine(processNode.NodeId + " Executing Sequence");
+                var result = true;
+
+                if (processNode.Expression != null)
                 {
-                    result = CSharpScript.EvaluateAsync<bool>(processNode.Expression, globals: globals).Result;
-                    Console.WriteLine("Condition result: " + result.ToString());
+                    Console.WriteLine(processNode.NodeId + " Conditional Sequence");
+                    Console.WriteLine("Condition: " + processNode.Expression);
+                    var globals = new Globals(processNode.InputParameters.ToDictionary(e => e.Key, e => e.Value));
+                    try
+                    {
+                        result = CSharpScript.EvaluateAsync<bool>(processNode.Expression, globals: globals).Result;
+                        Console.WriteLine("Condition result: " + result);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
-                catch (Exception e)
+
+                if (result)
                 {
-                    Console.WriteLine(e.Message);
+                    await processNode.DoneAsync();
                 }
             }
-
-            if (result)
+            catch (Exception a)
             {
-                processNode.DoneAsync();
+                Console.WriteLine(a);
+                throw;
             }
         }
     }

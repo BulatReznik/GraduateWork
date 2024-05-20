@@ -5,11 +5,12 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
 {
     internal class DefaultEndHandler : INodeHandler
     {
-        public void ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
+        public async Task ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
         {
             Console.WriteLine(processNode.NodeId + " Executing End");
+            processNode.OutputParameters = processNode.InputParameters;
             processNode.ProcessInstance.SetOutputParameters(processNode);
-            processNode.DoneAsync();
+            await processNode.DoneAsync();
         }
     }
 }

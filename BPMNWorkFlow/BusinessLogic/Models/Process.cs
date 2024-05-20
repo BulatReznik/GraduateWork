@@ -23,7 +23,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         public Process(XDocument xDocument)
         {
             // Загрузка XML-документа и определение пространства имен
-            XDocument doc = xDocument;
+            var doc = xDocument;
             ProcessNamespace = @"http://www.omg.org/spec/BPMN/20100524/MODEL";
             var processXML = doc.Root?.Element(ProcessNamespace + "process");
 
@@ -188,17 +188,17 @@ namespace BPMNWorkFlow.BusinessLogic.Models
 
             foreach (var property in properties)
             {
-                string id = property.Attribute("id").Value;
-                string name = property.Attribute("name").Value;
-                string itemSubjectRef = property.Attribute("itemSubjectRef").Value;
+                var id = property.Attribute("id").Value;
+                var name = property.Attribute("name").Value;
+                var itemSubjectRef = property.Attribute("itemSubjectRef").Value;
 
-                string structureRef = itemDefinitions
+                var structureRef = itemDefinitions
                     .Where(i => i.Attribute("id").Value == itemSubjectRef)
                     .FirstOrDefault()
                     .Attribute("structureRef")
                     .Value;
 
-                bool isCollection = Convert.ToBoolean(itemDefinitions
+                var isCollection = Convert.ToBoolean(itemDefinitions
                     .Where(i => i.Attribute("id").Value == itemSubjectRef)
                     .FirstOrDefault()
                     .Attribute("isCollection")

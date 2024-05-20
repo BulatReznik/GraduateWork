@@ -5,10 +5,10 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
 {
     internal class DefaultBusinessRuleTaskHandler : INodeHandler
     {
-        public void ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
+        public async Task ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
         {
             Console.WriteLine(processNode.NodeId + " Executing BusinessRule");
-            processNode.DoneAsync();
+            await processNode.DoneAsync();
         }
     }
 }

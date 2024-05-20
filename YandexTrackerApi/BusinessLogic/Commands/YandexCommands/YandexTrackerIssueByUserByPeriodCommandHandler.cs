@@ -146,8 +146,8 @@ namespace YandexTrackerApi.BusinessLogic.Commands.YandexCommands
 
             foreach (var externalIssue in externalIssues)
             {
-                int originalEstimation = ConvertStringToHour(externalIssue.OriginalEstimation);
-                int spentTime = ConvertStringToHour(externalIssue.Spent);
+                var originalEstimation = ConvertStringToHour(externalIssue.OriginalEstimation);
+                var spentTime = ConvertStringToHour(externalIssue.Spent);
 
                 var existingTask = await _context.YandexTrackerTasks
                     .FirstOrDefaultAsync(ytt => ytt.Id == externalIssue.Id);

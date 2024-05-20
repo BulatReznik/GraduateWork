@@ -208,14 +208,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.DefaultTaskHandler" BaseTypeListCollapsed="true">
-    <Position X="5.5" Y="9" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
-      <FileName>BusinessLogic\Commands\DefaultTaskHandler.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="BPMNWorkFlow.BusinessLogic.Commands.DefaultTerminateEventHandler" BaseTypeListCollapsed="true">
     <Position X="7.25" Y="9" Width="1.5" />
     <TypeIdentifier>
@@ -273,13 +265,6 @@
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
-    <NestedTypes>
-      <Class Name="BPMNWorkFlow.BusinessLogic.Models.ProcessNode.NodeCompletedEventArgs" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>BusinessLogic\Models\ProcessNode.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAACABAAAAAEQABACEAAAAACAAAIAQABAAAAAAAAE=</HashCode>
       <FileName>BusinessLogic\Models\ProcessNode.cs</FileName>
@@ -291,6 +276,14 @@
       <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAIAAAAAAAAAAAAACA=</HashCode>
       <FileName>BusinessLogic\Models\Property.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.DefaultTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAFA=</HashCode>
+      <FileName>BusinessLogic\Commands\DefaultTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Interface Name="BPMNWorkFlow.BusinessLogic.Interfaces.INodeHandler">
     <Position X="2" Y="0.5" Width="1.5" />

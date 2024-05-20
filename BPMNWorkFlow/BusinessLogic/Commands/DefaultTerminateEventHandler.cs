@@ -5,7 +5,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
 {
     internal class DefaultTerminateEventHandler : INodeHandler
     {
-        public void ExecuteAsync(ProcessNode currentNode, ProcessNode previousNode)
+        public async Task ExecuteAsync(ProcessNode currentNode, ProcessNode previousNode)
         {
             throw new NotImplementedException();
         }

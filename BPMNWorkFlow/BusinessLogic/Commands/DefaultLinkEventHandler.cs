@@ -10,7 +10,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
 {
     internal class DefaultLinkEventHandler : INodeHandler
     {
-        public void ExecuteAsync(ProcessNode currentNode, ProcessNode previousNode)
+        public async Task ExecuteAsync(ProcessNode currentNode, ProcessNode previousNode)
         {
             throw new NotImplementedException();
         }

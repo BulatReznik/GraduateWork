@@ -5,7 +5,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
 {
     internal class DefaultStartHandler : INodeHandler
     {
-        public void ExecuteAsync(ProcessNode currentNode, ProcessNode previousNode)
+        public async Task ExecuteAsync(ProcessNode currentNode, ProcessNode previousNode)
         {
             Console.WriteLine($"Стартовое событие: Id узла: {currentNode.NodeId}");
             currentNode.DoneAsync().Wait();
