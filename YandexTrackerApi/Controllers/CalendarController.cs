@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using YandexTrackerApi.BusinessLogic.Models.CalendarModels;
+using YandexTrackerApi.BusinessLogic.Models.CalendarQueries;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace YandexTrackerApi.Controllers
 {
@@ -36,6 +38,19 @@ namespace YandexTrackerApi.Controllers
                 return BadRequest(ModelState);
 
             var response = await _mediator.Send(command);
+
+            if (response.IsSuccess)
+                return Ok(response.Data);
+            return BadRequest(response.ErrorMessage);
+        }
+
+        [HttpPost("/api/v1/calendar/period/work/hours")]
+        public async Task<IActionResult> GetWorkHours(CalendarPeriodWorkHoursQuery query)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var response = await _mediator.Send(query);
 
             if (response.IsSuccess)
                 return Ok(response.Data);

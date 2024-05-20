@@ -2,13 +2,12 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
-using YandexTrackerApi.BusinessLogic.Models;
 using YandexTrackerApi.BusinessLogic.Models.DiagramModels;
 using YandexTrackerApi.DbModels;
 
 namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
 {
-    public class DiagramExecuteCommandHandler : IRequestHandler<DiagramExecuteCommand, ResponseModel<string>>
+    public class DiagramExecuteCommandHandler : IRequestHandler<DiagramExecuteCommand, Models.ResponseModel<string>>
     {
         private readonly ILogger _logger;
         private readonly IGraduateWorkContext _context;
@@ -19,7 +18,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
             _logger = logger;
         }
 
-        public async Task<ResponseModel<string>> Handle(DiagramExecuteCommand request, CancellationToken cancellationToken)
+        public async Task<Models.ResponseModel<string>> Handle(DiagramExecuteCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -29,7 +28,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
 
                 if (diagramDbModel?.Xml == null)
                 {
-                    return new ResponseModel<string> { ErrorMessage = "Не удалось получить диаграмму из базы данных" };
+                    return new Models.ResponseModel<string> { ErrorMessage = "Не удалось получить диаграмму из базы данных" };
                 }
 
                 // Преобразуйте вашу строку в StringReader
@@ -63,14 +62,14 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
                 // Преобразуем список в строку для отправки пользователю
                 var executionPathString = string.Join("\n", executionPath);
 
-                return new ResponseModel<string> { Data = executionPathString };
+                return new Models.ResponseModel<string> { Data = executionPathString };
 
             }
             catch (Exception ex)
             {
                 var errorMessage = "Во время выполнения задачи произошла ошибка";
                 _logger.LogError(ex, errorMessage);
-                return new ResponseModel<string> { ErrorMessage = errorMessage };
+                return new Models.ResponseModel<string> { ErrorMessage = errorMessage };
             }
         }
     }

@@ -71,7 +71,8 @@ namespace YandexTrackerApi.Controllers
         public async Task<IActionResult> GetUserTaskFromDbAsync(
             [FromBody] YandexTrackerIssuesByPeriodQuery query)
         {
-            query.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
+            //query.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
+            query.UserId = Guid.Parse("01d1f5f1-3baf-45c5-bd98-02108cf13480");
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

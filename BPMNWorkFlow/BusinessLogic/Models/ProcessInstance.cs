@@ -107,7 +107,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
                 }
             }
             else
-                throw new Exception("Process contains an unknown node type");
+                throw new Exception("Процесс содержит узел неизвестного типа");
         }
 
         public void SetHandler(string nodeType, INodeHandler nodeHandler)
