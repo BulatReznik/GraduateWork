@@ -18,20 +18,18 @@ namespace BPMN.Pages
             _projectId = projectId;
         }
 
-        public async Task<IActionResult> OnPost(DiagramFormModel diagramFormModel)
+        public async Task<IActionResult> OnPost(DiagramRequest diagramRequest)
         {
-            var response = await _apiService.PostStringAsync("v1/diagram/", diagramFormModel);
+            var response = await _apiService.PostStringAsync("v1/diagram/", diagramRequest);
 
             if (response.IsSuccess)
             {
-                return RedirectToPage("/Project", new { diagramFormModel.ProjectId });
+                return RedirectToPage("/Project", new { diagramRequest.ProjectId });
             }
-            else
-            {
-                // В случае ошибки отображаем сообщение об ошибке
-                TempData["ErrorMessage"] = response.ErrorMessage;
-                return Page();
-            }
+
+            // В случае ошибки отображаем сообщение об ошибке
+            TempData["ErrorMessage"] = response.ErrorMessage;
+            return Page();
         }
 
         public IActionResult OnGetDiagram()

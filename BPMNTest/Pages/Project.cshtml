@@ -71,7 +71,7 @@
         @if (TempData["SuccessMessage"] != null)
         {
             <div class="alert alert-success" role="alert">
-                @TempData["SuccessMessage"]
+                <pre>@TempData["SuccessMessage"]</pre>
             </div>
         }
 
@@ -151,9 +151,9 @@
                                 <div class="modal-body">
                                     Вы уверены, что хотите удалить эту диаграмму?
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer align-items-center">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                                    <form method="post" asp-page-handler="DeleteDiagram" asp-route-diagramId="@diagram.Id" asp-route-projectId="@Model.Project.Id" style="margin-bottom: 2px">
+                                    <form method="post" asp-page-handler="DeleteDiagram" asp-route-diagramId="@diagram.Id" asp-route-projectId="@Model.Project.Id" style="margin-bottom: 12px">
                                         <button type="submit" class="btn btn-danger">Удалить диаграмму</button>
                                     </form>
                                 </div>

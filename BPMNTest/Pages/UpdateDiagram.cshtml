@@ -62,7 +62,7 @@
             <fieldset class="form-group">
                 <!-- Поле для ввода имени диаграммы -->
                 <label for="Name" class="form-label">Имя диаграммы:</label>
-                <input type="text" id="Name" name="Name" class="form-control" value="@Model.DiagramName" style="margin-bottom: 5px" required />
+                <input type="text" id="Name" name="Name" class="form-control" value="@Model.DiagramName" maxlength="65" style="margin-bottom: 5px" required />
 
                 <!-- Скрытое поле для передачи XML-кода диаграммы -->
                 <input type="hidden" id="XMLDiagram" name="XMLDiagram" />

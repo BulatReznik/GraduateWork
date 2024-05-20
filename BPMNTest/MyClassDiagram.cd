@@ -14,11 +14,11 @@
       <FileName>Models\Diagram\DiagramExecuteModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BPMN.Models.Diagram.DiagramFormModel">
+  <Class Name="BPMN.Models.Diagram.DiagramRequest">
     <Position X="12" Y="0.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAEAAQABAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Diagram\DiagramFormModel.cs</FileName>
+      <FileName>Models\Diagram\DiagramRequest.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BPMN.Models.Diagram.DiagramResponse">
@@ -38,7 +38,7 @@
   <Class Name="BPMN.Models.Diagram.DiagramsResponse">
     <Position X="4" Y="5.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Models\Diagram\DiagramsResponse.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -73,7 +73,7 @@
   <Class Name="BPMN.Models.Project.ProjectsResponseModel">
     <Position X="5" Y="13" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAgAAACAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAgAAACAAAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Models\Project\ProjectsResponseModel.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -87,7 +87,7 @@
   <Class Name="BPMN.Models.Project.DiagramViewModel">
     <Position X="4.75" Y="1.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Models\Project\ProjectViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -150,7 +150,7 @@
   <Class Name="BPMN.Pages.AddDiagramModel">
     <Position X="0.5" Y="0.5" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>CAAAAACAAAgAAAAAAAACAAAAAAAAAAAAgARAAAAAgAA=</HashCode>
+      <HashCode>CAAAAACAAAAAAAAAAAACAAAAAAAAAAAAgARAAAAAgAA=</HashCode>
       <FileName>Pages\AddDiagram.cshtml.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -164,14 +164,14 @@
   <Class Name="BPMN.Pages.ProjectModel">
     <Position X="10" Y="10" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAACRAAAAAgAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAKRAABAAgAA=</HashCode>
       <FileName>Pages\Project.cshtml.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BPMN.Pages.ProjectsModel">
     <Position X="0.5" Y="13" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAQA=</HashCode>
+      <HashCode>AAAAAAAAEAAAAAAAAAAgAAAAAAAAAIAAAARgAAAAAQA=</HashCode>
       <FileName>Pages\Projects.cshtml.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -185,7 +185,7 @@
   <Class Name="BPMN.Pages.UpdateDiagramModel">
     <Position X="6" Y="15.25" Width="5.75" />
     <TypeIdentifier>
-      <HashCode>CAAAAACABAgAAAAAAAAiAAAAAAAAAAAAAARAAAAAgAA=</HashCode>
+      <HashCode>CAAAAACABAgAAAAAAAAiAAAAAAAAAAAAAIRAAAAAgAA=</HashCode>
       <FileName>Pages\UpdateDiagram.cshtml.cs</FileName>
     </TypeIdentifier>
   </Class>

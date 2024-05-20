@@ -12,13 +12,13 @@ using YandexTrackerApi.Models.YandexModels;
 
 namespace YandexTrackerApi.BusinessLogic.Commands.YandexCommands
 {
-    public class YandexTrackerIssueByUserByPeriodCommandHandler : IRequestHandler<YandexTrackerIssueByUserByPeriodCommand, ResponseModel<string>>
+    public class YandexTrackerIssueByUserByPeriodLoadCommandHandler : IRequestHandler<YandexTrackerIssueByUserByPeriodLoadCommand, ResponseModel<string>>
     {
         private readonly IGraduateWorkContext _context;
         private readonly ILogger _logger;
         private readonly AppConfig _appConfig;
 
-        public YandexTrackerIssueByUserByPeriodCommandHandler(IGraduateWorkContext context,
+        public YandexTrackerIssueByUserByPeriodLoadCommandHandler(IGraduateWorkContext context,
             ILogger logger,
             IOptions<AppConfig> options)
         {
@@ -27,7 +27,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.YandexCommands
             _appConfig = options.Value;
         }
 
-        public async Task<ResponseModel<string>> Handle(YandexTrackerIssueByUserByPeriodCommand request, CancellationToken cancellationToken)
+        public async Task<ResponseModel<string>> Handle(YandexTrackerIssueByUserByPeriodLoadCommand request, CancellationToken cancellationToken)
         {
             try
             {

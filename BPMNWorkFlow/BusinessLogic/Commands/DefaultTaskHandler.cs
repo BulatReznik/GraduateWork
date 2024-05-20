@@ -40,8 +40,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
                             if (processNode.InputParameters.TryGetValue("selectedUserName", out var userName))
                             {
                                 Console.WriteLine($"Пользователь {userName} выбран");
-                                processNode.OutputParameters =
-                                    processNode.OutputParameters.Add("selectedUserName", userName);
+                                processNode.OutputParameters = processNode.OutputParameters.Add("selectedUserName", userName);
                             }
 
                             break;
@@ -50,8 +49,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
                             {
                                 var parsedStartDate = DateOnly.Parse(startDate.ToString());
                                 Console.WriteLine($"Начальная дата установлена: {parsedStartDate}");
-                                processNode.OutputParameters =
-                                    processNode.OutputParameters.Add("StartDate", parsedStartDate);
+                                processNode.OutputParameters = processNode.OutputParameters.Add("StartDate", parsedStartDate);
                             }
 
                             break;

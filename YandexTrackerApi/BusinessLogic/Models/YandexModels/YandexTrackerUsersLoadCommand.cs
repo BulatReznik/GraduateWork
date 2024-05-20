@@ -8,7 +8,7 @@ namespace YandexTrackerApi.BusinessLogic.Models.YandexModels
     /// <summary>
     /// Команда на получение пользователей для таск трекера
     /// </summary>
-    public class YandexTrackerUsersCreateCommand : IRequest<ResponseModel<string>>
+    public class YandexTrackerUsersLoadCommand : IRequest<ResponseModel<string>>
     {
         /// <summary>
         /// Id проекта для которого получаем пользователя

@@ -10,13 +10,13 @@ using User = YandexTrackerApi.Models.YandexModels.User;
 
 namespace YandexTrackerApi.BusinessLogic.Commands.YandexCommands
 {
-    public class YandexTrackerUsersCreateCommandHandler : IRequestHandler<YandexTrackerUsersCreateCommand, ResponseModel<string>>
+    public class YandexTrackerUsersLoadCommandHandler : IRequestHandler<YandexTrackerUsersLoadCommand, ResponseModel<string>>
     {
         private readonly ILogger _logger;
         private readonly IGraduateWorkContext _context;
         private readonly AppConfig _appConfig;
 
-        public YandexTrackerUsersCreateCommandHandler(ILogger logger,
+        public YandexTrackerUsersLoadCommandHandler(ILogger logger,
             IGraduateWorkContext context,
             IOptions<AppConfig> options)
         {
@@ -25,7 +25,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.YandexCommands
             _appConfig = options.Value;
         }
 
-        public async Task<ResponseModel<string>> Handle(YandexTrackerUsersCreateCommand request, CancellationToken cancellationToken)
+        public async Task<ResponseModel<string>> Handle(YandexTrackerUsersLoadCommand request, CancellationToken cancellationToken)
         {
             try
             {

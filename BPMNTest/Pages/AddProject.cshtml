@@ -1,0 +1,26 @@
+﻿@page
+@model BPMN.Pages.AddProjectModel
+@{
+    ViewData["Title"] = "Добавить проект";
+}
+
+<h1>Добавить проект</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="Name" class="form-label">Название проекта:</label>
+        <input type="text" id="Name" name="Name" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label for="Description" class="form-label">Описание проекта:</label>
+        <textarea id="Description" name="Description" class="form-control" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Создать проект</button>
+</form>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}

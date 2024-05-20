@@ -1,6 +1,6 @@
 ﻿namespace BPMN.Models.Diagram
 {
-    public class DiagramFormModel
+    public class DiagramRequest
     {
         public string ProjectId { get; set; } = null!;
         public string Name { get; set; }

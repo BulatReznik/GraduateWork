@@ -7,7 +7,7 @@ namespace YandexTrackerApi.BusinessLogic.Models.YandexModels
     /// <summary>
     /// Команда для получения данных из трекера о задачах одного из пользователей
     /// </summary>
-    public class YandexTrackerIssueByUserByPeriodCommand : IRequest<ResponseModel<string>>
+    public class YandexTrackerIssueByUserByPeriodLoadCommand : IRequest<ResponseModel<string>>
     {
         /// <summary>
         /// Id пользователя делающего запрос
@@ -17,7 +17,7 @@ namespace YandexTrackerApi.BusinessLogic.Models.YandexModels
         public Guid UserId { get; set; }
 
         /// <summary>
-        /// Id проекта по которыму получаются задачт
+        /// Id проекта по которому получаются задачи
         /// </summary>
         [Required(ErrorMessage = "Поле ProjectId должно быть заполнено")]
         public Guid ProjectId { get; set; }

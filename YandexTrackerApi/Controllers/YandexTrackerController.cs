@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using YandexTrackerApi.BusinessLogic.Managers.User;
 using YandexTrackerApi.BusinessLogic.Models.ProjectModels;
 using YandexTrackerApi.BusinessLogic.Models.YandexModels;
+using YandexTrackerApi.BusinessLogic.Models.YandexQueries;
 
 namespace YandexTrackerApi.Controllers
 {
@@ -40,7 +41,7 @@ namespace YandexTrackerApi.Controllers
 
         [HttpPost("/api/v1/yandex/users")]
         public async Task<IActionResult> GetUsersAsync(
-            [FromBody] YandexTrackerUsersCreateCommand command)
+            [FromBody] YandexTrackerUsersLoadCommand command)
         {
             command.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
 
@@ -52,16 +53,30 @@ namespace YandexTrackerApi.Controllers
             return result.IsSuccess ? Ok(result.Data) : BadRequest(result.ErrorMessage);
         }
 
-        [HttpPost("/api/v1/yandex/user/tasks")]
+        [HttpPost("/api/v1/yandex/user/load/tasks")]
         public async Task<IActionResult> GetUserTaskAsync(
-            [FromBody] YandexTrackerIssueByUserByPeriodCommand command)
+            [FromBody] YandexTrackerIssueByUserByPeriodLoadCommand loadCommand)
         {
-            command.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
+            loadCommand.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(loadCommand);
+
+            return result.IsSuccess ? Ok(result.Data) : BadRequest(result.ErrorMessage);
+        }
+
+        [HttpPost("/api/v1/yandex/user/tasks")]
+        public async Task<IActionResult> GetUserTaskFromDbAsync(
+            [FromBody] YandexTrackerIssuesByPeriodQuery query)
+        {
+            query.UserId = _userManager.GetCurrentUserIdByContext(_httpContextAccessor);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _mediator.Send(query);
 
             return result.IsSuccess ? Ok(result.Data) : BadRequest(result.ErrorMessage);
         }

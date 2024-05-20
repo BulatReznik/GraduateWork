@@ -31,7 +31,8 @@ namespace YandexTrackerApi.BusinessLogic.Commands.ProjectCommands
                 var usersProjectsDbModel = new UsersProject
                 {
                     ProjectId = projectDbModel.Id,
-                    UserId = request.CreatorId
+                    UserId = request.CreatorId,
+                    Condirmed = true
                 };
 
                 await _context.Projects.AddAsync(projectDbModel, cancellationToken);

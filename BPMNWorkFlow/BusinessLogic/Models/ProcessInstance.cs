@@ -12,9 +12,14 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             outputParametersBuilder = ImmutableDictionary<string, IImmutableDictionary<string, object>>.Empty.ToBuilder();
         }
 
+        /// <summary>
+        /// Поле для счетчика номера узлов
+        /// </summary>
+        private int _nodeCounter = 0; 
+
         public string Id { get; set; } = null!;
 
-        public Process Process { get; }
+        private Process Process { get; } = null!;
 
         private IImmutableDictionary<string, object> inputParameters;
         public IImmutableDictionary<string, object> InputParameters
@@ -33,7 +38,14 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         private ImmutableDictionary<string, IImmutableDictionary<string, object>>.Builder outputParametersBuilder;
         public IImmutableDictionary<string, IImmutableDictionary<string, object>> OutputParameters => outputParametersBuilder.ToImmutable();
 
+        /// <summary>
+        /// Первый узел
+        /// </summary>
         public ProcessNode StartNode { get; internal set; } = null!;
+
+        /// <summary>
+        /// Все узлы
+        /// </summary>
         public IImmutableDictionary<string, ProcessNode> Nodes { get; set; } = null!;
 
         private IDictionary<string, INodeHandler> _nodeHandlers = null!;
@@ -120,9 +132,13 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             return parameters.All(p => p.Value.GetType().Name.Equals(propertyMap[p.Key], StringComparison.CurrentCultureIgnoreCase));
         }
 
+        /// <summary>
+        /// Начало выполнения
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public async Task StartAsync(IDictionary<string, object> parameters)
         {
-            //TODO Get node variables not process instance var
             InputParameters = parameters.ToImmutableDictionary();
             StartNode.InputParameters = parameters.ToImmutableDictionary();
 
@@ -133,9 +149,22 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             Console.WriteLine("Процесс завершен");
         }
 
+        /// <summary>
+        /// Устанавливаем выходные параметры для всего процесса (ключ - имя узла, значении, выходные параметры)
+        /// </summary>
+        /// <param name="node"></param>
         internal void SetOutputParameters(ProcessNode node)
         {
             outputParametersBuilder[node.NodeId] = node.OutputParameters;
+        }
+
+        /// <summary>
+        /// Метод для получения нового номера узла
+        /// </summary>
+        /// <returns></returns>
+        public int GetNextNodeNumber()
+        {
+            return ++_nodeCounter;
         }
     }
 }

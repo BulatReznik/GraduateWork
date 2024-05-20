@@ -5,14 +5,49 @@ namespace BPMNWorkFlow.BusinessLogic.Models
 {
     public class ProcessNode : EventArgs
     {
+        /// <summary>
+        /// Id узла
+        /// </summary>
         public string NodeId { get; set; }
+
+        /// <summary>
+        /// Текст внутри узла
+        /// </summary>
         public string? NodeName { get; set; }
+
+        /// <summary>
+        /// Тип узда
+        /// </summary>
         public string NodeType { get; set; }
+
+        /// <summary>
+        /// К какому экземпляру относятся узлы
+        /// </summary>
         public ProcessInstance ProcessInstance { get; set; } = null!;
+
+        /// <summary>
+        /// Входные параметры для узлов
+        /// </summary>
         public IImmutableDictionary<string, object> InputParameters { get; set; }
+        
+        /// <summary>
+        /// Выходные параметры для узлов
+        /// </summary>
         public IImmutableDictionary<string, object> OutputParameters { get; set; }
+        
+        /// <summary>
+        /// Обработчик этого узла
+        /// </summary>
         private INodeHandler NodeHandler { get; set; } = null!;
+
+        /// <summary>
+        /// Следующие узлы
+        /// </summary>
         public ICollection<ProcessNode> NextNodes { get; set; } = null!;
+
+        /// <summary>
+        /// Предыдущие узлы
+        /// </summary>
         public ICollection<ProcessNode> PreviousNodes { get; set; } = null!;
         public string Expression { get; set; } = null!;
         public TaskCompletionSource<bool> TaskCompletionSource { get; } = new();
@@ -51,6 +86,15 @@ namespace BPMNWorkFlow.BusinessLogic.Models
 
         public async Task DoneAsync()
         {
+            // Получаем следующий номер узла от ProcessInstance
+            var nodeNumber = ProcessInstance.GetNextNodeNumber();
+
+            // Добавляем текущий номер узла в OutputParameters
+            OutputParameters = OutputParameters.Add("nodeNumber", nodeNumber);
+
+            // Передаем текущие выходные параметры в ProcessInstance
+            ProcessInstance.SetOutputParameters(this);
+
             foreach (var param in InputParameters)
             {
                 if (!OutputParameters.ContainsKey(param.Key))

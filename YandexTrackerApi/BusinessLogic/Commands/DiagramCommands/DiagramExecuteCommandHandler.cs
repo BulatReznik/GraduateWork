@@ -48,11 +48,17 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
 
                 await processInstance.StartAsync(processVar);
 
+                var outputParameters = processInstance.OutputParameters;
+
+                // Создаем путь выполнения, сортируя узлы по nodeNumber
                 var executionPath = (
-                    from node in processInstance.Nodes.Values 
-                    where node.TaskCompletionSource.Task.IsCompletedSuccessfully 
-                    select $"Завершение узла: Id: {node.NodeId} Имя узла: {node.NodeName}")
-                    .ToList();
+                    from node in processInstance.Nodes.Values
+                    where node.TaskCompletionSource.Task.IsCompletedSuccessfully
+                          && node.OutputParameters.ContainsKey("nodeNumber")  // Проверяем наличие nodeNumber
+                    let nodeNumber = (int)node.OutputParameters["nodeNumber"]  // Извлекаем nodeNumber
+                    orderby nodeNumber  // Сортируем по nodeNumber
+                    select $"Завершение узла: Id: {node.NodeId} Имя узла: {node.NodeName} Номер узла: {nodeNumber}"
+                ).ToList();
 
                 // Преобразуем список в строку для отправки пользователю
                 var executionPathString = string.Join("\n", executionPath);
