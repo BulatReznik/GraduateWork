@@ -4,7 +4,7 @@ using YandexTrackerApi.BusinessLogic.Models;
 
 namespace YandexTrackerApi.BusinessLogic.Models.DiagramModels
 {
-    public class DiagramExecuteCommand : IRequest<ResponseModel<string>>
+    public class DiagramExecuteCommand : IRequest<ResponseModel<DiagramExecuteResponse>>
     {
         public Guid Id { get; set; }
 

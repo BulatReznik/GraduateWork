@@ -34,7 +34,12 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         /// Выходные параметры для узлов
         /// </summary>
         public IImmutableDictionary<string, object> OutputParameters { get; set; }
-        
+
+        /// <summary>
+        /// Важные выходные параметры
+        /// </summary>
+        public IImmutableDictionary<string, object> ImportantParameters { get; set; }
+
         /// <summary>
         /// Обработчик этого узла
         /// </summary>
@@ -59,6 +64,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             NodeName = nodeName;
             InputParameters = ImmutableDictionary<string, object>.Empty;
             OutputParameters = ImmutableDictionary<string, object>.Empty;
+            ImportantParameters = ImmutableDictionary<string, object>.Empty;
         }
 
         public async Task Execute(ProcessNode processNode, ProcessNode previousNode)
@@ -94,6 +100,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
 
             // Передаем текущие выходные параметры в ProcessInstance
             ProcessInstance.SetOutputParameters(this);
+            ProcessInstance.SetImportantOutputParameter(this);
 
             foreach (var param in InputParameters)
             {

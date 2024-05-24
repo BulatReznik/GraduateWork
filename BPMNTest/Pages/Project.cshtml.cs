@@ -68,7 +68,7 @@ namespace BPMN.Pages
                 var executeDiagramRequest = new DiagramExecuteModel { Id = diagramId };
 
                 // Отправляем запрос на выполнение диаграммы
-                var executeDiagramResponse = await _apiService.PostStringAsync("v1/diagrams/execute", executeDiagramRequest);
+                var executeDiagramResponse = await _apiService.PostAsync<DiagramExecuteModel, DiagramExecuteResponse>("v1/diagrams/execute", executeDiagramRequest);
 
                 if (!executeDiagramResponse.IsSuccess)
                 {
@@ -78,7 +78,27 @@ namespace BPMN.Pages
                 }
 
                 // Успешное выполнение диаграммы
-                TempData["SuccessMessage"] = $"Диаграмма успешно выполнена, выполненные узлы: \n{executeDiagramResponse.Data}";
+                var successMessage = $"Выполненные узлы: \n{executeDiagramResponse?.Data?.ExecutePath}\n\n";
+
+                // Получение важных выходных параметров
+                var importantOutputParameters = executeDiagramResponse?.Data?.ImportantOutputParameters;
+
+                // Формирование сообщения с важными выходными параметрами
+                var outputParametersMessage = "Важные выходные параметры:\n";
+                if (importantOutputParameters != null)
+                {
+                    foreach (var parameter in importantOutputParameters)
+                    {
+                        outputParametersMessage += $"{parameter.Key}:\n";
+                        foreach (var value in parameter.Value)
+                        {
+                            outputParametersMessage += $"{value.Key}: {value.Value}\n";
+                        }
+                    }
+                }
+
+                TempData["SuccessMessage"] = successMessage + outputParametersMessage;
+
                 return RedirectToPage("/Project", new { projectId });
             }
             catch (Exception)

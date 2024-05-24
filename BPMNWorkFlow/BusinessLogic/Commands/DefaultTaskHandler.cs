@@ -30,6 +30,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
                         processNode.InputParameters = processNode.InputParameters.AddRange(inputParameters);
                     }
 
+                    var key = previousNode?.PreviousNodes?.FirstOrDefault()?.NodeName;
                     switch (taskName)
                     {
                         case "Войти в task-tracker":
@@ -63,11 +64,36 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
                                 processNode.OutputParameters =
                                     processNode.OutputParameters.Add("EndDate", parsedEndDate);
                             }
-
                             break;
                         case "Определить количество часов списанные в задачи":
                             Console.WriteLine("Количество часов определено");
                             break;
+
+                        case "Часы равны количеству часов в трудовом календаре":
+                            if (key != null)
+                            {
+                                processNode.ImportantParameters =
+                                    processNode.ImportantParameters.Add($"{key}",
+                                        "Часы равны количеству часов в трудовом календаре");
+                            }
+                            break;
+                        case "Часы меньше количества часов в трудовом календаре":
+                            if (key != null)
+                            {
+                                processNode.ImportantParameters =
+                                    processNode.ImportantParameters.Add($"{key}",
+                                         "Часы меньше количества часов в трудовом календаре");
+                            }
+                            break;
+                        case "Часы больше количества часов в трудовом календаре":
+                            if (key != null)
+                            {
+                                processNode.ImportantParameters =
+                                    processNode.ImportantParameters.Add($"{key}",
+                                         "Часы больше количества часов в трудовом календаре");
+                            }
+                            break;
+
                         default:
                             Console.WriteLine($"Неизвестная задача: {processNode.NodeName}");
                             break;

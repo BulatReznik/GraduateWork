@@ -7,7 +7,7 @@ using YandexTrackerApi.DbModels;
 
 namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
 {
-    public class DiagramExecuteCommandHandler : IRequestHandler<DiagramExecuteCommand, Models.ResponseModel<string>>
+    public class DiagramExecuteCommandHandler : IRequestHandler<DiagramExecuteCommand, Models.ResponseModel<DiagramExecuteResponse>>
     {
         private readonly ILogger _logger;
         private readonly IGraduateWorkContext _context;
@@ -18,7 +18,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
             _logger = logger;
         }
 
-        public async Task<Models.ResponseModel<string>> Handle(DiagramExecuteCommand request, CancellationToken cancellationToken)
+        public async Task<Models.ResponseModel<DiagramExecuteResponse>> Handle(DiagramExecuteCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
 
                 if (diagramDbModel?.Xml == null)
                 {
-                    return new Models.ResponseModel<string> { ErrorMessage = "Не удалось получить диаграмму из базы данных" };
+                    return new Models.ResponseModel<DiagramExecuteResponse> { ErrorMessage = "Не удалось получить диаграмму из базы данных" };
                 }
 
                 // Преобразуйте вашу строку в StringReader
@@ -47,7 +47,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
 
                 await processInstance.StartAsync(processVar);
 
-                var outputParameters = processInstance.OutputParameters;
+                var outputParameters = processInstance.ImportantOutputParameters;
 
                 // Создаем путь выполнения, сортируя узлы по nodeNumber
                 var executionPath = (
@@ -62,14 +62,20 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
                 // Преобразуем список в строку для отправки пользователю
                 var executionPathString = string.Join("\n", executionPath);
 
-                return new Models.ResponseModel<string> { Data = executionPathString };
+                var result = new DiagramExecuteResponse()
+                {
+                    ExecutePath = executionPathString,
+                    ImportantOutputParameters = outputParameters
+                };
+
+                return new Models.ResponseModel<DiagramExecuteResponse> { Data = result };
 
             }
             catch (Exception ex)
             {
                 var errorMessage = "Во время выполнения задачи произошла ошибка";
                 _logger.LogError(ex, errorMessage);
-                return new Models.ResponseModel<string> { ErrorMessage = errorMessage };
+                return new Models.ResponseModel<DiagramExecuteResponse> { ErrorMessage = errorMessage };
             }
         }
     }

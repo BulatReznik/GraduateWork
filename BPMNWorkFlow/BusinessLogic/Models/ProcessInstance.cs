@@ -9,13 +9,16 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         public ProcessInstance(Process process) : this()
         {
             Process = process;
-            outputParametersBuilder = ImmutableDictionary<string, IImmutableDictionary<string, object>>.Empty.ToBuilder();
+            outputParametersBuilder =
+                ImmutableDictionary<string, IImmutableDictionary<string, object>>.Empty.ToBuilder();
+            importantOutputParametersBuilder =
+                ImmutableDictionary<string, IImmutableDictionary<string, object>>.Empty.ToBuilder();
         }
 
         /// <summary>
         /// Поле для счетчика номера узлов
         /// </summary>
-        private int _nodeCounter = 0; 
+        private int _nodeCounter = 0;
 
         public string Id { get; set; } = null!;
 
@@ -36,7 +39,18 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         }
 
         private ImmutableDictionary<string, IImmutableDictionary<string, object>>.Builder outputParametersBuilder;
+
+        /// <summary>
+        /// Выводимые параметры процесса
+        /// </summary>
         public IImmutableDictionary<string, IImmutableDictionary<string, object>> OutputParameters => outputParametersBuilder.ToImmutable();
+
+        private ImmutableDictionary<string, IImmutableDictionary<string, object>>.Builder importantOutputParametersBuilder;
+
+        /// <summary>
+        /// Важные выводимые параметры процесса
+        /// </summary>
+        public IImmutableDictionary<string, IImmutableDictionary<string, object>> ImportantOutputParameters => importantOutputParametersBuilder.ToImmutable();
 
         /// <summary>
         /// Первый узел
@@ -156,6 +170,18 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         internal void SetOutputParameters(ProcessNode node)
         {
             outputParametersBuilder[node.NodeId] = node.OutputParameters;
+        }
+
+        /// <summary>
+        /// Устанавливаем важные выходные параметры для всего процесса (ключ - имя узла, значении, выходные параметры)
+        /// </summary>
+        /// <param name="node"></param>
+        internal void SetImportantOutputParameter(ProcessNode node)
+        {
+            if (node.ImportantParameters.Count > 0)
+            {
+                importantOutputParametersBuilder[node.NodeId] = node.ImportantParameters;
+            }
         }
 
         /// <summary>
