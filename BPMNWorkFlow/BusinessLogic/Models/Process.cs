@@ -1,5 +1,11 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Xml.Linq;
+using BPMNWorkFlow.BusinessLogic.Commands;
+using BPMNWorkFlow.BusinessLogic.Interfaces;
+using BPMNWorkFlow.DbModels;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BPMNWorkFlow.BusinessLogic.Models
 {
@@ -43,6 +49,19 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         /// </summary>
         public ProcessInstance NewProcessInstance()
         {
+            // Создаем ServiceCollection и регистрируем сервисы
+            var serviceCollection = new ServiceCollection();
+            ServiceRegistration.RegisterServices(serviceCollection);
+
+            // Создаем ServiceProvider
+            var serviceProvider = serviceCollection.BuildServiceProvider();
+
+            // Создаем экземпляр GraduateWorkContext
+            var graduateWorkContext = new GraduateWorkContext();
+
+            // Создаем экземпляр TaskHandlerFactory, используя созданный ServiceProvider
+            var taskHandlerFactory = new TaskHandlerFactory(graduateWorkContext, serviceProvider);
+
             // Получение элемента startEvent из XML-документа
             var current = ProcessXML.Element(ProcessNamespace + "startEvent") ?? throw new Exception("Current было null");
 
@@ -53,7 +72,9 @@ namespace BPMNWorkFlow.BusinessLogic.Models
                 // Создание нового узла процесса
                 var node = new ProcessNode(id, current.Name.LocalName, "");
                 var nodes = BuildNodes(ProcessXML);
-                var processInstance = new ProcessInstance(this);
+
+                var processInstance = new ProcessInstance(this, taskHandlerFactory);
+
                 BuildLinkedNodes(current, ref node, nodes, processInstance);
                 processInstance.Id = Guid.NewGuid().ToString();
                 processInstance.StartNode = node;

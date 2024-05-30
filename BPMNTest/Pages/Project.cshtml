@@ -130,10 +130,6 @@
                             <br>
                             <span class="diagram-date">Дата изменения диаграммы: @diagram.Date.ToString()</span>
 
-                            <form method="post" asp-page-handler="ExecuteDiagram" asp-route-diagramId="@diagram.Id" asp-route-projectId="@Model.Project.Id" style="margin-bottom: 2px">
-                                <button type="submit" class="btn btn-success">Выполнить диаграмму</button>
-                            </form>
-
                             <a asp-page="/UpdateDiagram" asp-route-diagramId="@diagram.Id" class="btn btn-primary" style="margin-bottom: 2px">Открыть диаграмму</a>
                         </div>
                     </div>

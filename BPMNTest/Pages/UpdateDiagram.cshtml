@@ -58,7 +58,7 @@
         <div id="canvas"></div>
 
         <!-- Форма для сохранения диаграммы -->
-        <form method="post" class="form-container">
+        <form method="post" asp-page-handler="Save" class="form-container">
             <fieldset class="form-group">
                 <!-- Поле для ввода имени диаграммы -->
                 <label for="Name" class="form-label">Имя диаграммы:</label>
@@ -68,10 +68,10 @@
                 <input type="hidden" id="XMLDiagram" name="XMLDiagram" />
 
                 <!-- Скрытое поле для передачи Id диаграммы -->
-                <input type="hidden" id="Id" name="Id" value="@Model._diagramId" />
+                <input type="hidden" id="Id" name="Id" value="@Model.DiagramId" />
 
                 <!-- Скрытое поле для передачи projectId -->
-                <input type="hidden" id="ProjectId" name="ProjectId" value="@Model._projectId" />
+                <input type="hidden" id="ProjectId" name="ProjectId" value="@Model.ProjectId" />
             </fieldset>
 
             <!-- Кнопка для сохранения диаграммы -->
@@ -79,6 +79,24 @@
 
             <!-- Кнопка для отправки формы -->
             <input hidden id="saveButton" type="submit" value="Save">
+        </form>
+        
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <pre>@TempData["SuccessMessage"]</pre>
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        
+        <form method="post" asp-page-handler="ExecuteDiagram" asp-route-diagramId="@Model.DiagramId" asp-route-projectId="@Model.ProjectId" style="margin-bottom: 2px">
+            <button type="submit" class="btn btn-success">Выполнить диаграмму</button>
         </form>
     </div>
 
@@ -97,16 +115,15 @@
 
         // Функция для загрузки диаграммы из файла
         function loadDiagramFromFile() {
-            var diagramId = '@Model._diagramId';
+            var diagramId = '@Model.DiagramId';
 
             // Путь к файлу с XML-кодом диаграммы
-            const bpmnBaseFile = `/UpdateDiagram?handler=Diagram&id=${diagramId}`;
+            const bpmnBaseFile = `/UpdateDiagram?handler=Diagram&diagramId=${diagramId}`;
 
             // Чтение содержимого файла
             fetch(bpmnBaseFile)
                 .then(response => response.text())
                 .then(bpmnXml => {
-                    // Загружаем диаграмму из содержимого файла
                     loadDiagram(bpmnXml);
                     deleteTempFile(diagramId);
                 })
@@ -116,7 +133,7 @@
         }
 
         function deleteTempFile(diagramId) {
-            fetch(`/UpdateDiagram?handler=DeleteTempFile&id=${diagramId}`)
+            fetch(`/UpdateDiagram?handler=DeleteTempFile&diagramId=${diagramId}`)
                 .then(response => {
                     if (response.ok) {
                         console.log('Временный файл успешно удален.');

@@ -1,18 +1,22 @@
 ﻿using BPMNWorkFlow.BusinessLogic.Commands;
 using BPMNWorkFlow.BusinessLogic.Interfaces;
 using System.Collections.Immutable;
+using BPMNWorkFlow.BusinessLogic.Commands.NodeHandlers;
 
 namespace BPMNWorkFlow.BusinessLogic.Models
 {
     public class ProcessInstance()
     {
-        public ProcessInstance(Process process) : this()
+        private readonly ITaskHandlerFactory _taskHandlerFactory;
+
+        public ProcessInstance(Process process, ITaskHandlerFactory taskHandlerFactory) : this()
         {
             Process = process;
             outputParametersBuilder =
                 ImmutableDictionary<string, IImmutableDictionary<string, object>>.Empty.ToBuilder();
             importantOutputParametersBuilder =
                 ImmutableDictionary<string, IImmutableDictionary<string, object>>.Empty.ToBuilder();
+            _taskHandlerFactory = taskHandlerFactory;
         }
 
         /// <summary>
@@ -106,7 +110,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
                 { "signalEventDefinition", new DefaultSignalEventHandler()},
                 { "startEvent", new DefaultStartHandler()},
                 { "subProcess", new DefaultSubProcessHandler()},
-                { "task", new DefaultTaskHandler()},
+                { "task", new DefaultTaskHandler(taskHandlerFactory:_taskHandlerFactory)},
                 { "terminateEventDefinition", new DefaultTerminateEventHandler()},
                 { "timerEventDefinition", new DefaultTimerEventHandler()},
                 { "userTask", new DefaultUserTaskHandler()}
