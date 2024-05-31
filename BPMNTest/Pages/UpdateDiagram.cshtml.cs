@@ -63,9 +63,9 @@ namespace BPMN.Pages
         /// <summary>
         /// Удаляем диаграмму из временных файлов
         /// </summary>
-        public void OnGetDeleteTempFile()
+        public void OnGetDeleteTempFile(Guid diagramId)
         {
-            var tempFilePath = Path.Combine(_hostEnvironment.WebRootPath, "temp", $"{DiagramId}.bpmn");
+            var tempFilePath = Path.Combine(_hostEnvironment.WebRootPath, "temp", $"{diagramId}.bpmn");
 
             if (System.IO.File.Exists(tempFilePath))
             {

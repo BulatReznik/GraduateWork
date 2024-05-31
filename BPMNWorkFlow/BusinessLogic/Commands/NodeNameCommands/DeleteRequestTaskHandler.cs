@@ -1,18 +1,16 @@
 ﻿using BPMNWorkFlow.BusinessLogic.Interfaces;
 using BPMNWorkFlow.BusinessLogic.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands
 {
     internal class DeleteRequestTaskHandler : ITaskHandler
     {
-        public Task ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
+        public async Task ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("141241241421412424");
+
+            processNode.OutputParameters = processNode.OutputParameters
+                .Add("Tasks", "212411241224124124124214241");
         }
     }
 }

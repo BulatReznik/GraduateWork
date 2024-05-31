@@ -33,6 +33,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands
                     }
 
                     var handler = await _taskHandlerFactory.GetTaskHandlerAsync(taskName);
+
                     await handler.ExecuteAsync(processNode, previousNode);
                 }
 

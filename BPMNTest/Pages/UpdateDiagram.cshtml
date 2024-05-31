@@ -149,12 +149,11 @@
         async function exportBpmnXml() {
             const { xml } = await modeler.saveXML({ format: true });
 
-            // Найти элемент input по его id
+            // Установите значение xml в скрытое поле формы
             const xmlInput = document.getElementById('XMLDiagram');
-
-            // Установить значение xml в поле input
             xmlInput.value = xml;
 
+            // Нажмите кнопку отправки формы
             const saveButton = document.getElementById('saveButton');
             saveButton.click();
         }

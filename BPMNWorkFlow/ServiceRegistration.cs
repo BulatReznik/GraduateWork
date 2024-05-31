@@ -12,6 +12,12 @@ namespace BPMNWorkFlow
             services.AddTransient<ITaskHandlerFactory, TaskHandlerFactory>();
             services.AddTransient<LoadDataTaskHandler>();
             services.AddTransient<LoginTaskHandler>();
+            services.AddTransient<SelectUserTaskHandler>();
+
+            services.AddTransient<PostRequestTaskHandler>();
+            services.AddTransient<GetRequestTaskHandler>();
+            services.AddTransient<PutRequestTaskHandler>();
+            services.AddTransient<DeleteRequestTaskHandler>();
         }
     }
 }
