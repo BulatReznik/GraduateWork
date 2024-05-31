@@ -7,13 +7,9 @@ namespace BPMNWorkFlow.DbModels;
 
 public partial class TaskHandlerMapping
 {
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
 
     public string NodeName { get; set; }
 
     public string HandlerClassName { get; set; }
-
-    public Guid? NodeTypeId { get; set; }
-
-    public virtual NodeType NodeType { get; set; }
 }

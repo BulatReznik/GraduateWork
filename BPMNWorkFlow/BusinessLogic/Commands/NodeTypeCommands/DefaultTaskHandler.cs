@@ -1,9 +1,9 @@
-﻿using BPMNWorkFlow.BusinessLogic.Interfaces;
-using BPMNWorkFlow.BusinessLogic.Models;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using System.Text.RegularExpressions;
+using BPMNWorkFlow.BusinessLogic.Interfaces;
+using BPMNWorkFlow.BusinessLogic.Models;
 
-namespace BPMNWorkFlow.BusinessLogic.Commands.NodeHandlers
+namespace BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands
 {
     public class DefaultTaskHandler : INodeHandler
     {

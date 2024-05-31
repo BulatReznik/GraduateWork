@@ -32,6 +32,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
             }
 
             var handlerType = Type.GetType($"BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands.{mapping.HandlerClassName}, BPMNWorkFlow");
+
             if (handlerType == null)
             {
                 throw new InvalidOperationException($"Не удалось найти класс обработчика: {mapping.HandlerClassName}");

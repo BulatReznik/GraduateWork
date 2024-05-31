@@ -17,46 +17,22 @@ public partial class GraduateWorkContext : DbContext
     {
     }
 
-    public virtual DbSet<NodeType> NodeTypes { get; set; }
-
     public virtual DbSet<TaskHandlerMapping> TaskHandlerMappings { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=LAPTOP-UJ3H26AC\\SQLEXPRESS;Initial Catalog=GraduateWork;Integrated Security=True; Trust Server Certificate=true;");
+        => optionsBuilder.UseSqlServer("Data Source=LAPTOP-UJ3H26AC\\SQLEXPRESS;Initial Catalog=GraduateWork;Integrated Security=True;Encrypt=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<NodeType>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK_NodeType_Id");
-
-            entity.ToTable("NodeType");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Name)
-                .HasMaxLength(255)
-                .IsUnicode(false);
-        });
-
         modelBuilder.Entity<TaskHandlerMapping>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK_TaskHandlerMapping_Id");
+            entity
+                .HasNoKey()
+                .ToTable("TaskHandlerMapping");
 
-            entity.ToTable("TaskHandlerMapping");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.HandlerClassName)
-                .HasMaxLength(255)
-                .IsUnicode(false);
-            entity.Property(e => e.NodeName)
-                .HasMaxLength(255)
-                .IsUnicode(false);
-            entity.Property(e => e.NodeTypeId).HasColumnName("NodeType_Id");
-
-            entity.HasOne(d => d.NodeType).WithMany(p => p.TaskHandlerMappings)
-                .HasForeignKey(d => d.NodeTypeId)
-                .HasConstraintName("FK_TaskHandlerMapping_NodeType_Id");
+            entity.Property(e => e.HandlerClassName).HasMaxLength(255);
+            entity.Property(e => e.NodeName).HasMaxLength(255);
         });
 
         OnModelCreatingPartial(modelBuilder);

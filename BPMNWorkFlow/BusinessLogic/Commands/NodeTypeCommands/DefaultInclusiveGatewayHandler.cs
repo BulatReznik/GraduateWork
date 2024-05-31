@@ -2,7 +2,7 @@
 using BPMNWorkFlow.BusinessLogic.Interfaces;
 using BPMNWorkFlow.BusinessLogic.Models;
 
-namespace BPMNWorkFlow.BusinessLogic.Commands.NodeHandlers
+namespace BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands
 {
     internal class DefaultInclusiveGatewayHandler : INodeHandler
     {

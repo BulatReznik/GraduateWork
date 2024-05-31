@@ -8,7 +8,7 @@ using BPMNWorkFlow.BusinessLogic.Models;
 
 namespace BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands
 {
-    internal class LoginTaskHandler : ITaskHandler
+    public class SelectUserTaskHandler : ITaskHandler
     {
         public async Task ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
         {

@@ -1,7 +1,7 @@
 ﻿using BPMNWorkFlow.BusinessLogic.Commands;
 using BPMNWorkFlow.BusinessLogic.Interfaces;
 using System.Collections.Immutable;
-using BPMNWorkFlow.BusinessLogic.Commands.NodeHandlers;
+using BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands;
 
 namespace BPMNWorkFlow.BusinessLogic.Models
 {

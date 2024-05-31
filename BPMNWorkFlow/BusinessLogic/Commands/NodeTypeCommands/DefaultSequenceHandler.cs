@@ -2,7 +2,7 @@
 using BPMNWorkFlow.BusinessLogic.Models;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 
-namespace BPMNWorkFlow.BusinessLogic.Commands.NodeHandlers
+namespace BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands
 {
     internal class DefaultSequenceHandler : INodeHandler
     {

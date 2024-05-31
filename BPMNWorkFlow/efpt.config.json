@@ -15,10 +15,6 @@
    "T4TemplatePath": null,
    "Tables": [
       {
-         "Name": "[dbo].[NodeType]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[dbo].[TaskHandlerMapping]",
          "ObjectType": 0
       }

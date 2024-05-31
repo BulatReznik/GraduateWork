@@ -1,11 +1,10 @@
-﻿using BPMNWorkFlow.BusinessLogic.Interfaces;
+﻿using System.Text;
+using BPMNWorkFlow.BusinessLogic.Interfaces;
 using BPMNWorkFlow.BusinessLogic.Models;
-using System.Text.Json;
-using System.Text;
 using Newtonsoft.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace BPMNWorkFlow.BusinessLogic.Commands.NodeHandlers
+namespace BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands
 {
     internal class DefaultExclusiveGatewayHandler : INodeHandler
     {
