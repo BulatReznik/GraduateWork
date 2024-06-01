@@ -1,5 +1,4 @@
-﻿
-namespace BPMNWorkFlow.BusinessLogic.Interfaces
+﻿namespace BPMNWorkFlow.BusinessLogic.Interfaces
 {
     public interface ITaskHandlerFactory
     {

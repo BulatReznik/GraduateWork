@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Immutable;
-using System.Diagnostics;
+﻿using System.Collections.Immutable;
 using System.Xml.Linq;
 using BPMNWorkFlow.BusinessLogic.Commands;
-using BPMNWorkFlow.BusinessLogic.Interfaces;
 using BPMNWorkFlow.DbModels;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,7 +16,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         /// <summary>
         /// Xml документ для процесса
         /// </summary>
-        public XElement ProcessXML { get; set; }
+        private XElement ProcessXML { get; set; }
 
         /// <summary>
         /// Пространство имен для процесса
