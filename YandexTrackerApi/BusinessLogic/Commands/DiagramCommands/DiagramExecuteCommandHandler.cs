@@ -48,7 +48,7 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
                 await processInstance.StartAsync(processVar);
 
                 var outputParameters = processInstance.ImportantOutputParameters;
-
+                
                 // Создаем путь выполнения, сортируя узлы по nodeNumber
                 var executionPath = (
                     from node in processInstance.Nodes.Values

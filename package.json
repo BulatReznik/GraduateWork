@@ -1,5 +1,11 @@
 {
   "dependencies": {
-    "bpmn-js": "^14.1.1"
+    "bpmn-js": "^14.2.0",
+    "bpmn-js-properties-panel": "^5.17.1",
+    "bpmn-js-task-resize": "^1.2.0",
+    "camunda-bpmn-moddle": "^7.0.1"
+  },
+  "devDependencies": {
+    "polymer-cli": "^1.9.11"
   }
 }

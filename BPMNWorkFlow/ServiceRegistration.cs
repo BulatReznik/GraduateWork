@@ -10,6 +10,7 @@ namespace BPMNWorkFlow
         public static void RegisterServices(IServiceCollection services)
         {
             services.AddTransient<ITaskHandlerFactory, TaskHandlerFactory>();
+
             services.AddTransient<LoadDataTaskHandler>();
             services.AddTransient<LoginTaskHandler>();
             services.AddTransient<SelectUserTaskHandler>();

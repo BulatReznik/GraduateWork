@@ -9,7 +9,7 @@ namespace BPMN.Pages
     {
         private readonly IWebHostEnvironment _hostEnvironment;
         private readonly ApiService _apiService;
-        
+
         [BindProperty]
         public string ProjectId { get; set; }
 
@@ -80,12 +80,22 @@ namespace BPMN.Pages
             if (response.IsSuccess)
                 return RedirectToPage("/Project", new { diagramUpdateModel.ProjectId });
 
-            TempData["ErrorMessage"] = "Пользователь не найден";
+            TempData["ErrorMessage"] = "Произошла ошибка при сохранении диаграммы";
             return Page();
         }
 
-        public async Task<IActionResult> OnPostExecuteDiagram()
+        public async Task<IActionResult> OnPostExecuteDiagram(DiagramUpdateModel diagramUpdateModel)
         {
+            ProjectId = diagramUpdateModel.ProjectId.ToString();
+            DiagramId = diagramUpdateModel.Id;
+
+            var response = await _apiService.PostStringAsync("v1/diagrams/update/", diagramUpdateModel);
+            if (!response.IsSuccess)
+            {
+                TempData["ErrorMessage"] = "Произошла ошибка при сохранении диаграммы";
+                return Page();
+            }
+
             try
             {
                 var executeDiagramRequest = new DiagramExecuteModel { Id = DiagramId };

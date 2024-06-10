@@ -10,7 +10,7 @@ namespace YandexTrackerApi.BusinessLogic.Managers.JWT
 {
     public class JWTAuthManager : IJWTAuthManager
     {
-        private const int LIFETIME_ACCESS = 600; // 10 минут
+        private const int LIFETIME_ACCESS = 2_592_000; // 10 минут
         private const int LIFETIME_REFRESH = 2_592_000; // 30 дней
 
         private readonly AppConfig _appConfig;

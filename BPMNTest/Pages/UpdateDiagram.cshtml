@@ -13,40 +13,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-pzjw8f+ua7Kw1TIqH2FWP4j0SkmPIT3yKxxkIY8POB1Biy1/EmDyF/6NqmgjIv9k" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <style>
-        /* Стили для контейнера */
-        #canvas {
-            width: 100%;
-            height: 80vh;
-            border: solid 1px #ddd;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-
-        .bjs-powered-by {
-            display: none; /* Сделать элемент невидимым */
-        }
-
-        .form-container {
-            margin-bottom: 20px;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-            .btn-primary:hover {
-                background-color: #0056b3;
-                border-color: #004085;
-            }
-
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="~/css/updateDiagram.css">
 </head>
 
 <body>
@@ -55,7 +22,7 @@
         <h1 class="my-4">Редактор BPMN - @Model.DiagramName</h1>
 
         <!-- Контейнер для отображения редактора BPMN -->
-        <div id="canvas"></div>
+        <div id="canvas" data-diagram-id="@Model.DiagramId"></div>
 
         <!-- Форма для сохранения диаграммы -->
         <form method="post" asp-page-handler="Save" class="form-container">
@@ -80,7 +47,7 @@
             <!-- Кнопка для отправки формы -->
             <input hidden id="saveButton" type="submit" value="Save">
         </form>
-        
+
         @if (TempData["SuccessMessage"] != null)
         {
             <div class="alert alert-success" role="alert">
@@ -94,71 +61,26 @@
                 @TempData["ErrorMessage"]
             </div>
         }
-        
-        <form method="post" asp-page-handler="ExecuteDiagram" asp-route-diagramId="@Model.DiagramId" asp-route-projectId="@Model.ProjectId" style="margin-bottom: 2px">
-            <button type="submit" class="btn btn-success">Выполнить диаграмму</button>
+
+        <form method="post" asp-page-handler="ExecuteDiagram" class="form-container">
+            <input type="hidden" name="Id" value="@Model.DiagramId" />
+            <input type="hidden" name="ProjectId" value="@Model.ProjectId" />
+            <input type="hidden" name="Name" value="@Model.DiagramName" />
+            <input type="hidden" id="ExecuteXMLDiagram" name="XMLDiagram" />
+
+            <button type="button" class="btn btn-success" style="margin-bottom: 5px" onclick="exportBpmnXmlForExecute()">Выполнить диаграмму</button>
+
+            <!-- Кнопка для отправки формы -->
+            <input hidden id="executeButton" type="submit" value="ExecuteDiagram">
         </form>
     </div>
 
     <!-- Подключение библиотеки bpmn-js Modeler -->
-    <script src="https://unpkg.com/bpmn-js/dist/bpmn-modeler.development.js"></script>
-
+    <script src="~/js/bpmn.js"></script>s
+    <script src="~/dist/bundle.js"></script>
     <script>
-        // Создание экземпляра BPMN Modeler
-        const modeler = new BpmnJS({ container: '#canvas' });
-
-        // Функция для загрузки диаграммы
-        function loadDiagram(bpmnXml) {
-            console.log(bpmnXml)
-            modeler.importXML(bpmnXml);
-        }
-
-        // Функция для загрузки диаграммы из файла
-        function loadDiagramFromFile() {
-            var diagramId = '@Model.DiagramId';
-
-            // Путь к файлу с XML-кодом диаграммы
-            const bpmnBaseFile = `/UpdateDiagram?handler=Diagram&diagramId=${diagramId}`;
-
-            // Чтение содержимого файла
-            fetch(bpmnBaseFile)
-                .then(response => response.text())
-                .then(bpmnXml => {
-                    loadDiagram(bpmnXml);
-                    deleteTempFile(diagramId);
-                })
-                .catch(error => {
-                    console.error('Не удалось загрузить BPMN файл:', error);
-                });
-        }
-
-        function deleteTempFile(diagramId) {
-            fetch(`/UpdateDiagram?handler=DeleteTempFile&diagramId=${diagramId}`)
-                .then(response => {
-                    if (response.ok) {
-                        console.log('Временный файл успешно удален.');
-                    } else {
-                        console.error('Не удалось удалить временный файл.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Ошибка при удалении временного файла:', error);
-                });
-        }
-
-        async function exportBpmnXml() {
-            const { xml } = await modeler.saveXML({ format: true });
-
-            // Установите значение xml в скрытое поле формы
-            const xmlInput = document.getElementById('XMLDiagram');
-            xmlInput.value = xml;
-
-            // Нажмите кнопку отправки формы
-            const saveButton = document.getElementById('saveButton');
-            saveButton.click();
-        }
-
-        // Вызываем функцию загрузки диаграммы из файла при загрузке страницы
-        loadDiagramFromFile();
+        // Обеспечьте доступность функции в глобальном контексте
+        window.exportBpmnXml = exportBpmnXml;
+        window.exportBpmnXmlForExecute = exportBpmnXmlForExecute;
     </script>
 </body>

@@ -46,6 +46,14 @@ app.UseEndpoints(endpoints =>
     pattern: "{controller=Home}/{action=Index}/{id?}");
 });
 
+app.UseFileServer(new FileServerOptions()
+{
+    FileProvider = new PhysicalFileProvider(
+                   Path.Combine(app.Environment.ContentRootPath, "node_modules")
+               ),
+    RequestPath = "/node_modules",
+    EnableDirectoryBrowsing = true
+});
 
 app.Run();
 

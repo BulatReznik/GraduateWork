@@ -29,7 +29,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands
                     {
                         var args = string.Join(":", splitNodeName.Skip(1));
                         var inputParameters = GetInputParameters(args);
-                        processNode.InputParameters = processNode.InputParameters.AddRange(inputParameters);
+                        processNode.InputParameters = UpdateInputParameters(processNode.InputParameters, inputParameters);
                     }
 
                     var handler = await _taskHandlerFactory.GetTaskHandlerAsync(taskName);
@@ -61,6 +61,17 @@ namespace BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands
 
             return parameters;
         }
-    }
 
+        private static IImmutableDictionary<string, object> UpdateInputParameters(
+            IImmutableDictionary<string, object> existingParameters,
+            IImmutableDictionary<string, object> newParameters)
+        {
+            var updatedParameters = existingParameters;
+            foreach (var kvp in newParameters)
+            {
+                updatedParameters = updatedParameters.SetItem(kvp.Key, kvp.Value);
+            }
+            return updatedParameters;
+        }
+    }
 }

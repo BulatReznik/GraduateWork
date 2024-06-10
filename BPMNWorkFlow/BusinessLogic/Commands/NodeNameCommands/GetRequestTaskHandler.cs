@@ -1,38 +1,40 @@
 ﻿using BPMNWorkFlow.BusinessLogic.Interfaces;
 using BPMNWorkFlow.BusinessLogic.Models;
 using System.Text.Json;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands
 {
     public class GetRequestTaskHandler : ITaskHandler
     {
-        private readonly HttpClient _httpClient;
-
-        public GetRequestTaskHandler(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
-
         public async Task ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
         {
-            // URL API и параметры запроса
-            var apiUrl = processNode.ImportantParameters.FirstOrDefault(ip => ip.Key == "HREF").Value.ToString();
+            // Получение URL API и параметров запроса
+            var apiUrl = processNode.InputParameters
+                .FirstOrDefault(ip => ip.Key == "HREF").Value?.ToString();
 
-            var requestParameters = new Dictionary<string, string>
+            if (string.IsNullOrEmpty(apiUrl))
             {
-                { "parameter1", "value1" },
-                { "parameter2", "value2" }
-            };
+                Console.WriteLine("API URL не найден в InputParameters");
+                return;
+            }
+
+            // Преобразование InputParameters в словарь для использования в запросе
+            var requestParameters = processNode.InputParameters
+                .Where(ip => ip.Key != "HREF")
+                .ToDictionary(ip => ip.Key, ip => ip.Value?.ToString());
+
+            // Создание HttpClient
+            using var httpClient = new HttpClient();
 
             // Создание запроса
-            var request = new HttpRequestMessage(HttpMethod.Get, apiUrl);
-            request.Content = new FormUrlEncodedContent(requestParameters);
+            var requestUri = new Uri(QueryHelpers.AddQueryString(apiUrl, requestParameters));
+            var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
 
             try
             {
                 // Выполнение запроса
-                var response = await _httpClient.SendAsync(request);
-                response.EnsureSuccessStatusCode();
+                var response = await httpClient.SendAsync(request);
 
                 // Чтение и десериализация ответа
                 var responseBody = await response.Content.ReadAsStringAsync();
@@ -46,17 +48,14 @@ namespace BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands
                         processNode.OutputParameters.Add(kvp.Key, kvp.Value);
                     }
                 }
-
             }
             catch (HttpRequestException e)
             {
                 Console.WriteLine($"Ошибка запроса: {e.Message}");
-                // Обработка ошибок HTTP-запроса
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Общая ошибка: {e.Message}");
-                // Обработка других ошибок
             }
         }
     }
