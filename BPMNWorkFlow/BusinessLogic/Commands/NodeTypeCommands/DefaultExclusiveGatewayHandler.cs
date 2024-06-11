@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Collections.Immutable;
+using System.Text;
+using System.Text.RegularExpressions;
 using BPMNWorkFlow.BusinessLogic.Interfaces;
 using BPMNWorkFlow.BusinessLogic.Models;
 using Newtonsoft.Json;
@@ -8,22 +10,34 @@ namespace BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands
 {
     internal class DefaultExclusiveGatewayHandler : INodeHandler
     {
+        private readonly ITaskHandlerFactory _taskHandlerFactory;
+
+        public DefaultExclusiveGatewayHandler(ITaskHandlerFactory taskHandlerFactory)
+        {
+            _taskHandlerFactory = taskHandlerFactory;
+        }
+
         public async Task ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
         {
             try
             {
-                Console.WriteLine(processNode.NodeId);
-                Console.WriteLine(processNode.NodeName);
+                Console.WriteLine($"Выполнение развилки: Id: {processNode.NodeId} Имя развилки: {processNode.NodeName}");
 
-                var isCheckForWorkedHours = previousNode.PreviousNodes
-                    .Any(node => node.NodeName == "Определить количество часов списанные в задачи");
-
-                var isCheckForEstimatedHours = previousNode.PreviousNodes
-                    .Any(node => node.NodeName == "Определить кол-во часов, указанных для выполнения задачи");
-
-                if (isCheckForWorkedHours || isCheckForEstimatedHours)
+                if (processNode.NodeName != null)
                 {
-                    await HandleTasksQuery(processNode, isCheckForWorkedHours, isCheckForEstimatedHours);
+                    var splitNodeName = processNode.NodeName.Split(':');
+                    var taskName = splitNodeName[0];
+
+                    if (splitNodeName.Length > 1)
+                    {
+                        var args = string.Join(":", splitNodeName.Skip(1));
+                        processNode.CurrentNodeInputParameters = processNode.CurrentNodeInputParameters.AddRange(GetInputParameters(args));
+                        processNode.InputParameters = UpdateInputParameters(processNode.InputParameters, processNode.CurrentNodeInputParameters);
+                    }
+
+                    var handler = await _taskHandlerFactory.GetTaskHandlerAsync(taskName);
+
+                    await handler.ExecuteAsync(processNode, previousNode);
                 }
 
                 await processNode.DoneAsync();
@@ -34,100 +48,32 @@ namespace BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands
                 throw;
             }
         }
-
-        private async Task HandleTasksQuery(ProcessNode processNode, bool isCheckForWorkedHours, bool isCheckForEstimatedHours)
+        private static IImmutableDictionary<string, object> GetInputParameters(string nodeName)
         {
-            if (!processNode.InputParameters.TryGetValue("StartDate", out var startDateObj) ||
-                !processNode.InputParameters.TryGetValue("EndDate", out var endDateObj))
+            var parameters = ImmutableDictionary<string, object>.Empty;
+            var regex = new Regex(@"(\w+):\s*""([^""]+)""");
+            var matches = regex.Matches(nodeName);
+
+            foreach (Match match in matches)
             {
-                throw new ArgumentException("StartDate и EndDate обязательны в InputParameters");
+                var key = match.Groups[1].Value;
+                var value = match.Groups[2].Value;
+                parameters = parameters.Add(key, value);
             }
 
-            var startDate = DateOnly.Parse(startDateObj.ToString() ?? string.Empty);
-            var endDate = DateOnly.Parse(endDateObj.ToString() ?? string.Empty);
-
-            var query = new
-            {
-                StartDate = startDate,
-                EndDate = endDate
-            };
-
-            var content = new StringContent(JsonSerializer.Serialize(query), Encoding.UTF8, "application/json");
-
-            var httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://localhost:7075/api/");
-            var response = await httpClient.PostAsync("/api/v1/calendar/period/work/hours", content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var responseContent = await response.Content.ReadAsStringAsync();
-                var responseModel = new ResponseModel<CalendarPeriodWorkHoursResponse>
-                {
-                    Data = JsonConvert.DeserializeObject<CalendarPeriodWorkHoursResponse>(responseContent)
-                };
-
-                if (responseModel.Data != null)
-                {
-                    var totalWorkHours = responseModel.Data.TotalWorkHours;
-                    processNode.OutputParameters = processNode.OutputParameters
-                        .Add("WorkHours", totalWorkHours);
-
-                    var comparisonValue = isCheckForWorkedHours
-                        ? processNode.InputParameters.TryGetValue("SpentTimeSum", out var spentTimeObj) ? int.Parse(spentTimeObj.ToString()) : 0
-                        : processNode.InputParameters.TryGetValue("OriginalEstimationSum", out var estimationTimeObj) ? int.Parse(estimationTimeObj.ToString()) : 0;
-
-                    string targetNodeName;
-                    if (comparisonValue == totalWorkHours)
-                    {
-                        targetNodeName = "Часы равны количеству часов в трудовом календаре";
-                    }
-                    else if (comparisonValue < totalWorkHours)
-                    {
-                        targetNodeName = "Часы меньше количества часов в трудовом календаре";
-                    }
-                    else
-                    {
-                        targetNodeName = "Часы больше количества часов в трудовом календаре";
-                    }
-
-                    var nextNodesToRemove = new List<ProcessNode>();
-
-                    foreach (var nextNode in processNode.NextNodes)
-                    {
-                        var nodesToRemove = nextNode.NextNodes
-                            .Where(node => node.NodeName != targetNodeName)
-                            .ToList();
-
-                        foreach (var node in nodesToRemove)
-                        {
-                            nextNode.NextNodes.Remove(node);
-                        }
-
-                        if (nextNode.NextNodes.Count == 0)
-                        {
-                            nextNodesToRemove.Add(nextNode);
-                        }
-                    }
-
-                    foreach (var nextNodeToRemove in nextNodesToRemove)
-                    {
-                        processNode.NextNodes.Remove(nextNodeToRemove);
-                    }
-                }
-                else
-                {
-                    throw new Exception("Не удалось получить данные задач");
-                }
-            }
-            else
-            {
-                throw new Exception("Не удалось получить ответ от сервера");
-            }
+            return parameters;
         }
-    }
 
-    public class CalendarPeriodWorkHoursResponse
-    {
-        public int TotalWorkHours { get; set; }
+        private static IImmutableDictionary<string, object> UpdateInputParameters(
+            IImmutableDictionary<string, object> existingParameters,
+            IImmutableDictionary<string, object> newParameters)
+        {
+            var updatedParameters = existingParameters;
+            foreach (var kvp in newParameters)
+            {
+                updatedParameters = updatedParameters.SetItem(kvp.Key, kvp.Value);
+            }
+            return updatedParameters;
+        }
     }
 }

@@ -1,10 +1,5 @@
 ﻿using BPMNWorkFlow.BusinessLogic.Interfaces;
 using BPMNWorkFlow.BusinessLogic.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands
 {
@@ -13,55 +8,62 @@ namespace BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands
         public async Task ExecuteAsync(ProcessNode processNode, ProcessNode previousNode)
         {
             // Получение значений для сравнения
-            var obj1 = processNode.CurrentNodeInputParameters.FirstOrDefault(o => o.Key == "obj1").Value;
-            var obj2 = processNode.CurrentNodeInputParameters.FirstOrDefault(o => o.Key == "obj2").Value;
-            var comparisonSign = processNode.CurrentNodeInputParameters.FirstOrDefault(o => o.Key == "comparisonSign").Value;
+            var obj1Key = processNode.CurrentNodeInputParameters.FirstOrDefault(o => o.Key == "obj1").Value?.ToString();
+            var obj2Key = processNode.CurrentNodeInputParameters.FirstOrDefault(o => o.Key == "obj2").Value?.ToString();
+
+            if (string.IsNullOrEmpty(obj1Key) || string.IsNullOrEmpty(obj2Key))
+            {
+                Console.WriteLine("Ключи obj1 или obj2 не найдены или пусты");
+                return;
+            }
+
+            var obj1 = previousNode.InputParameters.FirstOrDefault(ip => ip.Key == obj1Key).Value;
+            var obj2 = previousNode.InputParameters.FirstOrDefault(ip => ip.Key == obj2Key).Value;
 
             // Проверка наличия необходимых параметров
-            if (obj1 == null || obj2 == null || comparisonSign == null)
+            if (obj1 == null || obj2 == null)
             {
                 Console.WriteLine("Недостаточно параметров для выполнения сравнения");
                 return;
             }
 
-            bool comparisonResult = false;
-
-            // Выполнение сравнения в зависимости от знака
-            switch (comparisonSign)
+            // Преобразование значений в числа для сравнения
+            if (!double.TryParse(obj1.ToString(), out var value1) || !double.TryParse(obj2.ToString(), out var value2))
             {
-                case "==":
-                    comparisonResult = obj1 == obj2;
-                    break;
-                case "!=":
-                    comparisonResult = obj1 != obj2;
-                    break;
-                case "<":
-                    comparisonResult = Convert.ToDouble(obj1) < Convert.ToDouble(obj2);
-                    break;
-                case "<=":
-                    comparisonResult = Convert.ToDouble(obj1) <= Convert.ToDouble(obj2);
-                    break;
-                case ">":
-                    comparisonResult = Convert.ToDouble(obj1) > Convert.ToDouble(obj2);
-                    break;
-                case ">=":
-                    comparisonResult = Convert.ToDouble(obj1) >= Convert.ToDouble(obj2);
-                    break;
-                default:
-                    Console.WriteLine("Неподдерживаемый знак сравнения");
-                    return;
+                Console.WriteLine("Невозможно преобразовать параметры к числовым значениям");
+                return;
             }
 
-            // Выбор следующего узла в зависимости от результата сравнения
-            string nextNodeKey = comparisonResult ? "TrueNode" : "FalseNode";
+            // Определение знака сравнения
+            string nextNodeName;
 
-            var nextNode = processNode.NextNodes.FirstOrDefault(n => n.Key == nextNodeKey).Value;
+            if (value1 < value2)
+            {
+                nextNodeName = "<";
+            }
+            else if (value1 > value2)
+            {
+                nextNodeName = ">";
+            }
+            else
+            {
+                nextNodeName = "==";
+            }
+
+            // Поиск следующего узла на основе имени
+            var nextNode = processNode.NextNodes.FirstOrDefault(n => n.NodeName == nextNodeName);
 
             if (nextNode == null)
             {
-                Console.WriteLine($"Следующий узел для ключа {nextNodeKey} не найден");
+                Console.WriteLine($"Следующий узел для знака {nextNodeName} не найден");
                 return;
             }
+
+            // Удаление всех узлов, которые не соответствуют знаку сравнения
+            processNode.NextNodes = processNode.NextNodes
+                .Where(n => n.NodeName == nextNodeName).ToList();
+
+            await processNode.DoneAsync();
         }
     }
 }

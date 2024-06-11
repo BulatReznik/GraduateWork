@@ -28,7 +28,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands
                     if (splitNodeName.Length > 1)
                     {
                         var args = string.Join(":", splitNodeName.Skip(1));
-                        processNode.CurrentNodeInputParameters = GetInputParameters(args);
+                        processNode.CurrentNodeInputParameters = processNode.CurrentNodeInputParameters.AddRange(GetInputParameters(args));
                         processNode.InputParameters = UpdateInputParameters(processNode.InputParameters, processNode.CurrentNodeInputParameters);
                     }
 
@@ -49,7 +49,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands
         private static IImmutableDictionary<string, object> GetInputParameters(string nodeName)
         {
             var parameters = ImmutableDictionary<string, object>.Empty;
-            var regex = new Regex(@"\b(\w+):\s*([^\s]+)");
+            var regex = new Regex(@"(\w+):\s*""([^""]+)""");
             var matches = regex.Matches(nodeName);
 
             foreach (Match match in matches)

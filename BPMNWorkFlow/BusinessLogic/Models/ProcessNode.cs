@@ -31,7 +31,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         public IImmutableDictionary<string, object> InputParameters { get; set; }
 
         public IImmutableDictionary<string, object> CurrentNodeInputParameters { get; set; }
-        
+
         /// <summary>
         /// Выходные параметры для узлов
         /// </summary>
@@ -67,6 +67,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
             InputParameters = ImmutableDictionary<string, object>.Empty;
             OutputParameters = ImmutableDictionary<string, object>.Empty;
             ImportantParameters = ImmutableDictionary<string, object>.Empty;
+            CurrentNodeInputParameters = ImmutableDictionary<string, object>.Empty;
         }
 
         public async Task Execute(ProcessNode processNode, ProcessNode previousNode)
@@ -94,32 +95,39 @@ namespace BPMNWorkFlow.BusinessLogic.Models
 
         public async Task DoneAsync()
         {
-            // Получаем следующий номер узла от ProcessInstance
-            var nodeNumber = ProcessInstance.GetNextNodeNumber();
-
-            // Добавляем текущий номер узла в OutputParameters
-            OutputParameters = OutputParameters.Add("nodeNumber", nodeNumber);
-
-            // Передаем текущие выходные параметры в ProcessInstance
-            ProcessInstance.SetOutputParameters(this);
-            ProcessInstance.SetImportantOutputParameter(this);
-
-            foreach (var param in InputParameters)
+            try
             {
-                if (!OutputParameters.ContainsKey(param.Key))
+                // Получаем следующий номер узла от ProcessInstance
+                var nodeNumber = ProcessInstance.GetNextNodeNumber();
+
+                // Добавляем текущий номер узла в OutputParameters
+                OutputParameters = OutputParameters.Add("nodeNumber", nodeNumber);
+
+                // Передаем текущие выходные параметры в ProcessInstance
+                ProcessInstance.SetOutputParameters(this);
+                ProcessInstance.SetImportantOutputParameter(this);
+
+                foreach (var param in InputParameters)
                 {
-                    OutputParameters = OutputParameters.Add(param.Key, param.Value);
+                    if (!OutputParameters.ContainsKey(param.Key))
+                    {
+                        OutputParameters = OutputParameters.Add(param.Key, param.Value);
+                    }
+                }
+
+                foreach (var node in NextNodes)
+                {
+                    // Заменить на разрешение переменных
+                    // Для каждого узла получить входные параметры, определенные в BPMN
+                    // Получить их из node.OutputParameters (результаты предыдущего узла)
+                    // Получить недостающие входные данные из переменных процесса
+                    node.InputParameters = node.InputParameters.SetItems(OutputParameters);
+                    await node.Execute(node, this);
                 }
             }
-
-            foreach (var node in NextNodes)
-            {
-                // Заменить на разрешение переменных
-                // Для каждого узла получить входные параметры, определенные в BPMN
-                // Получить их из node.OutputParameters (результаты предыдущего узла)
-                // Получить недостающие входные данные из переменных процесса
-                node.InputParameters = node.InputParameters.SetItems(OutputParameters);
-                await node.Execute(node, this);
+            catch (Exception e) 
+            { 
+                Console.WriteLine(e); 
             }
         }
     }

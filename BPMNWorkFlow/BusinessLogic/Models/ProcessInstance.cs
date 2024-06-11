@@ -92,7 +92,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
                 { "errorEventDefinition", new DefaultErrorEventHandler()},
                 { "escalationEventDefinition", new DefaultEscalationEventHandler()},
                 { "eventBasedGateway", new DefaultEventBasedGatewayHandler()},
-                { "exclusiveGateway", new DefaultExclusiveGatewayHandler()},
+                { "exclusiveGateway", new DefaultExclusiveGatewayHandler(_taskHandlerFactory)},
                 { "inclusiveGateway", new DefaultInclusiveGatewayHandler()},
                 { "intermediateCatchEvent", new DefaultIntermediateCatchHandler()},
                 { "intermediateThrowEvent", new DefaultIntermediateThrowHandler()},
@@ -109,7 +109,7 @@ namespace BPMNWorkFlow.BusinessLogic.Models
                 { "signalEventDefinition", new DefaultSignalEventHandler()},
                 { "startEvent", new DefaultStartHandler()},
                 { "subProcess", new DefaultSubProcessHandler()},
-                { "task", new DefaultTaskHandler(taskHandlerFactory:_taskHandlerFactory)},
+                { "task", new DefaultTaskHandler(_taskHandlerFactory)},
                 { "terminateEventDefinition", new DefaultTerminateEventHandler()},
                 { "timerEventDefinition", new DefaultTimerEventHandler()},
                 { "userTask", new DefaultUserTaskHandler()}
