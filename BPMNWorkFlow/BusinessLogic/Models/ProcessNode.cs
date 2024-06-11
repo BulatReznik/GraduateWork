@@ -29,6 +29,8 @@ namespace BPMNWorkFlow.BusinessLogic.Models
         /// Входные параметры для узлов
         /// </summary>
         public IImmutableDictionary<string, object> InputParameters { get; set; }
+
+        public IImmutableDictionary<string, object> CurrentNodeInputParameters { get; set; }
         
         /// <summary>
         /// Выходные параметры для узлов

@@ -19,6 +19,7 @@ namespace BPMNWorkFlow
             services.AddTransient<GetRequestTaskHandler>();
             services.AddTransient<PutRequestTaskHandler>();
             services.AddTransient<DeleteRequestTaskHandler>();
+            services.AddTransient<ShowTextTaskHandler>();
         }
     }
 }

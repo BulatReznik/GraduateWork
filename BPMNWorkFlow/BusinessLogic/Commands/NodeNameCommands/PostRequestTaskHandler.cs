@@ -44,7 +44,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands
 
                 // Чтение и десериализация ответа
                 var responseBody = await response.Content.ReadAsStringAsync();
-                var responseData = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                var responseData = JsonSerializer.Deserialize<Dictionary<string, object>>(responseBody);
 
                 // Сохранение данных в OutputParameters
                 if (responseData != null)

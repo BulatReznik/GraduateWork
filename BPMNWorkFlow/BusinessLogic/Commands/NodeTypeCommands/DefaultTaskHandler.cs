@@ -28,8 +28,8 @@ namespace BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands
                     if (splitNodeName.Length > 1)
                     {
                         var args = string.Join(":", splitNodeName.Skip(1));
-                        var inputParameters = GetInputParameters(args);
-                        processNode.InputParameters = UpdateInputParameters(processNode.InputParameters, inputParameters);
+                        processNode.CurrentNodeInputParameters = GetInputParameters(args);
+                        processNode.InputParameters = UpdateInputParameters(processNode.InputParameters, processNode.CurrentNodeInputParameters);
                     }
 
                     var handler = await _taskHandlerFactory.GetTaskHandlerAsync(taskName);
