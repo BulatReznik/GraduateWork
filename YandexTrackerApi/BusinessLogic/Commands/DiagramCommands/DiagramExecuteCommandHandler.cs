@@ -56,11 +56,11 @@ namespace YandexTrackerApi.BusinessLogic.Commands.DiagramCommands
                           && node.OutputParameters.ContainsKey("nodeNumber")  // Проверяем наличие nodeNumber
                     let nodeNumber = (int)node.OutputParameters["nodeNumber"]  // Извлекаем nodeNumber
                     orderby nodeNumber  // Сортируем по nodeNumber
-                    select $"Завершение узла: Id: {node.NodeId} Имя узла: {node.NodeName} Номер узла: {nodeNumber}"
+                    select $"Номер узла: {nodeNumber} \nId: {node.NodeId} \nИмя узла: {node.NodeName}"
                 ).ToList();
 
                 // Преобразуем список в строку для отправки пользователю
-                var executionPathString = string.Join("\n", executionPath);
+                var executionPathString = string.Join("\n\n", executionPath);
 
                 var result = new DiagramExecuteResponse()
                 {
