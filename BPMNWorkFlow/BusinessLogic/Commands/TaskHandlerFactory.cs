@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BPMNWorkFlow.DbModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands;
 
 namespace BPMNWorkFlow.BusinessLogic.Commands
 {
@@ -28,7 +29,7 @@ namespace BPMNWorkFlow.BusinessLogic.Commands
 
             if (mapping == null)
             {
-                throw new InvalidOperationException($"Неизвестная задача: {nodeName}");
+                return new NoOpTaskHandler();
             }
 
             var handlerType = Type.GetType($"BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands.{mapping.HandlerClassName}, BPMNWorkFlow");

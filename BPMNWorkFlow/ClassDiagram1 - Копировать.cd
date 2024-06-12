@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="BPMNWorkFlow.BusinessLogic.Models.Globals">
+    <Position X="9.25" Y="15.25" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\Globals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Models.Process">
+    <Position X="3.25" Y="0.75" Width="11.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAIAEAQAAAACAgABAQAgACAAA=</HashCode>
+      <FileName>BusinessLogic\Models\Process.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Models.ProcessInstance">
+    <Position X="3.25" Y="4.5" Width="6.25" />
+    <TypeIdentifier>
+      <HashCode>ABAigKABBQAQAIUAAgCEAAAAAAAAAEAIARAAAAAAACA=</HashCode>
+      <FileName>BusinessLogic\Models\ProcessInstance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Models.ProcessNode">
+    <Position X="10" Y="4.5" Width="4.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAACABAAAAAEQABACEAAAAACAAAIAQABAACAAgAAE=</HashCode>
+      <FileName>BusinessLogic\Models\ProcessNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.TaskHandlerFactory" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="11.25" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>BusinessLogic\Commands\TaskHandlerFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Models.ResponseModel&lt;TValue&gt;">
+    <Position X="18.75" Y="8.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQAABAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Models\ResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultBusinessRuleTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="14" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultBusinessRuleTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultCallActivityHandler" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultCallActivityHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultCompensateEventHandler" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultCompensateEventHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultComplexGatewayHandler" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultComplexGatewayHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultConditionalEventHandler" BaseTypeListCollapsed="true">
+    <Position X="21" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultConditionalEventHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultEndHandler" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultEndHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultErrorEventHandler" BaseTypeListCollapsed="true">
+    <Position X="14" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultErrorEventHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultEscalationEventHandler" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultEscalationEventHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultEventBasedGatewayHandler" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultEventBasedGatewayHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultExclusiveGatewayHandler" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAEAAAAAAAAAEAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultExclusiveGatewayHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultInclusiveGatewayHandler" BaseTypeListCollapsed="true">
+    <Position X="21" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultInclusiveGatewayHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultIntermediateCatchHandler" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultIntermediateCatchHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultIntermediateThrowHandler" BaseTypeListCollapsed="true">
+    <Position X="14" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultIntermediateThrowHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultLaneSetHandler" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultLaneSetHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultLinkEventHandler" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultLinkEventHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultManualTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultManualTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultMessageEventHandler" BaseTypeListCollapsed="true">
+    <Position X="21" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultMessageEventHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultParallelGatewayHandler" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultParallelGatewayHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultReceiveTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="14" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultReceiveTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultScriptTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultScriptTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultSendTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultSendTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultSequenceHandler" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultSequenceHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultServiceTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="21" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultServiceTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultSignalEventHandler" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultSignalEventHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultStartHandler" BaseTypeListCollapsed="true">
+    <Position X="14" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultStartHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultSubProcessHandler" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultSubProcessHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="14" Y="17.25" Width="10.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAEAAAAAAAAAEAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultTerminateEventHandler" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultTerminateEventHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultTimerEventHandler" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultTimerEventHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeTypeCommands.DefaultUserTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="21" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeTypeCommands\DefaultUserTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands.CompareTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeNameCommands\CompareTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands.DeleteRequestTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="8" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeNameCommands\DeleteRequestTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands.GetRequestTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeNameCommands\GetRequestTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands.PostRequestTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="8" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeNameCommands\PostRequestTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands.PutRequestTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeNameCommands\PutRequestTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands.ShowTextTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="21" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeNameCommands\ShowTextTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BPMNWorkFlow.BusinessLogic.Commands.NodeNameCommands.NoOpTaskHandler" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Commands\NodeNameCommands\NoOpTaskHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="BPMNWorkFlow.BusinessLogic.Interfaces.INodeHandler">
+    <Position X="9.25" Y="11.25" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Interfaces\INodeHandler.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BPMNWorkFlow.BusinessLogic.Interfaces.ITaskHandler">
+    <Position X="9.25" Y="12.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BusinessLogic\Interfaces\ITaskHandler.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BPMNWorkFlow.BusinessLogic.Interfaces.ITaskHandlerFactory">
+    <Position X="9.25" Y="13.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Interfaces\ITaskHandlerFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
