@@ -1,4 +1,88 @@
 ﻿@page
 @model BPMN.Pages.HandlersModel
 @{
+    ViewData["Title"] = "Handlers";
 }
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Обработчики</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-pzjw8f+ua7Kw1TIqH2FWP4j0SkmPIT3yKxxkIY8POB1Biy1/EmDyF/6NqmgjIv9k" crossorigin="anonymous">
+
+    <style>
+        .handler-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .handler-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .handler-item h3 {
+                margin-top: 0;
+                color: #007bff;
+            }
+
+            .handler-item p {
+                margin: 0;
+                color: #555;
+            }
+
+        .no-handlers {
+            text-align: center;
+            color: #777;
+        }
+
+        .page-title {
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .alert-custom {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4 text-center page-title">Обработчики</h1>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-custom" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        @if (Model?.Handlers?.Handlers != null && Model.Handlers.Handlers.Any())
+        {
+            <ul class="handler-list">
+                @foreach (var handler in Model.Handlers.Handlers)
+                {
+                    <li class="handler-item">
+                        <h3>@handler.NodeName</h3>
+                        <p><strong>Класс обработчика:</strong> @handler.HandlerClassName</p>
+                        <p><strong>Описание:</strong> @handler.Description</p>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p class="no-handlers">Обработчики недоступны.</p>
+        }
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

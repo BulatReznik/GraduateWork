@@ -1,15 +1,17 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using YandexTrackerApi.BusinessLogic.Models.HandlersQueries;
 using YandexTrackerApi.DbModels;
+using YandexTrackerApi.BusinessLogic.Models.HandlersModels;
 
 namespace YandexTrackerApi.BusinessLogic.Queries.HandlersQueries
 {
     public class HandlersQueryHandler : IRequestHandler<HandlersQuery, Models.ResponseModel<HandlersResponse>>
     {
         private readonly IGraduateWorkContext _context;
-        private readonly ILogger _logger;
+        private readonly ILogger<HandlersQueryHandler> _logger;
 
-        public HandlersQueryHandler(IGraduateWorkContext context, ILogger logger)
+        public HandlersQueryHandler(IGraduateWorkContext context, ILogger<HandlersQueryHandler> logger)
         {
             _context = context;
             _logger = logger;
@@ -19,7 +21,21 @@ namespace YandexTrackerApi.BusinessLogic.Queries.HandlersQueries
         {
             try
             {
-                _context.
+                var handlers = await _context.TaskHandlerMappings
+                    .Select(th => new Handler
+                    {
+                        HandlerClassName = th.HandlerClassName,
+                        NodeName = th.NodeName,
+                        Description = th.Description
+                    })
+                    .ToListAsync(cancellationToken);
+
+                var response = new HandlersResponse
+                {
+                    Handlers = handlers
+                };
+
+                return new Models.ResponseModel<HandlersResponse> { Data = response };
             }
             catch (Exception ex)
             {
@@ -29,3 +45,4 @@ namespace YandexTrackerApi.BusinessLogic.Queries.HandlersQueries
             }
         }
     }
+}

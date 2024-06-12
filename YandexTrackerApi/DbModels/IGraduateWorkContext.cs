@@ -59,5 +59,7 @@ namespace YandexTrackerApi.DbModels
         DbSet<YandexTrackerTask> YandexTrackerTasks { get; set; }
 
         DbSet<Diagram> Diagrams { get; set; }
+
+        DbSet<TaskHandlerMapping> TaskHandlerMappings { get; set; }
     }
 }

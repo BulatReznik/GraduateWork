@@ -4,6 +4,6 @@ namespace YandexTrackerApi.BusinessLogic.Models.HandlersQueries
 {
     public class HandlersResponse
     {
-        public List<Handler> Handler { get; set; }
+        public List<Handler> Handlers { get; set; }
     }
 }

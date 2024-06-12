@@ -19,6 +19,8 @@ public partial class GraduateWorkContext : DbContext
 
     public virtual DbSet<Project> Projects { get; set; }
 
+    public virtual DbSet<TaskHandlerMapping> TaskHandlerMappings { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UsersProject> UsersProjects { get; set; }

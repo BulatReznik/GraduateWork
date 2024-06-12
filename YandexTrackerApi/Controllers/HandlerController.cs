@@ -5,13 +5,13 @@ using MediatR;
 using YandexTrackerApi.BusinessLogic.Managers.User;
 using Microsoft.AspNetCore.Identity;
 using YandexTrackerApi.BusinessLogic.Models.ProjectQueries;
+using YandexTrackerApi.BusinessLogic.Models.HandlersQueries;
 
 namespace YandexTrackerApi.Controllers
 {
 
     [Route("/api/v1/handler/[action]")]
     [ApiController]
-    [Authorize]
     public class HandlerController : Controller
     {
 
